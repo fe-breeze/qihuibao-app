@@ -18,11 +18,13 @@ import Loading from './containers/Loading'
 import Login from './containers/Login'
 import Home from './containers/Home'
 import Account from './containers/Account'
+import Invest from './containers/Invest'
 import Detail from './containers/Detail'
 
 const HomeNavigator = TabNavigator(
   {
     Home: { screen: Home },
+    Invest: { screen: Invest },
     Account: { screen: Account },
   },
   {

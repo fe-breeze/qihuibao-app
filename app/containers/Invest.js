@@ -9,8 +9,8 @@ import { createAction, NavigationActions } from '../utils'
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
   static navigationOptions = {
-    title: '账户',
-    tabBarLabel: '账户',
+    title: '定期理财',
+    tabBarLabel: '投资',
     tabBarIcon: ({ focused, tintColor }) => (
       <Image
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
@@ -34,8 +34,8 @@ class Account extends Component {
         {login ? (
           <Button text="Logout" onPress={this.logout} />
         ) : (
-          <Button text="Goto Login" onPress={this.gotoLogin} />
-        )}
+            <Button text="Goto Login" onPress={this.gotoLogin} />
+          )}
       </View>
     )
   }

@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
 import { NavigationActions } from '../utils'
+import Swiper from 'react-native-swiper';
 
 @connect()
 class Home extends Component {
   static navigationOptions = {
-    title: 'Home',
-    tabBarLabel: 'Home',
+    title: '首页',
+    tabBarLabel: '首页',
     tabBarIcon: ({ focused, tintColor }) => (
       <Image
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
@@ -26,6 +27,17 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Swiper style={styles.wrapper} showsButtons>
+          <View style={styles.slide1}>
+            <Text style={styles.text}>Hello Swiper</Text>
+          </View>
+          <View style={styles.slide2}>
+            <Text style={styles.text}>Beautiful</Text>
+          </View>
+          <View style={styles.slide3}>
+            <Text style={styles.text}>And simple</Text>
+          </View>
+        </Swiper>
         <Button text="Goto Detail" onPress={this.gotoDetail} />
       </View>
     )

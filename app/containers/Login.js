@@ -44,21 +44,23 @@ class Login extends Component {
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 value={this.state.tel}
-                placeholder="请输入手机号码"
+                placeholder="请输入手机号"
               />
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 value={this.state.password}
                 secureTextEntry={true}
-                placeholder="请输入密码"
+                placeholder="请输入登录密码"
               />
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 value={this.state.vCode}
-                placeholder='请输入验证码'
+                placeholder='请输入短信验证码'
               />
               <Button text={count ? count + '秒后可重新发送验证码' : '获取验证码'} onPress={this.getVcode} />
               <Button text="登录" onPress={this.onLogin} />
+              <Text>忘记密码</Text>
+              <Text>手机验证码登录</Text>
             </View>
           )}
       </View>

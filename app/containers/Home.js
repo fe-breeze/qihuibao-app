@@ -10,6 +10,7 @@ import Swiper from 'react-native-swiper';
 @connect()
 class Home extends Component {
   static navigationOptions = {
+    header: null,
     title: '首页',
     tabBarLabel: '首页',
     tabBarIcon: ({ focused, tintColor }) => (

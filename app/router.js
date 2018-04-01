@@ -20,6 +20,7 @@ import Home from './containers/Home'
 import Account from './containers/Account'
 import Invest from './containers/Invest'
 import Detail from './containers/Detail'
+import FindPwd from './containers/FindPwd'
 
 const HomeNavigator = TabNavigator(
   {
@@ -40,6 +41,7 @@ const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     Detail: { screen: Detail },
+    FindPwd: { screen: FindPwd },
   },
   {
     headerMode: 'float',

@@ -7,9 +7,9 @@ import { Button, Touchable } from '../components'
 import { createAction, NavigationActions } from '../utils'
 
 @connect(({ app }) => ({ ...app }))
-class Login extends Component {
+class FindPwd extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: '找回密码',
   }
   constructor(props) {
     super(props);
@@ -32,13 +32,9 @@ class Login extends Component {
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
   }
-  gotoFindPwd = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'FindPwd' }))
-  }
 
   render() {
     const { fetching, count } = this.props
-    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         {fetching ? (
@@ -68,7 +64,7 @@ class Login extends Component {
               <Button text={count ? count + '秒后可重新发送验证码' : '获取验证码'} onPress={this.getVcode} />
               <Button text="登录" onPress={this.onLogin} />
               <Text>密码至少包含8位数字和字母</Text>
-              <Button text={'忘记密码'} onPress={this.gotoFindPwd} />
+              <Text>忘记密码</Text>
               <Text>手机验证码登录</Text>
             </View>
           )}
@@ -90,4 +86,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Login
+export default FindPwd

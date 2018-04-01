@@ -7,7 +7,7 @@ import { Button, Touchable } from '../components'
 import { createAction, NavigationActions } from '../utils'
 
 @connect(({ app }) => ({ ...app }))
-class FindPwd extends Component {
+class ModifyPwd extends Component {
   static navigationOptions = {
     title: '找回密码',
   }
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default FindPwd
+export default ModifyPwd

@@ -33,7 +33,7 @@ class Login extends Component {
     this.props.dispatch(NavigationActions.back())
   }
   gotoFindPwd = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'FindPwd' }))
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
   }
 
   render() {

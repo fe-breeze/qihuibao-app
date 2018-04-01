@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, TextInput } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Button, Touchable } from '../components'
@@ -41,6 +41,10 @@ class Login extends Component {
           <ActivityIndicator />
         ) : (
             <View>
+              <Image
+                source={require('../images/logo.png')}
+              />
+              <Text>18635485456</Text>
               <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 value={this.state.tel}
@@ -59,6 +63,7 @@ class Login extends Component {
               />
               <Button text={count ? count + '秒后可重新发送验证码' : '获取验证码'} onPress={this.getVcode} />
               <Button text="登录" onPress={this.onLogin} />
+              <Text>密码至少包含8位数字和字母</Text>
               <Text>忘记密码</Text>
               <Text>手机验证码登录</Text>
             </View>

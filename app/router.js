@@ -21,6 +21,11 @@ import Account from './containers/Account'
 import Invest from './containers/Invest'
 import Detail from './containers/Detail'
 import ModifyPwd from './containers/ModifyPwd'
+import About from './containers/About'
+import Setting from './containers/Setting'
+import MyInvest from './containers/MyInvest'
+import InvestDetail from './containers/InvestDetail'
+import WithDrawal from './containers/WithDrawal'
 
 const HomeNavigator = TabNavigator(
   {
@@ -42,6 +47,11 @@ const MainNavigator = StackNavigator(
     HomeNavigator: { screen: HomeNavigator },
     Detail: { screen: Detail },
     ModifyPwd: { screen: ModifyPwd },
+    About: { screen: About },
+    Setting: { screen: Setting },
+    MyInvest: { screen: MyInvest },
+    InvestDetail: { screen: InvestDetail },
+    WithDrawal: { screen: WithDrawal },
   },
   {
     headerMode: 'float',

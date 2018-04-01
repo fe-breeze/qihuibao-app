@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
@@ -9,6 +9,7 @@ import { createAction, NavigationActions } from '../utils'
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
   static navigationOptions = {
+    header: null,
     title: '账户',
     tabBarLabel: '账户',
     tabBarIcon: ({ focused, tintColor }) => (
@@ -31,11 +32,15 @@ class Account extends Component {
     const { login } = this.props
     return (
       <View style={styles.container}>
-        {login ? (
-          <Button text="Logout" onPress={this.logout} />
-        ) : (
-          <Button text="Goto Login" onPress={this.gotoLogin} />
-        )}
+        <Text>134****3232</Text>
+        <Text>账户金额</Text>
+        <Text>13232.66</Text>
+        <Text>在途资金（元）23.22</Text>
+        <Button text="我的投资" onPress={this.logout} />
+        <Button text="资金明细" onPress={this.gotoLogin} />
+        <Button text="提现" onPress={this.gotoLogin} />
+        <Button text="设置" onPress={this.gotoLogin} />
+        <Button text="关于" onPress={this.gotoLogin} />
       </View>
     )
   }

@@ -80,7 +80,7 @@ class ModifyPwd extends Component {
                 style={styles.text}
                 value={this.state.password}
                 secureTextEntry
-                placeholder="请设置新密码"
+                placeholder="设置密码"
               />
             </View>
             <Button
@@ -89,7 +89,7 @@ class ModifyPwd extends Component {
               style={styles.submitbtn}
             />
             <Text style={{ color: '#a2a2a2', marginTop: 20 }}>
-              密码至少包含8位数字和字母
+              密码包含
             </Text>
           </View>
         )}

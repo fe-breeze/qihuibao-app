@@ -30,7 +30,9 @@ class Account extends Component {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'MyInvest' }))
   }
   gotoInvestDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'InvestDetail' }))
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'InvestDetail' })
+    )
   }
   gotoWithDrawal = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'WithDrawal' }))

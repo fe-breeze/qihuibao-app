@@ -2,7 +2,7 @@ import { createAction, NavigationActions, Storage } from '../utils'
 import * as authService from '../services/auth'
 import { delay } from '../utils'
 
-function* decrease(payload, put){
+function* decrease(payload, put) {
   let count = payload
   if (count > 0) {
     yield delay(1000)
@@ -18,7 +18,7 @@ export default {
     login: false,
     loading: true,
     fetching: false,
-    count: 0
+    count: 0,
   },
   reducers: {
     updateState(state, { payload }) {
@@ -44,7 +44,7 @@ export default {
         } else {
           // 用户不存在
         }
-      } catch(err) {
+      } catch (err) {
         console.error(err)
       }
     },

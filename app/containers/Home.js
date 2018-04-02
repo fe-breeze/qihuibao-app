@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Button } from '../components'
 
 import { NavigationActions } from '../utils'
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper'
 
 @connect()
 class Home extends Component {

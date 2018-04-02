@@ -34,8 +34,8 @@ class Account extends Component {
         {login ? (
           <Button text="Logout" onPress={this.logout} />
         ) : (
-            <Button text="Goto Login" onPress={this.gotoLogin} />
-          )}
+          <Button text="Goto Login" onPress={this.gotoLogin} />
+        )}
       </View>
     )
   }

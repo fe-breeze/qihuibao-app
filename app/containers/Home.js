@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
+import Swiper from 'react-native-swiper'
 
 import { Button } from '../components'
 
 import { NavigationActions } from '../utils'
-import Swiper from 'react-native-swiper'
 
 @connect()
 class Home extends Component {

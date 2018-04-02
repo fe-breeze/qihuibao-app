@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, NavigationActions } from '../utils'
+import { NavigationActions } from '../utils'
 
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
@@ -39,7 +39,7 @@ class Account extends Component {
   }
 
   render() {
-    const { login } = this.props
+    // const { login } = this.props
     return (
       <View style={styles.container}>
         <Text>134****3232</Text>

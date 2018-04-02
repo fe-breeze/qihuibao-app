@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Button, Touchable } from '../components'
+import { Button } from '../components'
 
 import { createAction, NavigationActions } from '../utils'
 
@@ -26,6 +26,15 @@ class ModifyPwd extends Component {
       vCode: '',
     }
   }
+
+  onLogin = () => {
+    this.props.dispatch(createAction('app/login')())
+  }
+
+  onClose = () => {
+    this.props.dispatch(NavigationActions.back())
+  }
+
   getVcode = () => {
     this.props.dispatch(
       createAction('app/vcode')({
@@ -33,13 +42,6 @@ class ModifyPwd extends Component {
         count: this.props.count,
       })
     )
-  }
-  onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
-  }
-
-  onClose = () => {
-    this.props.dispatch(NavigationActions.back())
   }
 
   render() {
@@ -67,7 +69,7 @@ class ModifyPwd extends Component {
                 placeholder="请输入短信验证码"
               />
               <Button
-                text={count ? `${count  }秒后可重新发送验证码` : '获取验证码'}
+                text={count ? `${count}秒后可重新发送验证码` : '获取验证码'}
                 onPress={this.getVcode}
                 style={styles.getCaptcha}
               />

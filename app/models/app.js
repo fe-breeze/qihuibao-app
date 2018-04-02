@@ -1,12 +1,11 @@
-import { createAction, NavigationActions, Storage } from '../utils'
+import { createAction, NavigationActions, Storage, delay } from '../utils'
 import * as authService from '../services/auth'
-import { delay } from '../utils'
 
 function* decrease(payload, put) {
   let count = payload
   if (count > 0) {
     yield delay(1000)
-    count--
+    count -= 1
     yield put(createAction('updateState')({ count }))
     yield decrease(count, put)
   }

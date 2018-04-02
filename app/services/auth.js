@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '../utils/request'
 import { delay } from '../utils'
 
 const BASE = 'https://easy-mock.com/mock/5ab7a51a89962b05a31a31cb/api/'
@@ -9,12 +9,18 @@ export const login = async () => {
   return true
 }
 export const vCode = async payload => {
-  await axios.post(`${BASE}vefirycode/vefiry`, {
-    mobile: payload,
+  await request(`${BASE}vefirycode/vefiry`, {
+    method: 'POST',
+    body: {
+      mobile: payload,
+    },
   })
 }
 export const checkPwd = async payload => {
-  await axios.post(`${BASE}user/checkPwdExist`, {
-    username: payload,
+  await request(`${BASE}user/checkPwdExist`, {
+    method: 'POST',
+    body: {
+      username: payload,
+    },
   })
 }

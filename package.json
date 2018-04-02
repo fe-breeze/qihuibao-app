@@ -11,14 +11,15 @@
     "precommit": "yarn format"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "dva-core": "^1.1.0",
+    "moment": "^2.22.0",
     "react": "^16.3.0-alpha.0",
     "react-native": "^0.54.0",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^1.4.0",
     "react-navigation-redux-helpers": "^1.0.3",
-    "react-redux": "^5.0.7"
+    "react-redux": "^5.0.7",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

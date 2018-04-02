@@ -14,7 +14,7 @@ class Account extends Component {
     tabBarIcon: ({ focused, tintColor }) => (
       <Image
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
-        source={require('../images/investment.png')}
+        // source={require('../images/investment.png')}
       />
     ),
   }

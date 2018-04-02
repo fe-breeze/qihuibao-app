@@ -32,9 +32,9 @@ export default {
     *vcode({ payload }, { call, put }) {
       try {
         const checkPass = yield call(authService.checkPwd, payload.mobile)
-        if (checkPass.data.succeed) {
+        if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
-          if (vefirycode.data.succeed) {
+          if (vefirycode.succeed) {
             yield put(createAction('updateState')({ count: 90 }))
             yield call(decrease, 90, put)
           } else {

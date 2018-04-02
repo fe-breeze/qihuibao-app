@@ -9,18 +9,20 @@ export const login = async () => {
   return true
 }
 export const vCode = async payload => {
-  await request(`${BASE}vefirycode/vefiry`, {
+  const data = await request(`${BASE}vefirycode/vefiry`, {
     method: 'POST',
     body: {
       mobile: payload,
     },
   })
+  return data
 }
 export const checkPwd = async payload => {
-  await request(`${BASE}user/checkPwdExist`, {
+  const data = await request(`${BASE}user/checkPwdExist`, {
     method: 'POST',
     body: {
       username: payload,
     },
   })
+  return data
 }

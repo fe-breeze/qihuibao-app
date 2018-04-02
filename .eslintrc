@@ -27,6 +27,7 @@
     "radix": 0,
     "react/jsx-filename-extension": 0,
     "react/prop-types": 0,
-    "semi": [2, "never"]
+    "semi": [2, "never"],
+    "import/no-unresolved": 0
   }
 }

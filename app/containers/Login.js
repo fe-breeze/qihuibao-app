@@ -168,13 +168,13 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
-  verification:{
+  verification: {
     borderWidth: 1,
     marginTop: 10,
-    borderColor:'gray',
-    flexDirection:'row',
-    justifyContent:'space-between',
-  }
+    borderColor: 'gray',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 })
 
 export default Login

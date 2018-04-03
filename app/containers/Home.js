@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native'
-import { connect } from 'react-redux'
+import { StyleSheet, View, Image } from 'react-native'
 import Swiper from 'react-native-swiper'
+import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
@@ -28,15 +28,19 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Swiper style={styles.wrapper} showsButtons>
+        <Swiper
+          style={styles.wrapper}
+          paginationStyle={{ bottom: 250 }}
+          autoplay
+        >
           <View style={styles.slide1}>
-            <Text style={styles.text}>Hello Swiper</Text>
+            <Image source={require('../images/banner.png')} />
           </View>
           <View style={styles.slide2}>
-            <Text style={styles.text}>Beautiful</Text>
+            <Image source={require('../images/banner.png')} />
           </View>
           <View style={styles.slide3}>
-            <Text style={styles.text}>And simple</Text>
+            <Image source={require('../images/banner.png')} />
           </View>
         </Swiper>
         <Button text="Goto Detail" onPress={this.gotoDetail} />
@@ -54,6 +58,22 @@ const styles = StyleSheet.create({
   icon: {
     width: 32,
     height: 32,
+  },
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 

@@ -65,7 +65,10 @@ class Login extends Component {
             <Image source={require('../images/logo.png')} />
             <Text>18635485456</Text>
             <View style={styles.parent}>
-              <Image source={require('../images/phone.png')} />
+              <Image
+                source={require('../images/phone.png')}
+                style={styles.image}
+              />
               <TextInput
                 style={styles.text}
                 value={this.state.tel}
@@ -73,7 +76,10 @@ class Login extends Component {
               />
             </View>
             <View style={styles.parent}>
-              <Image source={require('../images/password.png')} />
+              <Image
+                source={require('../images/password.png')}
+                style={styles.image}
+              />
               <TextInput
                 style={styles.text}
                 value={this.state.password}
@@ -82,7 +88,10 @@ class Login extends Component {
               />
             </View>
             <View style={styles.parent}>
-              <Image source={require('../images/captcha.png')} />
+              <Image
+                source={require('../images/captcha.png')}
+                style={styles.image}
+              />
               <TextInput
                 value={this.state.vCode}
                 placeholder="请输入短信验证码"
@@ -134,6 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     alignItems: 'flex-start',
+    // justifyContent: 'center',
     borderColor: 'gray',
     borderWidth: 1,
   },
@@ -158,6 +168,10 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+  image: {
+    height: 40,
+    width: 40,
   },
 })
 

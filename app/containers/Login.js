@@ -57,11 +57,9 @@ class Login extends Component {
           <ActivityIndicator />
         ) : (
           <View>
-            <Button
-              text="切换账户"
-              onPress={this.gotoFindPwd}
-              style={styles.changeAcct}
-            />
+            <Text onPress={this.gotoFindPwd} style={styles.changeAcct}>
+            切换账户
+           </Text>
             <Image source={require('../images/logo.png')} />
             <Text>18635485456</Text>
             <View style={styles.parent}>
@@ -143,7 +141,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    // justifyContent: 'center',
     borderColor: 'gray',
     borderWidth: 1,
   },
@@ -165,9 +162,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   changeAcct: {
-    borderWidth: 0,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+  textAlign:'right'
+
   },
   image: {
     height: 40,

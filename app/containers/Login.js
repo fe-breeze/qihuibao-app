@@ -58,8 +58,8 @@ class Login extends Component {
         ) : (
           <View>
             <Text onPress={this.gotoFindPwd} style={styles.changeAcct}>
-            切换账户
-           </Text>
+              切换账户
+            </Text>
             <Image source={require('../images/logo.png')} />
             <Text>18635485456</Text>
             <View style={styles.parent}>
@@ -85,7 +85,7 @@ class Login extends Component {
                 placeholder="请输入登录密码"
               />
             </View>
-            <View style={styles.parent}>
+            <View style={styles.verification}>
               <Image
                 source={require('../images/captcha.png')}
                 style={styles.image}
@@ -162,13 +162,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   changeAcct: {
-  textAlign:'right'
-
+    textAlign: 'right',
   },
   image: {
     height: 40,
     width: 40,
   },
+  verification:{
+    borderWidth: 1,
+    marginTop: 10,
+    borderColor:'gray',
+    flexDirection:'row',
+    justifyContent:'space-between',
+  }
 })
 
 export default Login

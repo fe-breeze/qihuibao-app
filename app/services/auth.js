@@ -9,10 +9,7 @@ export const login = async payload => {
   const data = await request(`${BASE}login`, {
     method: 'POST',
     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-    body: {
-      username: payload.username,
-      password: payload.password,
-    },
+    body: payload,
   })
   return data
 }
@@ -20,12 +17,11 @@ export const vCode = async payload => {
   const data = await request(`${BASE}vefirycode/vefiry`, {
     method: 'POST',
     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-    body: {
-      mobile: payload,
-    },
+    body: payload,
   })
   return data
 }
+
 export const checkPwd = async payload => {
   const data = await request(`${BASE}user/checkPwdExist`, {
     method: 'POST',

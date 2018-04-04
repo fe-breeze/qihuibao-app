@@ -1,12 +1,19 @@
 import request from '../utils/request'
-import { delay } from '../utils'
+// import { delay } from '../utils'
 
-const BASE = 'https://easy-mock.com/mock/5ab7a51a89962b05a31a31cb/api/'
-// const BASE = 'https://shunquan.corpfortune.com/api/'
+// const BASE = 'https://easy-mock.com/mock/5ab7a51a89962b05a31a31cb/api/'
+const BASE = 'https://shunquan.corpfortune.com/api/'
 
-export const login = async () => {
-  await delay(2000)
-  return true
+export const login = async payload => {
+  const data = await request(`${BASE}login`, {
+    method: 'POST',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+    body: {
+      username: payload.username,
+      password: payload.password,
+    },
+  })
+  return data
 }
 export const vCode = async payload => {
   const data = await request(`${BASE}vefirycode/vefiry`, {

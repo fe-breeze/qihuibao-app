@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { BackHandler, Animated, Easing } from 'react-native'
-// import SplashScreen from 'react-native-splash-screen'
 
 import {
   StackNavigator,
@@ -123,7 +122,6 @@ class Router extends PureComponent {
 
   componentDidMount() {
     initializeListeners('root', this.props.router)
-    // SplashScreen.hide()
   }
 
   componentWillUnmount() {

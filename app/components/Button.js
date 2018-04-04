@@ -1,10 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
-import {
-  responsiveHeight,
-  responsiveFontSize,
-} from 'react-native-responsive-dimensions'
 
+import pxToDp from '../utils/pxToDp'
 import Touchable from './Touchable'
 
 export const Button = ({ text, children, style, textStyle, ...rest }) => (
@@ -17,7 +14,7 @@ const styles = StyleSheet.create({
   button: {
     // paddingVertical: 8.8,
     // paddingHorizontal: 12,
-    height: responsiveHeight(8.8),
+    height: pxToDp(88),
     borderRadius: 4,
     backgroundColor: 'rgb(54,177,255)',
     alignItems: 'center',
@@ -26,7 +23,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
   },
   text: {
-    fontSize: responsiveFontSize(3.6),
+    fontSize: pxToDp(36),
     color: '#fff',
   },
 })

@@ -49,11 +49,12 @@ export default function request(url, options) {
     credentials: 'include',
   }
   let requestUrl = url
-  const newOptions = {...defaultOptions, ...options }
+  const newOptions = { ...defaultOptions, ...options }
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (
       options['Content-Type'] &&
-      options['Content-Type'].toLowerCase().indexOf('x-www-form-urlencoded') >= 0
+      options['Content-Type'].toLowerCase().indexOf('x-www-form-urlencoded') >=
+        0
     ) {
       newOptions.headers = {
         Accept: 'application/json',

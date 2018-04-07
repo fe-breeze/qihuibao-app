@@ -52,6 +52,11 @@ class Login extends Component {
       NavigationActions.navigate({ routeName: 'ModifyAccount' })
     )
   }
+  gotoLogin = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'Login' })
+    )
+  }
 
   render() {
     const { fetching } = this.props
@@ -89,8 +94,8 @@ class Login extends Component {
             <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
               忘记密码?
             </Text>
-            <Text onPress={this.gotoFindPwd} style={styles.valid}>
-              手机验证码登录
+            <Text onPress={this.gotoLogin} style={styles.valid}>
+              密码登录
             </Text>
           </View>
         )}

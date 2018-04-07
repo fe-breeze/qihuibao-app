@@ -23,6 +23,7 @@ import Account from './containers/Account'
 import Invest from './containers/Invest'
 import Detail from './containers/Detail'
 import ModifyPwd from './containers/ModifyPwd'
+import VLogin from './containers/VLogin'
 import About from './containers/About'
 import Setting from './containers/Setting'
 import MyInvest from './containers/MyInvest'
@@ -63,6 +64,7 @@ const MainNavigator = StackNavigator(
 const AppNavigator = StackNavigator(
   {
     Login: { screen: Login },
+    VLogin: { screen: VLogin },
     ModifyAccount: { screen: ModifyAccount },
     Main: { screen: MainNavigator },
   },

@@ -66,11 +66,13 @@ class ModifyPwd extends Component {
                 value={this.state.vCode}
                 placeholder="请输入短信验证码"
               />
-              {count ? <Text onPress={this.getVcode} style={styles.getVcode}>
-                {`${count}秒后可重新发送验证码`}
-              </Text> : <Text style={styles.getVcode}>
-                获取验证码
-              </Text>}
+              {count ? (
+                <Text onPress={this.getVcode} style={styles.getVcode}>
+                  {`${count}秒后可重新发送验证码`}
+                </Text>
+              ) : (
+                <Text style={styles.getVcode}>获取验证码</Text>
+              )}
             </View>
             <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   },
   inputItem: {
     height: pxToDp(88),
-    flex: 1
+    flex: 1,
   },
   loginBtn: {
     marginTop: pxToDp(50),
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     fontSize: pxToDp(28),
     color: 'rgb(54,177,255)',
     paddingLeft: pxToDp(26),
-    paddingRight: pxToDp(26)
+    paddingRight: pxToDp(26),
   },
   valid: {
     marginBottom: pxToDp(50),

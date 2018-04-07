@@ -23,7 +23,7 @@ class ModifyPwd extends Component {
     super(props)
     this.state = {
       tel: '18392463107',
-      password: 'f8515623',
+      password: '',
       vCode: '',
     }
   }
@@ -67,11 +67,13 @@ class ModifyPwd extends Component {
                 placeholder="请输入短信验证码"
               />
               {count ? (
-                <Text onPress={this.getVcode} style={styles.getVcode}>
+                <Text style={styles.getVcode}>
                   {`${count}秒后可重新发送验证码`}
                 </Text>
               ) : (
-                <Text style={styles.getVcode}>获取验证码</Text>
+                <Text onPress={this.getVcode} style={styles.getVcode}>
+                  获取验证码
+                </Text>
               )}
             </View>
             <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>

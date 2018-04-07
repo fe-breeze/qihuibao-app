@@ -173,31 +173,6 @@ const styles = StyleSheet.create({
     color: 'rgb(102,102,102)',
     fontSize: pxToDp(28),
   },
-  // close: {
-  //   position: 'absolute',
-  //   right: 20,
-  //   top: 40,
-  // },
-  // parent: {
-  //   height: 50,
-  //   marginTop: 10,
-  //   flexDirection: 'row',
-  //   alignItems: 'flex-start',
-  //   borderColor: 'gray',
-  //   borderWidth: 1,
-  // },
-  // text: {
-  //   textAlign: 'center',
-  //   fontSize: 34,
-  // },
-  // getCaptcha: {
-  //   borderWidth: 0,
-  // },
-  // submitbtn: {
-  //   height: 50,
-  //   marginTop: 10,
-  //   backgroundColor: '#2fa8ff',
-  // },
 })
 
 export default ModifyPwd

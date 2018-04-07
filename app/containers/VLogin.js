@@ -22,8 +22,7 @@ class Login extends Component {
     super(props)
     this.state = {
       tel: '18392463107',
-      password: '',
-      // vCode: '',
+      vCode: '',
     }
   }
 
@@ -43,21 +42,23 @@ class Login extends Component {
       })
     )
   }
-
-  gotoFindPwd = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
-  }
+  
   gotoModifyAccount = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'ModifyAccount' })
     )
   }
+
+  gotoFindPwd = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
+  }
+  
   gotoLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
   }
 
   render() {
-    const { fetching } = this.props
+    const { fetching, count } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
@@ -73,19 +74,25 @@ class Login extends Component {
               <Image source={require('../images/logo.png')} />
             </View>
             <Text style={styles.savedUser}>186****5456</Text>
-            <View style={styles.inputRow}>
-              <View style={styles.labelWrap}>
-                <Image source={require('../images/password.png')} />
+              <View style={styles.inputRow}>
+                <View style={styles.labelWrap}>
+                  <Image source={require('../images/captcha.png')} />
+                </View>
+                <TextInput
+                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                  value={this.state.vCode}
+                  placeholder="请输入短信验证码"
+                />
+                {count ? (
+                  <Text style={styles.getVcode}>
+                    {`${count}秒后可重新发送验证码`}
+                  </Text>
+                ) : (
+                    <Text onPress={this.getVcode} style={styles.getVcode}>
+                      获取验证码
+                </Text>
+                  )}
               </View>
-              <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
-                value={this.state.password}
-                secureTextEntry
-                placeholder="请输入登录密码"
-                placeholderTextColor="rgb(220, 220, 220)"
-              />
-            </View>
             <View style={styles.loginBtn}>
               <Button text="登录" onPress={this.onLogin} />
             </View>
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
   },
   inputRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     borderColor: 'gray',
     borderRadius: 4,
     backgroundColor: '#f4f6f8',
@@ -152,6 +159,13 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontSize: pxToDp(24),
     color: 'rgb(54,177,255)',
+  },
+  getVcode: {
+    textAlign: 'right',
+    fontSize: pxToDp(28),
+    color: 'rgb(54,177,255)',
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
   },
   valid: {
     position: 'absolute',

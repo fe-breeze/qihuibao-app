@@ -16,7 +16,6 @@ export const login = async payload => {
 export const vCode = async payload => {
   const data = await request(`${BASE}vefirycode/vefiry`, {
     method: 'POST',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
     body: payload,
   })
   return data

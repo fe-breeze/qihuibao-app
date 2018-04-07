@@ -28,7 +28,8 @@ import About from './containers/About'
 import Setting from './containers/Setting'
 import MyInvest from './containers/MyInvest'
 import InvestDetail from './containers/InvestDetail'
-import WithDrawal from './containers/WithDrawal'
+import Withdrawal from './containers/Withdrawal'
+import ModifyPwdStatus from './containers/ModifyPwdStatus'
 
 const HomeNavigator = TabNavigator(
   {
@@ -54,7 +55,8 @@ const MainNavigator = StackNavigator(
     Setting: { screen: Setting },
     MyInvest: { screen: MyInvest },
     InvestDetail: { screen: InvestDetail },
-    WithDrawal: { screen: WithDrawal },
+    Withdrawal: { screen: Withdrawal },
+    ModifyPwdStatus: { screen: ModifyPwdStatus },
   },
   {
     headerMode: 'float',

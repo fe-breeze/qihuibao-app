@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: pxToDp(228),
-    marginBottom: pxToDp(200),
+    marginBottom: pxToDp(100),
     justifyContent: 'center',
     alignItems: 'center',
   },

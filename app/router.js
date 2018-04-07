@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 
 import Loading from './containers/Loading'
 import Login from './containers/Login'
+import ModifyAccount from './containers/ModifyAccount'
 import Home from './containers/Home'
 import Account from './containers/Account'
 import Invest from './containers/Invest'
@@ -62,6 +63,7 @@ const MainNavigator = StackNavigator(
 const AppNavigator = StackNavigator(
   {
     Login: { screen: Login },
+    ModifyAccount: { screen: ModifyAccount },
     Main: { screen: MainNavigator },
   },
   {

@@ -47,6 +47,9 @@ class Login extends Component {
   gotoFindPwd = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
   }
+  gotoModifyAccount = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyAccount' }))
+  }
 
   render() {
     const { fetching } = this.props
@@ -57,7 +60,7 @@ class Login extends Component {
         ) : (
           <View style={styles.content}>
             <View style={styles.changeAcct}>
-              <Text style={styles.changeFont} onPress={this.gotoFindPwd}>
+                <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
                 切换账户
               </Text>
             </View>

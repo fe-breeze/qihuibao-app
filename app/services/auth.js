@@ -9,12 +9,12 @@ export const login = async payload => {
   const data = await request(`${BASE}login`, {
     method: 'POST',
     body: payload,
-    headers:{
+    headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'header-timestamp': parseInt((+new Date) / 1000),
+      'header-timestamp': parseInt(+new Date() / 1000),
       'header-sign': 'D95588561747B20F191ED4A7B78302A2',
       // 'header-token': 'deecfde049494a33affb9a11c9764aa4'
-    }
+    },
   })
   return data
 }
@@ -23,7 +23,7 @@ export const vCode = async payload => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'header-timestamp': parseInt((+new Date) / 1000),
+      'header-timestamp': parseInt(+new Date() / 1000),
       'header-sign': 'D95588561747B20F191ED4A7B78302A2',
     },
     body: {
@@ -41,7 +41,7 @@ export const checkPwd = async payload => {
     },
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'header-timestamp': parseInt((+new Date) / 1000),
+      'header-timestamp': parseInt(+new Date() / 1000),
       'header-sign': 'D95588561747B20F191ED4A7B78302A2',
     },
   })

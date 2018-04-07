@@ -1,36 +1,31 @@
 import React, { Component } from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-  TextInput,
-  Image,
-} from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Button } from '../components'
-import { createAction, NavigationActions } from '../utils'
+// import { Button } from '../components'
+import { createAction, NavigationActions, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
 class Login extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: '找回密码',
   }
   constructor(props) {
     super(props)
     this.state = {
       tel: '18392463107',
-      password: '',
+      count: 3,
+      // password: '',
       // vCode: '',
     }
   }
-
+  componentWillMount() {
+    this.decrease(this.state.count)
+  }
   onLogin = () => {
     this.props.dispatch(createAction('app/login')())
   }
-
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
   }
@@ -44,14 +39,30 @@ class Login extends Component {
     )
   }
 
-  gotoFindPwd = () => {
+  decrease = payload => {
+    if (payload > 0) {
+      delay(1000).then(() => {
+        // this.state.count -= 1
+        this.setState({
+          count: payload - 1,
+        })
+        this.decrease(payload - 1)
+      })
+    } else {
+      this.gotoVLogin()
+    }
+  }
+
+  goBack = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
   }
+
   gotoModifyAccount = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'ModifyAccount' })
     )
   }
+
   gotoVLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))
   }
@@ -64,36 +75,30 @@ class Login extends Component {
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            <View style={styles.changeAcct}>
-              <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
-                切换账户
-              </Text>
-            </View>
-            <View style={styles.logo}>
-              <Image source={require('../images/logo.png')} />
-            </View>
-            <Text style={styles.savedUser}>186****5456</Text>
-            <View style={styles.inputRow}>
-              <View style={styles.labelWrap}>
-                <Image source={require('../images/password.png')} />
+            {/* <View style={styles.error}>
+                <Image source={require('../images/modify-error.png')} />
               </View>
-              <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
-                value={this.state.password}
-                secureTextEntry
-                placeholder="请输入登录密码"
-                placeholderTextColor="rgb(220, 220, 220)"
-              />
+              <Text style={styles.pwdError}>密码修改失败</Text>
+              <Text style={styles.back}>
+              <Text style={styles.count}>
+              3
+              </Text>
+              秒自动返回</Text>
+              <View style={styles.btnWrap}>
+                <Button
+                  text="再次修改"
+                  onPress={this.goBack}
+                  style={styles.modifyAgain}
+                  textStyle={styles.modifyAgainText}
+                />
+        </View> */}
+            <View style={styles.error}>
+              <Image source={require('../images/modify-succ.png')} />
             </View>
-            <View style={styles.loginBtn}>
-              <Button text="登录" onPress={this.onLogin} />
-            </View>
-            <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
-              忘记密码?
-            </Text>
-            <Text onPress={this.gotoVLogin} style={styles.valid}>
-              手机验证码登录
+            <Text style={styles.pwdError}>密码修改成功</Text>
+            <Text style={styles.back}>
+              <Text style={styles.count}>{this.state.count}</Text>
+              秒自动返回
             </Text>
           </View>
         )}
@@ -115,60 +120,47 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  logo: {
-    marginTop: pxToDp(94),
-    marginBottom: pxToDp(100),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  inputRow: {
+  error: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    borderColor: 'gray',
-    borderRadius: 4,
-    backgroundColor: '#f4f6f8',
-  },
-  labelWrap: {
-    width: pxToDp(92),
-    height: pxToDp(88),
-    alignItems: 'center',
     justifyContent: 'center',
+    marginTop: pxToDp(200),
+    marginBottom: pxToDp(26),
   },
-  inputItem: {
-    height: pxToDp(88),
-    flex: 1,
-  },
-  savedUser: {
-    fontSize: pxToDp(60),
+  pwdError: {
+    fontSize: pxToDp(36),
     textAlign: 'center',
-    color: 'rgb(51,51,51)',
-    marginBottom: pxToDp(100),
+    color: 'rgb(102,102,102)',
+    marginTop: pxToDp(26),
+  },
+  back: {
+    marginTop: pxToDp(20),
+    fontSize: pxToDp(24),
+    color: 'rgb(153,153,153)',
+    textAlign: 'center',
+  },
+  count: {
+    color: 'rgb(54,177,255)',
+  },
+  btnWrap: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: pxToDp(30),
+  },
+  modifyAgainText: {
+    fontSize: pxToDp(28),
+    color: 'rgb(54,177,255)',
+  },
+  modifyAgain: {
+    width: pxToDp(200),
+    height: pxToDp(66),
+    borderRadius: 4,
+    borderColor: 'rgb(54,177,255)',
+    backgroundColor: '#fff',
   },
   loginBtn: {
     marginTop: pxToDp(50),
     marginBottom: pxToDp(20),
-  },
-  forgetPsw: {
-    textAlign: 'right',
-    fontSize: pxToDp(24),
-    color: 'rgb(54,177,255)',
-  },
-  valid: {
-    position: 'absolute',
-    bottom: pxToDp(50),
-    width: '100%',
-    textAlign: 'center',
-    fontSize: pxToDp(28),
-    color: 'rgb(170,170,170)',
-  },
-  changeAcct: {
-    height: pxToDp(100),
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  changeFont: {
-    color: 'rgb(102,102,102)',
-    fontSize: pxToDp(28),
   },
 })
 

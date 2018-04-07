@@ -16,8 +16,11 @@ export const login = async payload => {
 export const vCode = async payload => {
   const data = await request(`${BASE}vefirycode/vefiry`, {
     method: 'POST',
-    body: payload,
+    body: {
+      mobile: payload,
+    },
   })
+  console.log(payload, data)
   return data
 }
 

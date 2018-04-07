@@ -28,7 +28,14 @@ class Login extends Component {
   }
 
   onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
+    this.props.dispatch(
+      createAction('app/login')({
+        username: this.state.tel,
+        password: this.state.password,
+        verifycode: '',
+        loginModel: '',
+      })
+    )
   }
 
   onClose = () => {
@@ -81,6 +88,7 @@ class Login extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.password}
+                onChangeText={password => this.setState({ password })}
                 secureTextEntry
                 placeholder="请输入登录密码"
                 placeholderTextColor="rgb(220, 220, 220)"

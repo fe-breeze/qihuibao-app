@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, NavigationActions } from '../utils'
+import { createAction, NavigationActions, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -25,28 +25,50 @@ class ModifyPwd extends Component {
       tel: '18392463107',
       password: '',
       vCode: '',
+      count: 0,
     }
   }
 
-  onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
-  }
+  // gotoModifyStatus = () => {
+  //   this.props.dispatch(createAction('app/login')())
+  // }
 
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
   }
 
   getVcode = () => {
+    this.decrease(90)
+    this.setState({
+      count: 90,
+    })
     this.props.dispatch(
       createAction('app/vcode')({
         mobile: this.state.tel,
-        count: this.props.count,
       })
+    )
+  }
+  decrease = payload => {
+    if (payload > 0) {
+      delay(1000).then(() => {
+        // this.state.count -= 1
+        this.setState({
+          count: payload - 1,
+        })
+        this.decrease(payload - 1)
+      })
+    } else {
+      this.gotoVLogin()
+    }
+  }
+  gotoModifyStatus = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'ModifyPwdStatus' })
     )
   }
 
   render() {
-    const { fetching, count } = this.props
+    const { fetching } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
@@ -66,9 +88,9 @@ class ModifyPwd extends Component {
                 value={this.state.vCode}
                 placeholder="请输入短信验证码"
               />
-              {count ? (
+              {this.state.count ? (
                 <Text style={styles.getVcode}>
-                  {`${count}秒后可重新发送验证码`}
+                  {`${this.state.count}秒后可重新发送验证码`}
                 </Text>
               ) : (
                 <Text onPress={this.getVcode} style={styles.getVcode}>
@@ -91,7 +113,7 @@ class ModifyPwd extends Component {
             </View>
             <Button
               text="提交"
-              onPress={this.onLogin}
+              onPress={this.gotoModifyStatus}
               style={styles.loginBtn}
             />
             <Text style={{ color: '#a2a2a2', marginTop: pxToDp(20) }}>

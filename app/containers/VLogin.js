@@ -53,9 +53,7 @@ class Login extends Component {
     )
   }
   gotoLogin = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'Login' })
-    )
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
   }
 
   render() {

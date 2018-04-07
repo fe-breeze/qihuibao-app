@@ -49,20 +49,20 @@ class Login extends Component {
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-              <View style={styles.inputRow} >
-                <View style={styles.labelWrap}>
-                  <Image source={require('../images/phone.png')} />
-                </View>
-                <TextInput
-                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                  color=""
-                  value={this.state.tel}
-                  secureTextEntry
-                  placeholder="请输入手机号"
-                  placeholderTextColor="rgb(220, 220, 220)"
-                />
+            <View style={styles.inputRow}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/phone.png')} />
               </View>
-              <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
+              <TextInput
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                color=""
+                value={this.state.tel}
+                secureTextEntry
+                placeholder="请输入手机号"
+                placeholderTextColor="rgb(220, 220, 220)"
+              />
+            </View>
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/password.png')} />
               </View>

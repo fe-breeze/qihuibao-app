@@ -21,9 +21,8 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tel: '18392463107',
+      tel: '',
       password: '',
-      // vCode: '',
     }
   }
 
@@ -33,15 +32,6 @@ class Login extends Component {
 
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
-  }
-
-  getVcode = () => {
-    this.props.dispatch(
-      createAction('app/vcode')({
-        mobile: this.state.tel,
-        count: this.props.count,
-      })
-    )
   }
 
   gotoFindPwd = () => {
@@ -56,16 +46,23 @@ class Login extends Component {
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            <View style={styles.changeAcct}>
-              <Text style={styles.changeFont} onPress={this.gotoFindPwd}>
-                切换账户
-              </Text>
-            </View>
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>186****5456</Text>
-            <View style={styles.inputRow}>
+              <View style={styles.inputRow} >
+                <View style={styles.labelWrap}>
+                  <Image source={require('../images/phone.png')} />
+                </View>
+                <TextInput
+                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                  color=""
+                  value={this.state.tel}
+                  secureTextEntry
+                  placeholder="请输入手机号"
+                  placeholderTextColor="rgb(220, 220, 220)"
+                />
+              </View>
+              <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/password.png')} />
               </View>
@@ -108,8 +105,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   logo: {
-    marginTop: pxToDp(94),
-    marginBottom: pxToDp(100),
+    marginTop: pxToDp(228),
+    marginBottom: pxToDp(200),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -140,17 +137,15 @@ const styles = StyleSheet.create({
     marginTop: pxToDp(50),
     marginBottom: pxToDp(20),
   },
-  // getCaptcha: {
-  //   borderWidth: 0,
-  // },
   forgetPsw: {
     textAlign: 'right',
     fontSize: pxToDp(24),
     color: 'rgb(54,177,255)',
   },
   valid: {
-    marginBottom: pxToDp(50),
-    marginTop: pxToDp(50),
+    position: 'absolute',
+    bottom: pxToDp(50),
+    width: '100%',
     textAlign: 'center',
     fontSize: pxToDp(28),
     color: 'rgb(170,170,170)',

@@ -60,40 +60,40 @@ class Login extends Component {
         {fetching ? (
           <ActivityIndicator />
         ) : (
-            <View style={styles.content}>
-              <View style={styles.changeAcct}>
-                <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
-                  切换账户
+          <View style={styles.content}>
+            <View style={styles.changeAcct}>
+              <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
+                切换账户
               </Text>
-              </View>
-              <View style={styles.logo}>
-                <Image source={require('../images/logo.png')} />
-              </View>
-              <Text style={styles.savedUser}>186****5456</Text>
-              <View style={styles.inputRow}>
-                <View style={styles.labelWrap}>
-                  <Image source={require('../images/password.png')} />
-                </View>
-                <TextInput
-                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                  color=""
-                  value={this.state.password}
-                  secureTextEntry
-                  placeholder="请输入登录密码"
-                  placeholderTextColor="rgb(220, 220, 220)"
-                />
-              </View>
-              <View style={styles.loginBtn}>
-                <Button text="登录" onPress={this.onLogin} />
-              </View>
-              <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
-                忘记密码?
-            </Text>
-              <Text onPress={this.gotoFindPwd} style={styles.valid}>
-                手机验证码登录
-            </Text>
             </View>
-          )}
+            <View style={styles.logo}>
+              <Image source={require('../images/logo.png')} />
+            </View>
+            <Text style={styles.savedUser}>186****5456</Text>
+            <View style={styles.inputRow}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/password.png')} />
+              </View>
+              <TextInput
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                color=""
+                value={this.state.password}
+                secureTextEntry
+                placeholder="请输入登录密码"
+                placeholderTextColor="rgb(220, 220, 220)"
+              />
+            </View>
+            <View style={styles.loginBtn}>
+              <Button text="登录" onPress={this.onLogin} />
+            </View>
+            <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
+              忘记密码?
+            </Text>
+            <Text onPress={this.gotoFindPwd} style={styles.valid}>
+              手机验证码登录
+            </Text>
+          </View>
+        )}
       </View>
     )
   }

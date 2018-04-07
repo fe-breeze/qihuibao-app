@@ -32,7 +32,7 @@ class Login extends Component {
       createAction('app/login')({
         username: this.state.tel,
         password: this.state.password,
-        verifycode: '',
+        verifyCode: '',
         loginModel: '',
       })
     )

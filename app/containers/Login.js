@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   inputItem: {
     height: pxToDp(88),
-    width: '100%',
+    flex: 1
   },
   savedUser: {
     fontSize: pxToDp(60),

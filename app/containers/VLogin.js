@@ -42,7 +42,7 @@ class Login extends Component {
       })
     )
   }
-  
+
   gotoModifyAccount = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'ModifyAccount' })
@@ -52,7 +52,7 @@ class Login extends Component {
   gotoFindPwd = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
   }
-  
+
   gotoLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
   }
@@ -74,25 +74,25 @@ class Login extends Component {
               <Image source={require('../images/logo.png')} />
             </View>
             <Text style={styles.savedUser}>186****5456</Text>
-              <View style={styles.inputRow}>
-                <View style={styles.labelWrap}>
-                  <Image source={require('../images/captcha.png')} />
-                </View>
-                <TextInput
-                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                  value={this.state.vCode}
-                  placeholder="请输入短信验证码"
-                />
-                {count ? (
-                  <Text style={styles.getVcode}>
-                    {`${count}秒后可重新发送验证码`}
-                  </Text>
-                ) : (
-                    <Text onPress={this.getVcode} style={styles.getVcode}>
-                      获取验证码
-                </Text>
-                  )}
+            <View style={styles.inputRow}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/captcha.png')} />
               </View>
+              <TextInput
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                value={this.state.vCode}
+                placeholder="请输入短信验证码"
+              />
+              {count ? (
+                <Text style={styles.getVcode}>
+                  {`${count}秒后可重新发送验证码`}
+                </Text>
+              ) : (
+                <Text onPress={this.getVcode} style={styles.getVcode}>
+                  获取验证码
+                </Text>
+              )}
+            </View>
             <View style={styles.loginBtn}>
               <Button text="登录" onPress={this.onLogin} />
             </View>

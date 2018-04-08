@@ -21,7 +21,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tel: '18392463107',
+      tel: '13379213579',
       vCode: '',
     }
   }

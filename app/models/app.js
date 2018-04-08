@@ -21,7 +21,7 @@ export default {
     },
     *vcode({ payload }, { call, put }) {
       try {
-        const checkPass = yield call(authService.checkPwd, payload.mobile)
+        const checkPass = yield call(authService.vCode, payload.mobile)
         if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
           console.log(vefirycode)

@@ -57,7 +57,6 @@ class Login extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.tel}
-                secureTextEntry
                 placeholder="请输入手机号"
                 placeholderTextColor="rgb(220, 220, 220)"
               />

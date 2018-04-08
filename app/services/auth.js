@@ -14,7 +14,7 @@ export const login = async payload => {
   return data
 }
 export const vCode = async payload => {
-  console.log("send vcode" + payload);
+  console.log(`send vcode${  payload}`)
   const data = await request(`${BASE}vefirycode/vefiry`, {
     method: 'POST',
     body: {
@@ -22,12 +22,12 @@ export const vCode = async payload => {
     },
     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
   })
-  console.log("data:" + JSON.stringify(data));
+  console.log(`data:${  JSON.stringify(data)}`)
   return data
 }
 
 export const checkPwd = async payload => {
-  console.log("send vcode" + payload);
+  console.log(`send vcode${  payload}`)
   const data = await request(`${BASE}user/checkPwdExist`, {
     method: 'POST',
     body: {
@@ -35,6 +35,6 @@ export const checkPwd = async payload => {
     },
     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
   })
-  console.log("data:" + JSON.stringify(data));
+  console.log(`data:${  JSON.stringify(data)}`)
   return data
 }

@@ -27,7 +27,13 @@ class Login extends Component {
   }
 
   onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
+    this.props.dispatch(
+      createAction('app/login')({
+        username: this.state.tel,
+        password: this.state.password,
+        loginModel: 'userNameAndPassword',
+      })
+    )
   }
 
   onClose = () => {
@@ -57,6 +63,7 @@ class Login extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.tel}
+                onChangeText={tel => this.setState({ tel })}
                 placeholder="请输入手机号"
                 placeholderTextColor="rgb(220, 220, 220)"
               />
@@ -69,6 +76,7 @@ class Login extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.password}
+                onChangeText={password => this.setState({ password })}
                 secureTextEntry
                 placeholder="请输入登录密码"
                 placeholderTextColor="rgb(220, 220, 220)"

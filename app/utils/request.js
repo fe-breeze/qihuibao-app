@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 // import { notification } from 'antd';
 // import { routerRedux } from 'dva/router';
 import querystring from 'querystring'
-// import store from '../index';
+import store from '../index'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -94,12 +94,12 @@ export default function request(url, options) {
       return response.json()
     })
     .catch(e => {
-      // const { dispatch } = store;
+      const { dispatch } = store().props.store
       const status = e.name
       if (status === 401) {
-        // dispatch({
-        //   type: 'login/logout',
-        // });
+        dispatch({
+          type: 'login/logout',
+        })
         return
       }
       if (status === 403) {

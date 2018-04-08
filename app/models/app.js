@@ -24,7 +24,6 @@ export default {
         const checkPass = yield call(authService.vCode, payload.mobile)
         if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
-          console.log(vefirycode)
           if (vefirycode.succeed) {
             yield put(createAction('updateState')({ count: 90 }))
           } else {
@@ -40,19 +39,28 @@ export default {
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       const login = yield call(authService.login, payload)
-      if (login) {
+      if (login.succeed) {
         yield put(
           NavigationActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: 'Main' })],
           })
         )
+        yield call(Storage.set, 'username', payload.username)
+        yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
+        yield put(
+          createAction('updateState')({ login: login.succeed, loading: false })
+        )
       }
-      yield put(createAction('updateState')({ login, fetching: false }))
-      Storage.set('login', login)
+      yield put(
+        createAction('updateState')({ login: login.succeed, fetching: false })
+      )
+      Storage.set('login', login.succeed)
     },
     *logout(action, { call, put }) {
+      yield put(NavigationActions.navigate({ routeName: 'Login' }))
       yield call(Storage.set, 'login', false)
+      yield call(Storage.set, 'token', null) // eslint-disable-line
       yield put(createAction('updateState')({ login: false }))
     },
   },

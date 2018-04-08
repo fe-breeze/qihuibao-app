@@ -72,10 +72,10 @@ const MainNavigator = StackNavigator(
 
 const AppNavigator = StackNavigator(
   {
+    Main: { screen: MainNavigator },
     Login: { screen: Login },
     VLogin: { screen: VLogin },
     ModifyAccount: { screen: ModifyAccount },
-    Main: { screen: MainNavigator },
   },
   {
     headerMode: 'none',

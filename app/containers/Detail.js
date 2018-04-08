@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { NavigationActions } from '../utils'
+import { createAction, NavigationActions } from '../utils'
 
 @connect()
 class Detail extends Component {
@@ -19,12 +19,16 @@ class Detail extends Component {
   goBack = () => {
     this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
   }
+  goLogout = () => {
+    this.props.dispatch(createAction('app/logout')())
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Button text="Goto Detail" onPress={this.gotoDetail} />
         <Button text="Go Back" onPress={this.goBack} />
+        <Button text="Go Logout" onPress={this.goLogout} />
       </View>
     )
   }

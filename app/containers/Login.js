@@ -77,7 +77,7 @@ class Login extends Component {
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>186****5456</Text>
+            <Text style={styles.savedUser}>{this.state.tel}</Text>
             <View style={styles.inputRow}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/password.png')} />

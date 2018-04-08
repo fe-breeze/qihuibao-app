@@ -8,6 +8,7 @@ export default {
     loading: true,
     fetching: false,
     count: 0,
+    username: '',
   },
   reducers: {
     updateState(state, { payload }) {

@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
-import { createAction, NavigationActions } from '../utils'
+import { createAction, NavigationActions, Storage } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -25,9 +25,21 @@ class Login extends Component {
       vCode: '',
     }
   }
-
+  componentWillMount() {
+    Storage.get('username').then(data => {
+      this.setState({
+        tel: data,
+      })
+    })
+  }
   onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
+    this.props.dispatch(
+      createAction('app/login')({
+        username: this.state.tel,
+        vCode: this.state.vCode,
+        loginModel: 'userNameAndVerifyCode',
+      })
+    )
   }
 
   onClose = () => {
@@ -73,7 +85,7 @@ class Login extends Component {
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>186****5456</Text>
+            <Text style={styles.savedUser}>{this.state.tel}</Text>
             <View style={styles.inputRow}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/captcha.png')} />

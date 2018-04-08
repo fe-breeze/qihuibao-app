@@ -43,6 +43,9 @@ class Login extends Component {
   gotoFindPwd = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
   }
+  gotoVLogin = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))
+  }
 
   render() {
     const { fetching } = this.props
@@ -88,7 +91,7 @@ class Login extends Component {
             <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
               忘记密码?
             </Text>
-            <Text onPress={this.gotoFindPwd} style={styles.valid}>
+            <Text onPress={this.gotoVLogin} style={styles.valid}>
               手机验证码登录
             </Text>
           </View>

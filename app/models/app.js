@@ -1,15 +1,5 @@
-import { createAction, NavigationActions, Storage, delay } from '../utils'
+import { createAction, NavigationActions, Storage } from '../utils'
 import * as authService from '../services/auth'
-
-function* decrease(payload, put) {
-  let count = payload
-  if (count > 0) {
-    yield delay(1000)
-    count -= 1
-    yield put(createAction('updateState')({ count }))
-    yield decrease(count, put)
-  }
-}
 
 export default {
   namespace: 'app',
@@ -34,9 +24,9 @@ export default {
         const checkPass = yield call(authService.checkPwd, payload.mobile)
         if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
+          console.log(vefirycode)
           if (vefirycode.succeed) {
             yield put(createAction('updateState')({ count: 90 }))
-            yield call(decrease, 90, put)
           } else {
             // 验证码发送失败
           }

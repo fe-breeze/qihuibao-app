@@ -21,46 +21,21 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tel: '18392463107',
+      tel: '',
       password: '',
-      // vCode: '',
     }
   }
 
   onLogin = () => {
-    this.props.dispatch(
-      createAction('app/login')({
-        username: this.state.tel,
-        password: this.state.password,
-        verifyCode: '',
-        loginModel: '',
-      })
-    )
+    this.props.dispatch(createAction('app/login')())
   }
 
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
   }
 
-  getVcode = () => {
-    this.props.dispatch(
-      createAction('app/vcode')({
-        mobile: this.state.tel,
-        count: this.props.count,
-      })
-    )
-  }
-
   gotoFindPwd = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
-  }
-  gotoModifyAccount = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'ModifyAccount' })
-    )
-  }
-  gotoVLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))
   }
 
   render() {
@@ -71,16 +46,23 @@ class Login extends Component {
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            <View style={styles.changeAcct}>
-              <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
-                切换账户
-              </Text>
-            </View>
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>186****5456</Text>
             <View style={styles.inputRow}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/phone.png')} />
+              </View>
+              <TextInput
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                color=""
+                value={this.state.tel}
+                secureTextEntry
+                placeholder="请输入手机号"
+                placeholderTextColor="rgb(220, 220, 220)"
+              />
+            </View>
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/password.png')} />
               </View>
@@ -88,7 +70,6 @@ class Login extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.password}
-                onChangeText={password => this.setState({ password })}
                 secureTextEntry
                 placeholder="请输入登录密码"
                 placeholderTextColor="rgb(220, 220, 220)"
@@ -100,7 +81,7 @@ class Login extends Component {
             <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
               忘记密码?
             </Text>
-            <Text onPress={this.gotoVLogin} style={styles.valid}>
+            <Text onPress={this.gotoFindPwd} style={styles.valid}>
               手机验证码登录
             </Text>
           </View>
@@ -124,7 +105,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   logo: {
-    marginTop: pxToDp(94),
+    marginTop: pxToDp(228),
     marginBottom: pxToDp(100),
     justifyContent: 'center',
     alignItems: 'center',

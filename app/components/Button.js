@@ -12,8 +12,6 @@ export const Button = ({ text, children, style, textStyle, ...rest }) => (
 
 const styles = StyleSheet.create({
   button: {
-    // paddingVertical: 8.8,
-    // paddingHorizontal: 12,
     height: pxToDp(88),
     borderRadius: 4,
     backgroundColor: 'rgb(54,177,255)',

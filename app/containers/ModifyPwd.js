@@ -11,7 +11,8 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, NavigationActions } from '../utils'
+import { createAction, NavigationActions, delay } from '../utils'
+import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
 class ModifyPwd extends Component {
@@ -22,74 +23,101 @@ class ModifyPwd extends Component {
     super(props)
     this.state = {
       tel: '18392463107',
-      password: 'f8515623',
+      password: '',
       vCode: '',
+      count: 0,
     }
   }
 
-  onLogin = () => {
-    this.props.dispatch(createAction('app/login')())
-  }
+  // gotoModifyStatus = () => {
+  //   this.props.dispatch(createAction('app/login')())
+  // }
 
   onClose = () => {
     this.props.dispatch(NavigationActions.back())
   }
 
   getVcode = () => {
+    this.decrease(90)
+    this.setState({
+      count: 90,
+    })
     this.props.dispatch(
       createAction('app/vcode')({
         mobile: this.state.tel,
-        count: this.props.count,
       })
+    )
+  }
+  decrease = payload => {
+    if (payload > 0) {
+      delay(1000).then(() => {
+        // this.state.count -= 1
+        this.setState({
+          count: payload - 1,
+        })
+        this.decrease(payload - 1)
+      })
+    } else {
+      this.gotoVLogin()
+    }
+  }
+  gotoModifyStatus = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'ModifyPwdStatus' })
     )
   }
 
   render() {
-    const { fetching, count } = this.props
+    const { fetching } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
           <ActivityIndicator />
         ) : (
-          <View>
-            <Image source={require('../images/logo.png')} />
-            <Text>18635485456</Text>
-            <View style={styles.parent}>
-              <Image source={require('../images/phone.png')} />
-              <TextInput
-                style={styles.text}
-                value={this.state.tel}
-                placeholder="请输入手机号"
-              />
+          <View style={styles.content}>
+            <View style={styles.logo}>
+              <Image source={require('../images/logo.png')} />
             </View>
-            <View style={styles.parent}>
-              <Image source={require('../images/captcha.png')} />
+            <Text style={styles.savedUser}>186****5456</Text>
+            <View style={styles.inputRow}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/captcha.png')} />
+              </View>
               <TextInput
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 value={this.state.vCode}
                 placeholder="请输入短信验证码"
               />
-              <Button
-                text={count ? `${count}秒后可重新发送验证码` : '获取验证码'}
-                onPress={this.getVcode}
-                style={styles.getCaptcha}
-              />
+              {this.state.count ? (
+                <Text style={styles.getVcode}>
+                  {`${this.state.count}秒后可重新发送验证码`}
+                </Text>
+              ) : (
+                <Text onPress={this.getVcode} style={styles.getVcode}>
+                  获取验证码
+                </Text>
+              )}
             </View>
-            <View style={styles.parent}>
-              <Image source={require('../images/password.png')} />
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/password.png')} />
+              </View>
               <TextInput
-                style={styles.text}
+                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                color=""
                 value={this.state.password}
                 secureTextEntry
-                placeholder="设置新密码"
+                placeholder="请输入登录密码"
+                placeholderTextColor="rgb(220, 220, 220)"
               />
             </View>
             <Button
               text="提交"
-              onPress={this.onLogin}
-              style={styles.submitbtn}
+              onPress={this.gotoModifyStatus}
+              style={styles.loginBtn}
             />
-            <Text style={{ color: '#a2a2a2', marginTop: 20 }}>
-              密码包含8位数字和字母
+            <Text style={{ color: '#a2a2a2', marginTop: pxToDp(20) }}>
+              密码至少包含6位数字和字母
             </Text>
           </View>
         )}
@@ -100,34 +128,72 @@ class ModifyPwd extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    minHeight: '100%',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
+    paddingTop: pxToDp(34),
+  },
+  content: {
     flex: 1,
+    width: '100%',
+  },
+  logo: {
+    marginTop: pxToDp(94),
+    marginBottom: pxToDp(100),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  savedUser: {
+    fontSize: pxToDp(60),
+    textAlign: 'center',
+    color: 'rgb(51,51,51)',
+    marginBottom: pxToDp(100),
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'gray',
+    borderRadius: 4,
+    backgroundColor: '#f4f6f8',
+  },
+  labelWrap: {
+    width: pxToDp(92),
+    height: pxToDp(88),
     alignItems: 'center',
     justifyContent: 'center',
   },
-  close: {
-    position: 'absolute',
-    right: 20,
-    top: 40,
+  inputItem: {
+    height: pxToDp(88),
+    flex: 1,
   },
-  parent: {
-    height: 50,
-    marginTop: 10,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    borderColor: 'gray',
-    borderWidth: 1,
+  loginBtn: {
+    marginTop: pxToDp(50),
+    marginBottom: pxToDp(20),
   },
-  text: {
+  getVcode: {
+    textAlign: 'right',
+    fontSize: pxToDp(28),
+    color: 'rgb(54,177,255)',
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
+  },
+  valid: {
+    marginBottom: pxToDp(50),
+    marginTop: pxToDp(50),
     textAlign: 'center',
-    fontSize: 34,
+    fontSize: pxToDp(28),
+    color: 'rgb(170,170,170)',
   },
-  getCaptcha: {
-    borderWidth: 0,
+  changeAcct: {
+    height: pxToDp(100),
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
-  submitbtn: {
-    height: 50,
-    marginTop: 10,
-    backgroundColor: '#2fa8ff',
+  changeFont: {
+    color: 'rgb(102,102,102)',
+    fontSize: pxToDp(28),
   },
 })
 

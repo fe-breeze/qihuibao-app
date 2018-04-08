@@ -17,16 +17,19 @@ import { connect } from 'react-redux'
 
 import Loading from './containers/Loading'
 import Login from './containers/Login'
+import ModifyAccount from './containers/ModifyAccount'
 import Home from './containers/Home'
 import Account from './containers/Account'
 import Invest from './containers/Invest'
 import Detail from './containers/Detail'
 import ModifyPwd from './containers/ModifyPwd'
+import VLogin from './containers/VLogin'
 import About from './containers/About'
 import Setting from './containers/Setting'
 import MyInvest from './containers/MyInvest'
 import InvestDetail from './containers/InvestDetail'
-import WithDrawal from './containers/WithDrawal'
+import Withdrawal from './containers/Withdrawal'
+import ModifyPwdStatus from './containers/ModifyPwdStatus'
 
 const HomeNavigator = TabNavigator(
   {
@@ -52,16 +55,26 @@ const MainNavigator = StackNavigator(
     Setting: { screen: Setting },
     MyInvest: { screen: MyInvest },
     InvestDetail: { screen: InvestDetail },
-    WithDrawal: { screen: WithDrawal },
+    Withdrawal: { screen: Withdrawal },
+    ModifyPwdStatus: { screen: ModifyPwdStatus },
   },
   {
     headerMode: 'float',
+    navigationOptions: {
+      headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomWidth: 0,
+      },
+    },
   }
 )
 
 const AppNavigator = StackNavigator(
   {
     Login: { screen: Login },
+    VLogin: { screen: VLogin },
+    ModifyAccount: { screen: ModifyAccount },
     Main: { screen: MainNavigator },
   },
   {

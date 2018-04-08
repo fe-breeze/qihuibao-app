@@ -34,8 +34,8 @@ class Account extends Component {
       NavigationActions.navigate({ routeName: 'InvestDetail' })
     )
   }
-  gotoWithDrawal = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'WithDrawal' }))
+  gotoWithdrawal = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Withdrawal' }))
   }
 
   render() {
@@ -48,7 +48,7 @@ class Account extends Component {
         <Text>在途资金（元）23.22</Text>
         <Button text="我的投资" onPress={this.gotoMyInvest} />
         <Button text="资金明细" onPress={this.gotoInvestDetail} />
-        <Button text="提现" onPress={this.gotoWithDrawal} />
+        <Button text="提现" onPress={this.gotoWithdrawal} />
         <Button text="设置" onPress={this.gotoSetting} />
         <Button text="关于" onPress={this.gotoAbout} />
       </View>

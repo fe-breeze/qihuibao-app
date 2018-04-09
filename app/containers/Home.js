@@ -24,17 +24,20 @@ class Home extends Component {
       <View style={styles.container}>
         <Swiper autoplay>
           <View style={styles.slide1}>
-            <Image source={require('../images/banner.png')}/>
+            <Image source={require('../images/banner.png')} />
           </View>
           <View style={styles.slide2}>
-            <Image source={require('../images/banner.png')}/>
+            <Image source={require('../images/banner.png')} />
           </View>
           <View style={styles.slide3}>
-            <Image source={require('../images/banner.png')}/>
+            <Image source={require('../images/banner.png')} />
           </View>
         </Swiper>
         <View style={styles.notice}>
-          <Image style={styles.vicon} source={require('../images/volume.png')} />
+          <Image
+            style={styles.vicon}
+            source={require('../images/volume.png')}
+          />
           <Text style={styles.rate}>企惠宝零钱包7日年化率提高20%!</Text>
         </View>
         <View style={styles.content}>
@@ -44,30 +47,43 @@ class Home extends Component {
           </View>
           <View style={styles.percent}>
             <Text style={{ color: 'rgb(255,106,110)' }}>
-              <Text style={{ fontSize: pxToDp(60) }}>8</Text><Text style={{ fontSize: pxToDp(40) }}>%</Text>
-              <Text style={{ fontSize: pxToDp(60) }}>-15</Text><Text style={{ fontSize: pxToDp(40) }}>%</Text>
+              <Text style={{ fontSize: pxToDp(60) }}>8</Text>
+              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+              <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
+              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
             </Text>
-            <Image style={styles.ficon} source={require('../images/financing.png')} />
+            <Image
+              style={styles.ficon}
+              source={require('../images/financing.png')}
+            />
           </View>
           <View style={{ marginLeft: pxToDp(68), marginBottom: pxToDp(20) }}>
-            <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>平均年化率高达</Text>
+            <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
+              平均年化率高达
+            </Text>
           </View>
         </View>
         <View style={styles.content}>
-        <View style={styles.financialWrap}>
-          <Text style={styles.financial}>企惠宝零钱包</Text>
-          <Text style={styles.income}>资金灵活</Text>
+          <View style={styles.financialWrap}>
+            <Text style={styles.financial}>企惠宝零钱包</Text>
+            <Text style={styles.income}>资金灵活</Text>
+          </View>
+          <View style={styles.percent}>
+            <Text style={{ color: 'rgb(255,106,110)' }}>
+              <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
+              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+            </Text>
+            <Image
+              style={styles.ficon}
+              source={require('../images/qihuibao-package.png')}
+            />
+          </View>
+          <View style={{ marginLeft: pxToDp(68), marginBottom: pxToDp(20) }}>
+            <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
+              7日年化率高达
+            </Text>
+          </View>
         </View>
-        <View style={styles.percent}>
-          <Text style={{ color: 'rgb(255,106,110)' }}>
-            <Text style={{ fontSize: pxToDp(60) }}>4.5</Text><Text style={{ fontSize: pxToDp(40) }}>%</Text>
-          </Text>
-          <Image style={styles.ficon} source={require('../images/qihuibao-package.png')} />
-        </View>
-        <View style={{ marginLeft: pxToDp(68), marginBottom: pxToDp(20) }}>
-          <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>7日年化率高达</Text>
-        </View>
-      </View>
       </View>
     )
   }
@@ -76,7 +92,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#f4f3f3',
+    backgroundColor: '#f4f3f3',
   },
   icon: {
     width: pxToDp(48),
@@ -103,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     height: pxToDp(98),
     marginTop: pxToDp(40),
-    backgroundColor:'#fff',
+    backgroundColor: '#fff',
   },
   vicon: {
     width: pxToDp(42),
@@ -117,8 +133,8 @@ const styles = StyleSheet.create({
   },
   content: {
     justifyContent: 'flex-start',
-    backgroundColor:'#fff',
-    marginBottom:pxToDp(60),
+    backgroundColor: '#fff',
+    marginBottom: pxToDp(60),
   },
   financialWrap: {
     flexDirection: 'row',

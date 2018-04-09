@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    width:  pxToDp(48),
+    width: pxToDp(48),
     height: pxToDp(48),
   },
 })

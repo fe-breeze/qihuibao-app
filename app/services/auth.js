@@ -26,9 +26,31 @@ export const vCode = async payload => {
   console.log(`data:${JSON.stringify(data)}`)
   return data
 }
+export const vefiryCode = async payload => {
+  console.log(`send vefirycode${payload}`)
+  const data = await request(`${BASE}vefirycode/vefirycode`, {
+    method: 'POST',
+    body: {
+      mobile: payload,
+    },
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+  })
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+export const resetpwd = async payload => {
+  console.log(`send resetpwd${payload}`)
+  const data = await request(`${BASE}user/resetpwd`, {
+    method: 'POST',
+    body: payload,
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+  })
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
 
 export const checkPwd = async payload => {
-  console.log(`send vcode${payload}`)
+  console.log(`send checkPwd${payload}`)
   const data = await request(`${BASE}user/checkPwdExist`, {
     method: 'POST',
     body: {

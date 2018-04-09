@@ -36,6 +36,33 @@ export default {
         console.error(err)
       }
     },
+    *vefiryCode({ payload }, { call }) {
+      try {
+        const vefirycode = yield call(authService.vefiryCode, payload.mobile)
+        if (vefirycode.succeed) {
+          console.log(vefirycode)
+        } else {
+          // 验证码发送失败
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    *resetpwd({ payload }, { put, call }) {
+      try {
+        console.log(payload)
+        const resetpwd = yield call(authService.resetpwd, payload)
+        if (resetpwd.succeed) {
+          yield put(
+            NavigationActions.navigate({ routeName: 'ModifyPwdStatus' })
+          )
+        } else {
+          // yield put(NavigationActions.navigate({ routeName: 'ModifyPwdStatus' }))
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    },
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       const login = yield call(authService.login, payload)

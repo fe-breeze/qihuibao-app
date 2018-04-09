@@ -49,7 +49,7 @@ class Login extends Component {
         this.decrease(payload - 1)
       })
     } else {
-      this.gotoVLogin()
+      this.gotoLogin()
     }
   }
 
@@ -63,8 +63,8 @@ class Login extends Component {
     )
   }
 
-  gotoVLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))
+  gotoLogin = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
   }
 
   render() {

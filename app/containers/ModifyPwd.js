@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, NavigationActions, delay } from '../utils'
+import { createAction, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -28,23 +28,24 @@ class ModifyPwd extends Component {
       count: 0,
     }
   }
-
-  // gotoModifyStatus = () => {
-  //   this.props.dispatch(createAction('app/login')())
-  // }
-
-  onClose = () => {
-    this.props.dispatch(NavigationActions.back())
-  }
-
   getVcode = () => {
     this.decrease(90)
     this.setState({
       count: 90,
     })
     this.props.dispatch(
-      createAction('app/vcode')({
+      createAction('app/vefiryCode')({
         mobile: this.state.tel,
+      })
+    )
+  }
+  gotoModifyStatus = () => {
+    this.props.dispatch(
+      createAction('app/resetpwd')({
+        username: this.state.tel,
+        password: this.state.password,
+        repassword: this.state.password,
+        verifyCode: this.state.vCode,
       })
     )
   }
@@ -60,11 +61,6 @@ class ModifyPwd extends Component {
     } else {
       this.gotoVLogin()
     }
-  }
-  gotoModifyStatus = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'ModifyPwdStatus' })
-    )
   }
 
   render() {
@@ -131,17 +127,19 @@ class ModifyPwd extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.tel}
+                onChangeText={tel => this.setState({ tel })}
                 placeholder="请输入手机号"
                 placeholderTextColor="rgb(220, 220, 220)"
               />
             </View>
-            <View style={styles.inputRow}>
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/captcha.png')} />
               </View>
               <TextInput
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 value={this.state.vCode}
+                onChangeText={vCode => this.setState({ vCode })}
                 placeholder="请输入短信验证码"
               />
               {this.state.count ? (
@@ -162,6 +160,7 @@ class ModifyPwd extends Component {
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 color=""
                 value={this.state.password}
+                onChangeText={password => this.setState({ password })}
                 secureTextEntry
                 placeholder="请设置新密码"
                 placeholderTextColor="rgb(220, 220, 220)"

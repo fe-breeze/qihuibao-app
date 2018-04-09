@@ -23,12 +23,12 @@ const app = dva({
   },
 })
 
-const App = app.start(<Router />)
+const App = app.start( < Router / > )
 
 Storage.get('login').then(data => {
-  if (!data) {
+  if (data !== true) {
     Storage.get('username').then(elm => {
-      if (!elm) {
+      if (elm !== true) {
         App().props.store.dispatch(
           NavigationActions.navigate({ routeName: 'ModifyAccount' })
         )

@@ -50,14 +50,31 @@ export default {
     },
     *resetpwd({ payload }, { put, call }) {
       try {
-        console.log(payload)
         const resetpwd = yield call(authService.resetpwd, payload)
         if (resetpwd.succeed) {
           yield put(
-            NavigationActions.navigate({ routeName: 'ModifyPwdStatus' })
+            NavigationActions.navigate({
+              routeName: 'ModifyPwdStatus',
+              params: {
+                status: true,
+              },
+              actions: [
+                NavigationActions.navigate({ routeName: 'ModifyPwdStatus' }),
+              ],
+            })
           )
         } else {
-          // yield put(NavigationActions.navigate({ routeName: 'ModifyPwdStatus' }))
+          yield put(
+            NavigationActions.navigate({
+              routeName: 'ModifyPwdStatus',
+              params: {
+                status: false,
+              },
+              actions: [
+                NavigationActions.navigate({ routeName: 'ModifyPwdStatus' }),
+              ],
+            })
+          )
         }
       } catch (err) {
         console.error(err)

@@ -41,7 +41,15 @@ class Login extends Component {
   }
 
   gotoFindPwd = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
+    this.props.dispatch(
+      NavigationActions.navigate({
+        routeName: 'ModifyPwd',
+        params: {
+          status: false,
+        },
+        actions: [NavigationActions.navigate({ routeName: 'ModifyPwd' })],
+      })
+    )
   }
   gotoVLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))

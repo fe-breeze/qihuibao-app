@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 
-// import { Button } from '../components'
+import { Button } from '../components'
 import { createAction, NavigationActions, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
@@ -14,10 +14,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tel: '18392463107',
       count: 3,
-      // password: '',
-      // vCode: '',
     }
   }
   componentWillMount() {
@@ -30,15 +27,6 @@ class Login extends Component {
     this.props.dispatch(NavigationActions.back())
   }
 
-  getVcode = () => {
-    this.props.dispatch(
-      createAction('app/vcode')({
-        mobile: this.state.tel,
-        count: this.props.count,
-      })
-    )
-  }
-
   decrease = payload => {
     if (payload > 0) {
       delay(1000).then(() => {
@@ -49,7 +37,12 @@ class Login extends Component {
         this.decrease(payload - 1)
       })
     } else {
-      this.gotoLogin()
+      const { status } = this.props.navigation.state.params
+      if (status) {
+        this.gotoLogin()
+      } else {
+        this.goBack()
+      }
     }
   }
 
@@ -68,38 +61,44 @@ class Login extends Component {
   }
 
   render() {
-    const { fetching } = this.props
+    const { fetching, navigation } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            {/* <View style={styles.error}>
-                <Image source={require('../images/modify-error.png')} />
+            {navigation.state.params.status ? (
+              <View>
+                <View style={styles.error}>
+                  <Image source={require('../images/modify-succ.png')} />
+                </View>
+                <Text style={styles.pwdError}>密码修改成功</Text>
+                <Text style={styles.back}>
+                  <Text style={styles.count}>{this.state.count}</Text>
+                  秒自动返回
+                </Text>
               </View>
-              <Text style={styles.pwdError}>密码修改失败</Text>
-              <Text style={styles.back}>
-              <Text style={styles.count}>
-              3
-              </Text>
-              秒自动返回</Text>
-              <View style={styles.btnWrap}>
-                <Button
-                  text="再次修改"
-                  onPress={this.goBack}
-                  style={styles.modifyAgain}
-                  textStyle={styles.modifyAgainText}
-                />
-        </View> */}
-            <View style={styles.error}>
-              <Image source={require('../images/modify-succ.png')} />
-            </View>
-            <Text style={styles.pwdError}>密码修改成功</Text>
-            <Text style={styles.back}>
-              <Text style={styles.count}>{this.state.count}</Text>
-              秒自动返回
-            </Text>
+            ) : (
+              <View>
+                <View style={styles.error}>
+                  <Image source={require('../images/modify-error.png')} />
+                </View>
+                <Text style={styles.pwdError}>密码修改失败</Text>
+                <Text style={styles.back}>
+                  <Text style={styles.count}>{this.state.count}</Text>
+                  秒自动返回
+                </Text>
+                <View style={styles.btnWrap}>
+                  <Button
+                    text="再次修改"
+                    onPress={this.goBack}
+                    style={styles.modifyAgain}
+                    textStyle={styles.modifyAgainText}
+                  />
+                </View>
+              </View>
+            )}
           </View>
         )}
       </View>

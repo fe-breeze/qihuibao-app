@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, delay } from '../utils'
+import { createAction, delay, Storage } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -27,6 +27,17 @@ class ModifyPwd extends Component {
       vCode: '',
       count: 0,
     }
+  }
+  componentWillMount() {
+    Storage.get('username').then(data => {
+      const { params } = this.props.navigation.state
+      const status = params ? params.status : true
+      if (status) {
+        this.setState({
+          tel: data,
+        })
+      }
+    })
   }
   getVcode = () => {
     this.decrease(90)
@@ -64,74 +75,35 @@ class ModifyPwd extends Component {
   }
 
   render() {
-    const { fetching } = this.props
+    const { fetching, navigation } = this.props
+    const { params } = navigation.state
+    const status = params ? params.status : true
     return (
       <View style={styles.container}>
         {fetching ? (
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            {/* <View style={styles.logo}>
-                <Image source={require('../images/logo.png')} />
-              </View>
-              <Text style={styles.savedUser}>186****5456</Text>
+            <View style={styles.logo}>
+              <Image source={require('../images/logo.png')} />
+            </View>
+            {status && this.state.tel ? (
+              <Text style={styles.savedUser}>{this.state.tel}</Text>
+            ) : (
               <View style={styles.inputRow}>
                 <View style={styles.labelWrap}>
-                  <Image source={require('../images/captcha.png')} />
-                </View>
-                <TextInput
-                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                  value={this.state.vCode}
-                  placeholder="请输入短信验证码"
-                />
-                {this.state.count ? (
-                  <Text style={styles.getVcode}>
-                    {`${this.state.count}秒后可重新发送验证码`}
-                  </Text>
-                ) : (
-                    <Text onPress={this.getVcode} style={styles.getVcode}>
-                      获取验证码
-                </Text>
-                  )}
-              </View>
-              <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
-                <View style={styles.labelWrap}>
-                  <Image source={require('../images/password.png')} />
+                  <Image source={require('../images/phone.png')} />
                 </View>
                 <TextInput
                   style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                   color=""
-                  value={this.state.password}
-                  secureTextEntry
-                  placeholder="请设置新密码"
+                  value={this.state.tel}
+                  onChangeText={tel => this.setState({ tel })}
+                  placeholder="请输入手机号"
                   placeholderTextColor="rgb(220, 220, 220)"
                 />
               </View>
-              <Button
-                text="提交"
-                onPress={this.gotoModifyStatus}
-                style={styles.loginBtn}
-              />
-              <Text style={{ color: '#a2a2a2', marginTop: pxToDp(20) }}>
-                密码至少包含6位数字和字母
-            </Text>
-                </View> */}
-            <View style={styles.logo}>
-              <Image source={require('../images/logo.png')} />
-            </View>
-            <View style={styles.inputRow}>
-              <View style={styles.labelWrap}>
-                <Image source={require('../images/phone.png')} />
-              </View>
-              <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
-                value={this.state.tel}
-                onChangeText={tel => this.setState({ tel })}
-                placeholder="请输入手机号"
-                placeholderTextColor="rgb(220, 220, 220)"
-              />
-            </View>
+            )}
             <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/captcha.png')} />

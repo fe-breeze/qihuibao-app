@@ -23,7 +23,7 @@ const app = dva({
   },
 })
 
-const App = app.start( < Router / > )
+const App = app.start(<Router />)
 
 Storage.get('login').then(data => {
   if (data !== true) {

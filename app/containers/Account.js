@@ -54,7 +54,7 @@ class Account extends Component {
           </View>
           <Image
             source={require('../images/enter.png')}
-            style={{ width: pxToDp(24), height: pxToDp(24) }}
+            style={styles.enter}
           />
         </View>
         <View style={styles.wrapper}>
@@ -69,7 +69,7 @@ class Account extends Component {
           </View>
           <Image
             source={require('../images/enter.png')}
-            style={{ width: pxToDp(24), height: pxToDp(24) }}
+            style={styles.enter}
           />
         </View>
         <View style={styles.wrapper}>
@@ -84,7 +84,7 @@ class Account extends Component {
           </View>
           <Image
             source={require('../images/enter.png')}
-            style={{ width: pxToDp(24), height: pxToDp(24) }}
+            style={styles.enter}
           />
         </View>
         <View style={styles.wrapper}>
@@ -99,7 +99,7 @@ class Account extends Component {
           </View>
           <Image
             source={require('../images/enter.png')}
-            style={{ width: pxToDp(24), height: pxToDp(24) }}
+            style={styles.enter}
           />
         </View>
         <View style={styles.wrapper}>
@@ -114,7 +114,7 @@ class Account extends Component {
           </View>
           <Image
             source={require('../images/enter.png')}
-            style={{ width: pxToDp(24), height: pxToDp(24) }}
+            style={styles.enter}
           />
         </View>
       </View>
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: pxToDp(42),
+    marginLeft: pxToDp(26),
     marginTop: pxToDp(23),
     marginBottom: pxToDp(23),
   },
@@ -151,6 +151,11 @@ const styles = StyleSheet.create({
     fontSize: pxToDp(34),
     color: 'rgb(51,51,51)',
   },
+  enter: {
+    width: pxToDp(24),
+    height: pxToDp(24),
+    marginRight: pxToDp(42),
+  }
 })
 
 export default Account

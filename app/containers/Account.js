@@ -6,6 +6,8 @@ import { Button } from '../components'
 
 import { NavigationActions } from '../utils'
 
+import pxToDp from '../utils/pxToDp'
+
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
   static navigationOptions = {
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    width: 32,
-    height: 32,
+    width:  pxToDp(48),
+    height: pxToDp(48),
   },
 })
 

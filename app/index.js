@@ -28,7 +28,7 @@ const App = app.start(<Router />)
 Storage.get('login').then(data => {
   if (data !== true) {
     Storage.get('username').then(elm => {
-      if (elm !== true) {
+      if (typeof elm !== 'string') {
         App().props.store.dispatch(
           NavigationActions.navigate({ routeName: 'ModifyAccount' })
         )

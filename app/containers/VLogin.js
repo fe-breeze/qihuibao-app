@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
-import { createAction, NavigationActions, Storage } from '../utils'
+import { createAction, NavigationActions, Storage, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -23,6 +23,7 @@ class Login extends Component {
     this.state = {
       tel: '13379213579',
       vCode: '',
+      count: 0,
     }
   }
   componentWillMount() {
@@ -47,6 +48,10 @@ class Login extends Component {
   }
 
   getVcode = () => {
+    this.decrease(90)
+    this.setState({
+      count: 90,
+    })
     this.props.dispatch(
       createAction('app/vcode')({
         mobile: this.state.tel,
@@ -54,7 +59,19 @@ class Login extends Component {
       })
     )
   }
-
+  decrease = payload => {
+    if (payload > 0) {
+      delay(1000).then(() => {
+        // this.state.count -= 1
+        this.setState({
+          count: payload - 1,
+        })
+        this.decrease(payload - 1)
+      })
+    } else {
+      // this.gotoVLogin()
+    }
+  }
   gotoModifyAccount = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'ModifyAccount' })
@@ -70,7 +87,7 @@ class Login extends Component {
   }
 
   render() {
-    const { fetching, count } = this.props
+    const { fetching } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
@@ -93,11 +110,12 @@ class Login extends Component {
               <TextInput
                 style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                 value={this.state.vCode}
+                onChangeText={vCode => this.setState({ vCode })}
                 placeholder="请输入短信验证码"
               />
-              {count ? (
+              {this.state.count ? (
                 <Text style={styles.getVcode}>
-                  {`${count}秒后可重新发送验证码`}
+                  {`${this.state.count}秒后可重新发送验证码`}
                 </Text>
               ) : (
                 <Text onPress={this.getVcode} style={styles.getVcode}>

@@ -7,7 +7,6 @@ export default {
     login: false,
     loading: true,
     fetching: false,
-    count: 0,
     username: '',
   },
   reducers: {
@@ -20,13 +19,13 @@ export default {
       const login = yield call(Storage.get, 'login', false)
       yield put(createAction('updateState')({ login, loading: false }))
     },
-    *vcode({ payload }, { call, put }) {
+    *vcode({ payload }, { call }) {
       try {
         const checkPass = yield call(authService.vCode, payload.mobile)
         if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
           if (vefirycode.succeed) {
-            yield put(createAction('updateState')({ count: 90 }))
+            console.log(vefirycode)
           } else {
             // 验证码发送失败
           }
@@ -40,6 +39,7 @@ export default {
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       const login = yield call(authService.login, payload)
+      console.log(login)
       if (login.succeed) {
         yield put(
           NavigationActions.reset({

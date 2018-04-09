@@ -6,6 +6,7 @@ import request from '../utils/request'
 const BASE = 'http://localhost:9080/api/'
 
 export const login = async payload => {
+  console.log(payload)
   const data = await request(`${BASE}login`, {
     method: 'POST',
     body: payload,

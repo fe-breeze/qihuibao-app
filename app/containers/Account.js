@@ -52,10 +52,7 @@ class Account extends Component {
               我的投资
             </Text>
           </View>
-          <Image
-            source={require('../images/enter.png')}
-            style={styles.enter}
-          />
+          <Image source={require('../images/enter.png')} style={styles.enter} />
         </View>
         <View style={styles.wrapper}>
           <View style={styles.wrapDeatil}>
@@ -67,10 +64,7 @@ class Account extends Component {
               资金明细
             </Text>
           </View>
-          <Image
-            source={require('../images/enter.png')}
-            style={styles.enter}
-          />
+          <Image source={require('../images/enter.png')} style={styles.enter} />
         </View>
         <View style={styles.wrapper}>
           <View style={styles.wrapDeatil}>
@@ -82,10 +76,7 @@ class Account extends Component {
               提现
             </Text>
           </View>
-          <Image
-            source={require('../images/enter.png')}
-            style={styles.enter}
-          />
+          <Image source={require('../images/enter.png')} style={styles.enter} />
         </View>
         <View style={styles.wrapper}>
           <View style={styles.wrapDeatil}>
@@ -97,10 +88,7 @@ class Account extends Component {
               设置
             </Text>
           </View>
-          <Image
-            source={require('../images/enter.png')}
-            style={styles.enter}
-          />
+          <Image source={require('../images/enter.png')} style={styles.enter} />
         </View>
         <View style={styles.wrapper}>
           <View style={styles.wrapDeatil}>
@@ -112,10 +100,7 @@ class Account extends Component {
               关于
             </Text>
           </View>
-          <Image
-            source={require('../images/enter.png')}
-            style={styles.enter}
-          />
+          <Image source={require('../images/enter.png')} style={styles.enter} />
         </View>
       </View>
     )
@@ -155,7 +140,7 @@ const styles = StyleSheet.create({
     width: pxToDp(24),
     height: pxToDp(24),
     marginRight: pxToDp(42),
-  }
+  },
 })
 
 export default Account

@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
-import { createAction, NavigationActions } from '../utils'
+import { createAction, NavigationActions, Storage } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -25,6 +25,14 @@ class Login extends Component {
       tel: '',
       password: '',
     }
+  }
+
+  componentWillMount() {
+    Storage.get('username').then(data => {
+      this.setState({
+        tel: data,
+      })
+    })
   }
 
   onLogin = () => {

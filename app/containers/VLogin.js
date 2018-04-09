@@ -21,7 +21,8 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tel: '13379213579',
+      // tel: '13379213579',
+      tel: '',
       vCode: '',
       count: 0,
     }
@@ -41,10 +42,6 @@ class Login extends Component {
         loginModel: 'userNameAndVerifyCode',
       })
     )
-  }
-
-  onClose = () => {
-    this.props.dispatch(NavigationActions.back())
   }
 
   getVcode = () => {

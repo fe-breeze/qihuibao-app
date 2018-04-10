@@ -71,8 +71,7 @@ class Login extends Component {
                 <Image source={require('../images/phone.png')} />
               </View>
               <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
+                style={[styles.inputItem, { color: '#333333' }]}
                 value={this.state.tel}
                 onChangeText={tel => this.setState({ tel })}
                 placeholder="请输入手机号"
@@ -84,11 +83,11 @@ class Login extends Component {
                 <Image source={require('../images/password.png')} />
               </View>
               <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
+                style={[styles.inputItem, { color: '#333333' }]}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
                 secureTextEntry
+                maxLength={32}
                 placeholder="请输入登录密码"
                 placeholderTextColor="rgb(220, 220, 220)"
               />

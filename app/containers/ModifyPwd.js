@@ -95,8 +95,7 @@ class ModifyPwd extends Component {
                   <Image source={require('../images/phone.png')} />
                 </View>
                 <TextInput
-                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                  color=""
+                  style={[styles.inputItem]}
                   value={this.state.tel}
                   onChangeText={tel => this.setState({ tel })}
                   placeholder="请输入手机号"
@@ -109,10 +108,11 @@ class ModifyPwd extends Component {
                 <Image source={require('../images/captcha.png')} />
               </View>
               <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                style={[styles.inputItem]}
                 value={this.state.vCode}
                 onChangeText={vCode => this.setState({ vCode })}
                 placeholder="请输入短信验证码"
+                maxLength = {6}
               />
               {this.state.count ? (
                 <Text style={styles.getVcode}>
@@ -129,11 +129,11 @@ class ModifyPwd extends Component {
                 <Image source={require('../images/password.png')} />
               </View>
               <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                color=""
+                style={[styles.inputItem]}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
                 secureTextEntry
+                maxLength={32}
                 placeholder="请设置新密码"
                 placeholderTextColor="rgb(220, 220, 220)"
               />

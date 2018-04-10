@@ -23,17 +23,21 @@ class Account extends Component {
   gotoMyInvest = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'MyInvest' }))
   }
+
   gotoInvestDetail = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'InvestDetail' })
     )
   }
+
   gotoWithdrawal = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Withdrawal' }))
   }
+
   gotoSetting = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Setting' }))
   }
+  
   gotoAbout = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'About' }))
   }

@@ -112,7 +112,7 @@ class ModifyPwd extends Component {
                 value={this.state.vCode}
                 onChangeText={vCode => this.setState({ vCode })}
                 placeholder="请输入短信验证码"
-                maxLength = {6}
+                maxLength={6}
               />
               {this.state.count ? (
                 <Text style={styles.getVcode}>

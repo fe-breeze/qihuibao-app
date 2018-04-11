@@ -46,19 +46,28 @@ class Account extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <ImageBackground style={styles.background} source={require('../images/account-bg.png')}>
+          <ImageBackground
+            style={styles.background}
+            source={require('../images/account-bg.png')}
+          >
             <View style={styles.topWrap}>
-              <Image style={styles.imgTop} source={require('../images/head.png')} />
+              <Image
+                style={styles.imgTop}
+                source={require('../images/head.png')}
+              />
               <Text style={styles.textTop}>138****6789</Text>
             </View>
             <View style={styles.contentWrap}>
               <View style={styles.betPacket}>
                 <Text style={styles.betText}>金额账户(元)</Text>
-                <Image style={styles.betImg} source={require('../images/visual.png')} />
+                <Image
+                  style={styles.betImg}
+                  source={require('../images/visual.png')}
+                />
               </View>
             </View>
             <View style={styles.contentWrap}>
-              <Text style={styles.lastText} >6666.66</Text>
+              <Text style={styles.lastText}>6666.66</Text>
               <View style={styles.lastWrap}>
                 <Text style={styles.endText}>在途资金(元):12000.88</Text>
               </View>
@@ -136,7 +145,7 @@ const styles = StyleSheet.create({
   },
   background: {
     height: pxToDp(600),
-    width: pxToDp(760)
+    width: pxToDp(760),
   },
   topWrap: {
     flexDirection: 'row',
@@ -147,21 +156,21 @@ const styles = StyleSheet.create({
   imgTop: {
     width: pxToDp(66),
     height: pxToDp(66),
-    marginRight: pxToDp(20)
+    marginRight: pxToDp(20),
   },
   textTop: {
     fontSize: pxToDp(36),
     color: 'rgb(255,255,255)',
-    lineHeight: pxToDp(66)
+    lineHeight: pxToDp(66),
   },
   contentWrap: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   betPacket: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     marginTop: pxToDp(100),
   },
   betText: {
@@ -172,12 +181,12 @@ const styles = StyleSheet.create({
   },
   betImg: {
     width: pxToDp(48),
-    height: pxToDp(48)
+    height: pxToDp(48),
   },
   lastText: {
     fontSize: pxToDp(68),
     color: 'rgb(255,255,255)',
-    marginTop: pxToDp(20)
+    marginTop: pxToDp(20),
   },
   lastWrap: {
     borderColor: '#ffffff',
@@ -185,13 +194,13 @@ const styles = StyleSheet.create({
     height: pxToDp(50),
     width: pxToDp(420),
     borderRadius: pxToDp(24),
-    marginTop: pxToDp(60)
+    marginTop: pxToDp(60),
   },
   endText: {
     fontSize: pxToDp(28),
     color: 'rgb(255,255,255)',
     textAlign: 'center',
-    lineHeight: pxToDp(50)
+    lineHeight: pxToDp(50),
   },
   icon: {
     width: pxToDp(48),

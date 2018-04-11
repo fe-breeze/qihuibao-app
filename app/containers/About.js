@@ -19,30 +19,36 @@ class Detail extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ alignItems: 'center', marginTop: pxToDp(100), marginBottom: pxToDp(100) }}>
+        <View
+          style={{
+            alignItems: 'center',
+            marginTop: pxToDp(100),
+            marginBottom: pxToDp(100),
+          }}
+        >
           <Image source={require('../images/logo.png')} />
         </View>
         <View style={styles.fontWrap}>
-          <View style={[styles.packet, {marginLeft:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginLeft: pxToDp(20) }]}>
             <Text style={styles.fontLeft}>版本号</Text>
           </View>
-          <View style={[styles.packet, {marginRight:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginRight: pxToDp(20) }]}>
             <Text style={styles.fontRight}>1.1.0</Text>
           </View>
         </View>
         <View style={styles.fontWrap}>
-          <View style={[styles.packet, {marginLeft:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginLeft: pxToDp(20) }]}>
             <Text style={styles.fontLeft}>官方网站</Text>
           </View>
-          <View style={[styles.packet, {marginRight:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginRight: pxToDp(20) }]}>
             <Text style={styles.fontRight}> www.corpfortune.com</Text>
           </View>
         </View>
         <View style={styles.fontWrap}>
-          <View style={[styles.packet, {marginLeft:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginLeft: pxToDp(20) }]}>
             <Text style={styles.fontLeft}>客服电话</Text>
           </View>
-          <View style={[styles.packet, {marginRight:pxToDp(20)}]}>
+          <View style={[styles.packet, { marginRight: pxToDp(20) }]}>
             <Text style={styles.num}>400-888-888</Text>
           </View>
         </View>
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
   fontWrap: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height:pxToDp(80),
+    height: pxToDp(80),
   },
   packet: {
     flexDirection: 'row',

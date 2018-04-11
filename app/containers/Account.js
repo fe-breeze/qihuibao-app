@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { ImageBackground, StyleSheet, View, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from '../utils'
@@ -37,7 +37,7 @@ class Account extends Component {
   gotoSetting = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Setting' }))
   }
-  
+
   gotoAbout = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'About' }))
   }
@@ -45,7 +45,26 @@ class Account extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../images/account-bg.png')} />
+        <View>
+          <ImageBackground style={styles.background} source={require('../images/account-bg.png')}>
+            <View style={styles.topWrap}>
+              <Image style={styles.imgTop} source={require('../images/head.png')} />
+              <Text style={styles.textTop}>138****6789</Text>
+            </View>
+            <View style={styles.contentWrap}>
+              <View style={styles.betPacket}>
+                <Text style={styles.betText}>金额账户(元)</Text>
+                <Image style={styles.betImg} source={require('../images/visual.png')} />
+              </View>
+            </View>
+            <View style={styles.contentWrap}>
+              <Text style={styles.lastText} >6666.66</Text>
+              <View style={styles.lastWrap}>
+                <Text style={styles.endText}>在途资金(元):12000.88</Text>
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
         <View style={styles.wrapper}>
           <View style={styles.wrapDeatil}>
             <Image
@@ -114,6 +133,65 @@ class Account extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  background: {
+    height: pxToDp(600),
+    width: pxToDp(760)
+  },
+  topWrap: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: pxToDp(60),
+    marginLeft: pxToDp(20),
+  },
+  imgTop: {
+    width: pxToDp(66),
+    height: pxToDp(66),
+    marginRight: pxToDp(20)
+  },
+  textTop: {
+    fontSize: pxToDp(36),
+    color: 'rgb(255,255,255)',
+    lineHeight: pxToDp(66)
+  },
+  contentWrap: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  betPacket: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
+    marginTop: pxToDp(100),
+  },
+  betText: {
+    fontSize: pxToDp(32),
+    color: 'rgb(255,255,255)',
+    textAlign: 'center',
+    marginRight: pxToDp(100),
+  },
+  betImg: {
+    width: pxToDp(48),
+    height: pxToDp(48)
+  },
+  lastText: {
+    fontSize: pxToDp(68),
+    color: 'rgb(255,255,255)',
+    marginTop: pxToDp(20)
+  },
+  lastWrap: {
+    borderColor: '#ffffff',
+    borderWidth: pxToDp(1),
+    height: pxToDp(50),
+    width: pxToDp(420),
+    borderRadius: pxToDp(24),
+    marginTop: pxToDp(60)
+  },
+  endText: {
+    fontSize: pxToDp(28),
+    color: 'rgb(255,255,255)',
+    textAlign: 'center',
+    lineHeight: pxToDp(50)
   },
   icon: {
     width: pxToDp(48),

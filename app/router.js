@@ -30,6 +30,7 @@ import MyInvest from './containers/MyInvest'
 import InvestDetail from './containers/InvestDetail'
 import Withdrawal from './containers/Withdrawal'
 import ModifyPwdStatus from './containers/ModifyPwdStatus'
+import ReLogin from './containers/ReLogin'
 
 const HomeNavigator = TabNavigator(
   {
@@ -57,6 +58,7 @@ const MainNavigator = StackNavigator(
     InvestDetail: { screen: InvestDetail },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
+    ReLogin: { screen: ReLogin },
   },
   {
     headerMode: 'float',

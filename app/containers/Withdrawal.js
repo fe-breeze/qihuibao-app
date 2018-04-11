@@ -12,19 +12,14 @@ class Detail extends Component {
     title: '提现',
   }
 
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
-  }
-
-  goBack = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
+  gotoCashResult = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'CashResult' }))
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Button text="Goto Detail" onPress={this.gotoDetail} />
-        <Button text="Go Back" onPress={this.goBack} />
+        <Button text="Goto CashResult " onPress={this.gotoCashResult} />
       </View>
     )
   }

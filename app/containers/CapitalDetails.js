@@ -4,27 +4,22 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { NavigationActions } from '../utils'
+import { createAction } from '../utils'
 
 @connect()
-class Detail extends Component {
+class CapitalDetails extends Component {
   static navigationOptions = {
     title: '资金明细',
   }
 
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
-  }
-
-  goBack = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
+  goLogout = () => {
+    this.props.dispatch(createAction('app/logout')())
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Button text="Goto Detail" onPress={this.gotoDetail} />
-        <Button text="Go Back" onPress={this.goBack} />
+        <Button text="Go Logout" onPress={this.goLogout} />
       </View>
     )
   }
@@ -38,4 +33,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Detail
+export default CapitalDetails

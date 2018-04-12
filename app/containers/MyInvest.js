@@ -16,15 +16,10 @@ class Detail extends Component {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }
 
-  goBack = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <Button text="Goto Detail" onPress={this.gotoDetail} />
-        <Button text="Go Back" onPress={this.goBack} />
+        <Button text="详情页" onPress={this.gotoDetail} />
       </View>
     )
   }
@@ -33,6 +28,7 @@ class Detail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

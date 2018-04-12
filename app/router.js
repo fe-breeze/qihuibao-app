@@ -27,7 +27,7 @@ import VLogin from './containers/VLogin'
 import About from './containers/About'
 import Setting from './containers/Setting'
 import MyInvest from './containers/MyInvest'
-import InvestDetail from './containers/InvestDetail'
+import CapitalDetails from './containers/CapitalDetails'
 import Withdrawal from './containers/Withdrawal'
 import ModifyPwdStatus from './containers/ModifyPwdStatus'
 import ReLogin from './containers/ReLogin'
@@ -56,7 +56,7 @@ const MainNavigator = StackNavigator(
     About: { screen: About },
     Setting: { screen: Setting },
     MyInvest: { screen: MyInvest },
-    InvestDetail: { screen: InvestDetail },
+    CapitalDetails: { screen: CapitalDetails },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
     ReLogin: { screen: ReLogin },

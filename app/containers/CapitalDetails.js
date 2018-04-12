@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction } from '../utils'
+import { createAction, NavigationActions } from '../utils'
 
 @connect()
 class CapitalDetails extends Component {
@@ -16,10 +16,15 @@ class CapitalDetails extends Component {
     this.props.dispatch(createAction('app/logout')())
   }
 
+  gotoDetail = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Button text="Go Logout" onPress={this.goLogout} />
+        <Button text="Go Detail(投资详情)" onPress={this.gotoDetail} />
       </View>
     )
   }

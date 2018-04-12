@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, Button } from 'react-native'
+import { StyleSheet, View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from '../utils'
@@ -19,7 +19,7 @@ class CashResult extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.wrapper}>
+        {/* <View style={styles.wrapper}>
           <Image source={require('../images/apply-sub.png')} />
           <Text style={styles.apply}>提现申请已提交，等待银行处理 </Text>
         </View>
@@ -36,6 +36,15 @@ class CashResult extends Component {
         </View>
         <View style={styles.confirm}>
           <Button title="确认" color="#fff" onPress={this.gotoWithdrawal} />
+    </View> */}
+        <View style={styles.content}>
+          <Image source={require('../images/processing.png')} />
+          <Text style={styles.processing}>系统正在处理,请稍后再次查看</Text>
+          <Text style={styles.money}>666.00元</Text>
+          <View style={styles.back}>
+            <Text style={styles.backCount}>3</Text>
+            <Text style={styles.backDetails}>秒后自动返回</Text>
+          </View>
         </View>
       </View>
     )
@@ -47,31 +56,45 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  wrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+  content: {
+    justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: pxToDp(88),
-    marginTop: pxToDp(80),
+    marginTop: pxToDp(200),
   },
-  apply: {
-    fontSize: pxToDp(34),
-    color: 'rgb(51,51,51)',
-    marginLeft: pxToDp(20),
+  processing: {
+    fontSize: pxToDp(36),
+    color: 'rgb(102,102,102)',
   },
-  drawingWrap: {
-    alignItems: 'flex-start',
-    marginLeft: pxToDp(170),
+  money: {
+    fontSize: pxToDp(32),
+    color: 'rgb(54,177,255)',
+    marginTop: pxToDp(20),
   },
-  drawing: {
-    color: 'rgb(170,170,170)',
-    fontSize: pxToDp(28),
-  },
-  accDate: {
-    fontSize: pxToDp(34),
-    color: 'rgb(51,51,51)',
-    marginLeft: pxToDp(20),
-  },
+  // wrapper: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'center',
+  //   marginLeft: pxToDp(88),
+  //   marginTop: pxToDp(80),
+  // },
+  // apply: {
+  //   fontSize: pxToDp(34),
+  //   color: 'rgb(51,51,51)',
+  //   marginLeft: pxToDp(20),
+  // },
+  // drawingWrap: {
+  //   alignItems: 'flex-start',
+  //   marginLeft: pxToDp(170),
+  // },
+  // drawing: {
+  //   color: 'rgb(170,170,170)',
+  //   fontSize: pxToDp(28),
+  // },
+  // accDate: {
+  //   fontSize: pxToDp(34),
+  //   color: 'rgb(51,51,51)',
+  //   marginLeft: pxToDp(20),
+  // },
   back: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -87,15 +110,15 @@ const styles = StyleSheet.create({
     fontSize: pxToDp(24),
     color: 'rgb(153,153,153)',
   },
-  confirm: {
-    position: 'absolute',
-    bottom: pxToDp(20),
-    left: pxToDp(26),
-    right: pxToDp(26),
-    height: pxToDp(88),
-    backgroundColor: 'rgb(54,177,255)',
-    borderRadius: pxToDp(12),
-  },
+  // confirm: {
+  //   position: 'absolute',
+  //   bottom: pxToDp(20),
+  //   left: pxToDp(26),
+  //   right: pxToDp(26),
+  //   height: pxToDp(88),
+  //   backgroundColor: 'rgb(54,177,255)',
+  //   borderRadius: pxToDp(12),
+  // },
 })
 
 export default CashResult

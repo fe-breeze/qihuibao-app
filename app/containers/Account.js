@@ -24,9 +24,9 @@ class Account extends Component {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'MyInvest' }))
   }
 
-  gotoInvestDetail = () => {
+  gotoCapitalDetails = () => {
     this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'InvestDetail' })
+      NavigationActions.navigate({ routeName: 'CapitalDetails' })
     )
   }
 
@@ -92,7 +92,7 @@ class Account extends Component {
               source={require('../images/invest-detail.png')}
               style={styles.imgStyle}
             />
-            <Text onPress={this.gotoInvestDetail} style={styles.sunstance}>
+            <Text onPress={this.gotoCapitalDetails} style={styles.sunstance}>
               资金明细
             </Text>
           </View>

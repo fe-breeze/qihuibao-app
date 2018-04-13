@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 
 import pxToDp from '../utils/pxToDp'
 
+import { NavigationActions } from '../utils'
+
 @connect()
 class Home extends Component {
   static navigationOptions = {
@@ -18,6 +20,11 @@ class Home extends Component {
       />
     ),
   }
+
+  gotoCoinPurse = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'CoinPurse' }))
+  }
+
 
   render() {
     return (
@@ -65,7 +72,7 @@ class Home extends Component {
         </View>
         <View style={styles.content}>
           <View style={styles.financialWrap}>
-            <Text style={styles.financial}>企惠宝零钱包</Text>
+            <Text style={styles.financial} onPress={this.gotoCoinPurse}>企惠宝零钱包</Text>
             <Text style={styles.income}>资金灵活</Text>
           </View>
           <View style={styles.percent}>

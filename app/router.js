@@ -32,6 +32,7 @@ import Withdrawal from './containers/Withdrawal'
 import ModifyPwdStatus from './containers/ModifyPwdStatus'
 import ReLogin from './containers/ReLogin'
 import CashResult from './containers/CashResult'
+import CoinPurse from './containers/CoinPurse'
 
 const HomeNavigator = TabNavigator(
   {
@@ -61,6 +62,7 @@ const MainNavigator = StackNavigator(
     ModifyPwdStatus: { screen: ModifyPwdStatus },
     ReLogin: { screen: ReLogin },
     CashResult: { screen: CashResult },
+    CoinPurse: { screen: CoinPurse },
   },
   {
     headerMode: 'float',

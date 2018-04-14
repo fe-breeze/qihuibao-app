@@ -90,9 +90,15 @@ class Account extends Component {
               />
               <Text style={styles.sunstance}>我的投资</Text>
             </View>
-            <Image source={require('../images/enter.png')} style={styles.enter} />
+            <Image
+              source={require('../images/enter.png')}
+              style={styles.enter}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapper} onPress={this.gotoCapitalDetails}>
+          <TouchableOpacity
+            style={styles.wrapper}
+            onPress={this.gotoCapitalDetails}
+          >
             <View style={styles.wrapDeatil}>
               <Image
                 source={require('../images/invest-detail.png')}
@@ -100,9 +106,15 @@ class Account extends Component {
               />
               <Text style={styles.sunstance}>资金明细</Text>
             </View>
-            <Image source={require('../images/enter.png')} style={styles.enter} />
+            <Image
+              source={require('../images/enter.png')}
+              style={styles.enter}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapper} onPress={this.gotoWithdrawal}>
+          <TouchableOpacity
+            style={styles.wrapper}
+            onPress={this.gotoWithdrawal}
+          >
             <View style={styles.wrapDeatil}>
               <Image
                 source={require('../images/cash.png')}
@@ -110,7 +122,10 @@ class Account extends Component {
               />
               <Text style={styles.sunstance}>提现</Text>
             </View>
-            <Image source={require('../images/enter.png')} style={styles.enter} />
+            <Image
+              source={require('../images/enter.png')}
+              style={styles.enter}
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.wrapper} onPress={this.gotoSetting}>
             <View style={styles.wrapDeatil}>
@@ -120,9 +135,15 @@ class Account extends Component {
               />
               <Text style={styles.sunstance}>设置</Text>
             </View>
-            <Image source={require('../images/enter.png')} style={styles.enter} />
+            <Image
+              source={require('../images/enter.png')}
+              style={styles.enter}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.wrapper, styles.lastChild]} onPress={this.gotoAbout}>
+          <TouchableOpacity
+            style={[styles.wrapper, styles.lastChild]}
+            onPress={this.gotoAbout}
+          >
             <View style={styles.wrapDeatil}>
               <Image
                 source={require('../images/about.png')}
@@ -130,7 +151,10 @@ class Account extends Component {
               />
               <Text style={styles.sunstance}>关于</Text>
             </View>
-            <Image source={require('../images/enter.png')} style={styles.enter} />
+            <Image
+              source={require('../images/enter.png')}
+              style={styles.enter}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -141,7 +165,7 @@ class Account extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   background: {
     height: pxToDp(600),
@@ -207,7 +231,7 @@ const styles = StyleSheet.create({
     height: pxToDp(48),
   },
   content: {
-    paddingLeft: pxToDp(26)
+    paddingLeft: pxToDp(26),
   },
   wrapper: {
     borderTopWidth: pxToDp(1),
@@ -216,9 +240,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: pxToDp(26),
-    height: pxToDp(88)
+    height: pxToDp(88),
   },
-  'lastChild':{
+  lastChild: {
     borderBottomWidth: pxToDp(1),
     borderBottomColor: '#dcdcdc',
   },

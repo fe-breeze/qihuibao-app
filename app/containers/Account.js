@@ -82,7 +82,11 @@ class Account extends Component {
           </ImageBackground>
         </View>
         <View style={styles.content}>
-          <TouchableOpacity style={styles.wrapper} onPress={this.gotoMyInvest}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.wrapper}
+            onPress={this.gotoMyInvest}
+          >
             <View style={styles.wrapDeatil}>
               <Image
                 source={require('../images/my-invest.png')}
@@ -96,6 +100,7 @@ class Account extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.wrapper}
             onPress={this.gotoCapitalDetails}
           >
@@ -112,6 +117,7 @@ class Account extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.wrapper}
             onPress={this.gotoWithdrawal}
           >
@@ -127,7 +133,11 @@ class Account extends Component {
               style={styles.enter}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapper} onPress={this.gotoSetting}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.wrapper}
+            onPress={this.gotoSetting}
+          >
             <View style={styles.wrapDeatil}>
               <Image
                 source={require('../images/setting.png')}
@@ -141,6 +151,7 @@ class Account extends Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={[styles.wrapper, styles.lastChild]}
             onPress={this.gotoAbout}
           >
@@ -173,7 +184,6 @@ const styles = StyleSheet.create({
   },
   topWrap: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     marginTop: pxToDp(60),
     marginLeft: pxToDp(20),
   },
@@ -231,6 +241,7 @@ const styles = StyleSheet.create({
     height: pxToDp(48),
   },
   content: {
+    marginTop: pxToDp(-1),
     paddingLeft: pxToDp(26),
   },
   wrapper: {
@@ -248,7 +259,6 @@ const styles = StyleSheet.create({
   },
   wrapDeatil: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
   },
   imgStyle: {
     width: pxToDp(42),

@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, Button } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  Button,
+  TouchableOpacity,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from '../utils'
@@ -18,7 +25,7 @@ class Detail extends Component {
   }
 
   gotoAccount = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Account' }))
   }
 
   gotoReLogin = () => {
@@ -29,15 +36,17 @@ class Detail extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <View style={styles.contentWarp}>
-            <Text style={styles.wrapText} onPress={this.gotoReLogin}>
-              重置登录密码
-            </Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.contentWarp}
+            onPress={this.gotoReLogin}
+          >
+            <Text style={styles.wrapText}>重置登录密码</Text>
             <Image
               style={styles.wrapImg}
               source={require('../images/enter.png')}
             />
-          </View>
+          </TouchableOpacity>
           <View style={styles.btnWrap}>
             <View style={styles.loginoutBtn}>
               <Button title="退出" color="#fff" onPress={this.gotoAccount} />

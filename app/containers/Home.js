@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { StyleSheet, View, Image, Text, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 
@@ -25,19 +25,24 @@ class Home extends Component {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'CoinPurse' }))
   }
 
-
   render() {
     return (
       <View style={styles.container}>
-        <Swiper autoplay>
-          <View style={styles.slide1}>
-            <Image source={require('../images/banner.png')} />
+        <Swiper style={styles.wrapper} height={pxToDp(460)} autoplay
+          dot={<View style={{ backgroundColor: 'rgba(255,255,255,.4)', width: pxToDp(18), height: pxToDp(6), borderRadius: pxToDp(4), marginLeft: pxToDp(7), marginRight: pxToDp(7) }} />}
+          activeDot={<View style={{ backgroundColor: '#fff', width: pxToDp(18), height: pxToDp(6), borderRadius: pxToDp(4), marginLeft: pxToDp(7), marginRight: pxToDp(7) }} />}
+          paginationStyle={{
+            bottom: pxToDp(23)
+          }}
+          loop>
+         <View style={styles.slide}>
+            <Image style={styles.image} source={require('../images/banner.png')} />
           </View>
-          <View style={styles.slide2}>
-            <Image source={require('../images/banner.png')} />
+          <View style={styles.slide}>
+            <Image style={styles.image} source={require('../images/banner.png')} />
           </View>
-          <View style={styles.slide3}>
-            <Image source={require('../images/banner.png')} />
+          <View style={styles.slide}>
+            <Image style={styles.image} source={require('../images/banner.png')} />
           </View>
         </Swiper>
         <View style={styles.notice}>
@@ -47,48 +52,50 @@ class Home extends Component {
           />
           <Text style={styles.rate}>企惠宝零钱包7日年化率提高20%!</Text>
         </View>
-        <View style={styles.content}>
-          <View style={styles.financialWrap}>
-            <Text style={styles.financial}>定期理财</Text>
-            <Text style={styles.income}>收益稳健</Text>
+        <View style={styles.cardWrap}>
+          <View style={styles.content}>
+            <View style={styles.financialWrap}>
+              <Text style={styles.financial}>定期理财</Text>
+              <Text style={styles.income}>收益稳健</Text>
+            </View>
+            <View style={styles.percent}>
+              <View>
+                <Text style={styles.info}>
+                  <Text style={{ fontSize: pxToDp(60) }}>8</Text>
+                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                  <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
+                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                </Text>
+                <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
+                平均年化率高达
+                </Text>
+              </View>
+              <Image
+                style={styles.ficon}
+                source={require('../images/financing.png')}
+              />
+            </View>
           </View>
-          <View style={styles.percent}>
-            <Text style={{ color: 'rgb(255,106,110)' }}>
-              <Text style={{ fontSize: pxToDp(60) }}>8</Text>
-              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-              <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
-              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-            </Text>
-            <Image
-              style={styles.ficon}
-              source={require('../images/financing.png')}
-            />
-          </View>
-          <View style={{ marginLeft: pxToDp(68), marginBottom: pxToDp(20) }}>
-            <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
-              平均年化率高达
-            </Text>
-          </View>
-        </View>
-        <View style={styles.content}>
-          <View style={styles.financialWrap}>
-            <Text style={styles.financial} onPress={this.gotoCoinPurse}>企惠宝零钱包</Text>
-            <Text style={styles.income}>资金灵活</Text>
-          </View>
-          <View style={styles.percent}>
-            <Text style={{ color: 'rgb(255,106,110)' }}>
-              <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
-              <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-            </Text>
-            <Image
-              style={styles.ficon}
-              source={require('../images/qihuibao-package.png')}
-            />
-          </View>
-          <View style={{ marginLeft: pxToDp(68), marginBottom: pxToDp(20) }}>
-            <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
-              7日年化率高达
-            </Text>
+          <View style={styles.content}>
+            <View style={styles.financialWrap}>
+              <Text style={styles.financial} onPress={this.gotoCoinPurse}>企惠宝零钱包</Text>
+              <Text style={styles.income}>资金灵活</Text>
+            </View>
+            <View style={styles.percent}>
+              <View>
+                <Text style={styles.info}>
+                  <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
+                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                </Text>
+                <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
+                  7日年化率高达
+                </Text>
+              </View>
+              <Image
+                style={styles.ficon}
+                source={require('../images/qihuibao-package.png')}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -96,6 +103,7 @@ class Home extends Component {
   }
 }
 
+const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,50 +113,48 @@ const styles = StyleSheet.create({
     width: pxToDp(48),
     height: pxToDp(48),
   },
-  slide1: {
+  wrapper: {
+
+  },
+  slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width,
+    flex: 1
   },
   notice: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     height: pxToDp(98),
-    marginTop: pxToDp(40),
+    paddingLeft: pxToDp(26),
     backgroundColor: '#fff',
   },
   vicon: {
     width: pxToDp(42),
     height: pxToDp(42),
-    marginLeft: pxToDp(42),
     marginRight: pxToDp(26),
   },
   rate: {
     fontSize: pxToDp(36),
     color: 'rgb(51,51,51)',
   },
+  cardWrap: {
+    padding: pxToDp(26)
+  },
   content: {
-    justifyContent: 'flex-start',
     backgroundColor: '#fff',
-    marginBottom: pxToDp(60),
+    paddingLeft: pxToDp(26),
+    paddingTop: pxToDp(26),
+    marginBottom: pxToDp(26)
   },
   financialWrap: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
     borderLeftColor: 'rgb(54,177,255)',
-    borderLeftWidth: pxToDp(5),
-    marginLeft: pxToDp(68),
+    borderLeftWidth: pxToDp(6),
     borderRadius: pxToDp(4),
   },
   financial: {
@@ -168,9 +174,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    marginLeft: pxToDp(78),
-    marginRight: pxToDp(126),
+    paddingTop: pxToDp(26),
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(100),
+    paddingBottom: pxToDp(80),
   },
+  info: {
+    paddingBottom: pxToDp(20),
+    color: 'rgb(255,106,110)'
+  }
 })
 
 export default Home

@@ -10,6 +10,11 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '设置',
+    headerStyle: {
+      backgroundColor: '#36b1ff',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#fff',
   }
 
   gotoAccount = () => {
@@ -23,17 +28,21 @@ class Detail extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.warp}>
-          <Text style={styles.wrapText} onPress={this.gotoReLogin}>
-            重置登录密码
-          </Text>
-          <Image
-            style={styles.wrapImg}
-            source={require('../images/enter.png')}
-          />
-        </View>
-        <View style={styles.loginoutBtn}>
-          <Button title="退出" color="#fff" onPress={this.gotoAccount} />
+        <View style={styles.content}>
+          <View style={styles.contentWarp}>
+            <Text style={styles.wrapText} onPress={this.gotoReLogin}>
+              重置登录密码
+            </Text>
+            <Image
+              style={styles.wrapImg}
+              source={require('../images/enter.png')}
+            />
+          </View>
+          <View style={styles.btnWrap}>
+            <View style={styles.loginoutBtn}>
+              <Button title="退出" color="#fff" onPress={this.gotoAccount} />
+            </View>
+          </View>
         </View>
       </View>
     )
@@ -43,15 +52,21 @@ class Detail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f5f5f5',
+    paddingTop: pxToDp(20),
   },
-  warp: {
+  content: {
     flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentWarp: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: pxToDp(20),
-    marginLeft: pxToDp(20),
-    marginRight: pxToDp(20),
+    height: pxToDp(88),
+    alignItems: 'center',
+    marginLeft: pxToDp(26),
+    borderBottomWidth: pxToDp(1),
+    borderBottomColor: '#dcdcdc',
   },
   wrapText: {
     fontSize: pxToDp(34),
@@ -61,13 +76,17 @@ const styles = StyleSheet.create({
     width: pxToDp(42),
     height: pxToDp(42),
   },
+  btnWrap: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   loginoutBtn: {
     backgroundColor: '#ff5063',
     borderColor: '#ff5063',
     borderRadius: pxToDp(12),
     height: pxToDp(88),
-    marginLeft: pxToDp(20),
-    marginRight: pxToDp(20),
+    marginLeft: pxToDp(26),
+    marginRight: pxToDp(26),
     marginBottom: pxToDp(20),
   },
 })

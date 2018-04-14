@@ -28,21 +28,56 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Swiper style={styles.wrapper} height={pxToDp(460)} autoplay
-          dot={<View style={{ backgroundColor: 'rgba(255,255,255,.4)', width: pxToDp(18), height: pxToDp(6), borderRadius: pxToDp(4), marginLeft: pxToDp(7), marginRight: pxToDp(7) }} />}
-          activeDot={<View style={{ backgroundColor: '#fff', width: pxToDp(18), height: pxToDp(6), borderRadius: pxToDp(4), marginLeft: pxToDp(7), marginRight: pxToDp(7) }} />}
+        <Swiper
+          style={styles.wrapper}
+          height={pxToDp(460)}
+          autoplay
+          dot={
+            <View
+              style={{
+                backgroundColor: 'rgba(255,255,255,.4)',
+                width: pxToDp(18),
+                height: pxToDp(6),
+                borderRadius: pxToDp(4),
+                marginLeft: pxToDp(7),
+                marginRight: pxToDp(7),
+              }}
+            />
+          }
+          activeDot={
+            <View
+              style={{
+                backgroundColor: '#fff',
+                width: pxToDp(18),
+                height: pxToDp(6),
+                borderRadius: pxToDp(4),
+                marginLeft: pxToDp(7),
+                marginRight: pxToDp(7),
+              }}
+            />
+          }
           paginationStyle={{
-            bottom: pxToDp(23)
+            bottom: pxToDp(23),
           }}
-          loop>
-         <View style={styles.slide}>
-            <Image style={styles.image} source={require('../images/banner.png')} />
+          loop
+        >
+          <View style={styles.slide}>
+            <Image
+              style={styles.image}
+              source={require('../images/banner.png')}
+            />
           </View>
           <View style={styles.slide}>
-            <Image style={styles.image} source={require('../images/banner.png')} />
+            <Image
+              style={styles.image}
+              source={require('../images/banner.png')}
+            />
           </View>
           <View style={styles.slide}>
-            <Image style={styles.image} source={require('../images/banner.png')} />
+            <Image
+              style={styles.image}
+              source={require('../images/banner.png')}
+            />
           </View>
         </Swiper>
         <View style={styles.notice}>
@@ -66,8 +101,10 @@ class Home extends Component {
                   <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
                   <Text style={{ fontSize: pxToDp(40) }}>%</Text>
                 </Text>
-                <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
-                平均年化率高达
+                <Text
+                  style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}
+                >
+                  平均年化率高达
                 </Text>
               </View>
               <Image
@@ -78,7 +115,9 @@ class Home extends Component {
           </View>
           <View style={styles.content}>
             <View style={styles.financialWrap}>
-              <Text style={styles.financial} onPress={this.gotoCoinPurse}>企惠宝零钱包</Text>
+              <Text style={styles.financial} onPress={this.gotoCoinPurse}>
+                企惠宝零钱包
+              </Text>
               <Text style={styles.income}>资金灵活</Text>
             </View>
             <View style={styles.percent}>
@@ -87,7 +126,9 @@ class Home extends Component {
                   <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
                   <Text style={{ fontSize: pxToDp(40) }}>%</Text>
                 </Text>
-                <Text style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}>
+                <Text
+                  style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}
+                >
                   7日年化率高达
                 </Text>
               </View>
@@ -113,9 +154,7 @@ const styles = StyleSheet.create({
     width: pxToDp(48),
     height: pxToDp(48),
   },
-  wrapper: {
-
-  },
+  wrapper: {},
   slide: {
     flex: 1,
     justifyContent: 'center',
@@ -123,7 +162,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width,
-    flex: 1
+    flex: 1,
   },
   notice: {
     flexDirection: 'row',
@@ -142,13 +181,13 @@ const styles = StyleSheet.create({
     color: 'rgb(51,51,51)',
   },
   cardWrap: {
-    padding: pxToDp(26)
+    padding: pxToDp(26),
   },
   content: {
     backgroundColor: '#fff',
     paddingLeft: pxToDp(26),
     paddingTop: pxToDp(26),
-    marginBottom: pxToDp(26)
+    marginBottom: pxToDp(26),
   },
   financialWrap: {
     flexDirection: 'row',
@@ -181,8 +220,8 @@ const styles = StyleSheet.create({
   },
   info: {
     paddingBottom: pxToDp(20),
-    color: 'rgb(255,106,110)'
-  }
+    color: 'rgb(255,106,110)',
+  },
 })
 
 export default Home

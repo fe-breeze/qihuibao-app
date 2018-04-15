@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native'
+import { StyleSheet, View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 // import { NavigationActions } from '../utils'
@@ -10,13 +10,11 @@ import pxToDp from '../utils/pxToDp'
 @connect()
 class Detail extends Component {
   static navigationOptions = {
-    title: '转出',
+    title: '明细',
   }
   constructor(props) {
     super(props)
-    this.state = {
-      yen: '',
-    }
+    this.state = {}
   }
 
   handleOut = () => {}
@@ -25,47 +23,40 @@ class Detail extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.outTabWrap}>
-          <View style={[styles.outTab, styles.bank]}>
-            <View style={styles.tabItemWrap}>
-              <Text style={styles.bankText}>转出到银行卡</Text>
-              <View style={styles.lineWrap}>
-                <View style={styles.line} />
-              </View>
+          <View>
+            <Text style={styles.outInTitle}>2018年3月</Text>
+            <View style={styles.outIn}>
+              <Text style={styles.outInDetail}>支出&yen;50.00</Text>
+              <Text style={styles.outInDetail}>收入&yen;50.00</Text>
             </View>
           </View>
-          <View style={[styles.outTab, styles.balance]}>
-            <View style={styles.tabItemWrap}>
-              <Text style={styles.balanceText}>转出到余额</Text>
-              <View style={styles.lineWrap}>
-                <View style={styles.line} />
-              </View>
-            </View>
-          </View>
+          <Image
+            style={[styles.icon]}
+            source={require('../images/calendar.png')}
+          />
         </View>
-        {true && (
-          <View style={styles.bankWrap}>
-            <Image
-              style={styles.bankImg}
-              source={require('../images/bank.png')}
-            />
-            <Text style={styles.cardInfo}>尾号8181的储蓄卡</Text>
-          </View>
-        )}
         <View style={styles.contentWrap}>
-          <View style={styles.content}>
-            <Text style={styles.outBankTitle}>转出金额(元)</Text>
-            <View style={styles.outInfoWrap}>
-              <Text style={styles.yen}>&yen;</Text>
-              <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                value={this.state.yen}
-                onChangeText={yen => this.setState({ yen })}
-                placeholder="本次最多可转出666.66元"
-              />
+          <View style={styles.contentInfo}>
+            <View>
+              <Text style={styles.outInTitle}>2018年3月</Text>
+              <Text style={styles.outIn}>支出&yen;50.00</Text>
             </View>
-            <Text style={styles.wan}>超出可转金额上限</Text>
+            <Text>+50.00</Text>
           </View>
-          <Button text="确认转出" onPress={this.handleOut} />
+          <View style={styles.contentInfo}>
+            <View>
+              <Text style={styles.outInTitle}>2018年3月</Text>
+              <Text style={styles.outIn}>支出&yen;50.00</Text>
+            </View>
+            <Text>+50.00</Text>
+          </View>
+          <View style={styles.contentInfo}>
+            <View>
+              <Text style={styles.outInTitle}>2018年3月</Text>
+              <Text style={styles.outIn}>支出&yen;50.00</Text>
+            </View>
+            <Text>+50.00</Text>
+          </View>
         </View>
         <View style={styles.mask}>
           <View style={styles.maskCard}>
@@ -77,29 +68,16 @@ class Detail extends Component {
               />
             </View>
             <View style={styles.maskContent}>
-              <View>
-                <View style={styles.outItem}>
-                  <Text>转出金额:</Text>
-                  <TextInput
-                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                    value={this.state.yen}
-                    onChangeText={yen => this.setState({ yen })}
-                    placeholder="本次最多可转出666.66元"
-                  />
+              <View style={styles.btnList}>
+                <View>
+                  <Button text="全部" />
                 </View>
-                <View style={styles.outItem}>
-                  <Text>验证码:</Text>
-                  <TextInput
-                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                    value={this.state.yen}
-                    onChangeText={yen => this.setState({ yen })}
-                    placeholder="本次最多可转出666.66元"
-                  />
-                  <Text>获取验证码</Text>
+                <View>
+                  <Button text="转入" />
+                  <Button text="转出" />
+                  <Button text="收益" />
                 </View>
-                <Text style={styles.valErr}>验证码输入错误，请重新输入</Text>
               </View>
-              <Button text="确认" onPress={this.handleOut} />
             </View>
           </View>
         </View>
@@ -113,6 +91,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
     position: 'relative',
+  },
+  btnList: {
+    marginTop: pxToDp(80),
+    marginLeft: pxToDp(80),
   },
   valErr: {
     color: 'rgb(255,106,110)',
@@ -171,6 +153,15 @@ const styles = StyleSheet.create({
     paddingLeft: pxToDp(34),
     color: 'rgb(255,106,110)',
   },
+  outInTitle: {
+    color: 'rgb(54,177,255)',
+    fontSize: pxToDp(28),
+  },
+  outInDetail: {
+    fontSize: pxToDp(32),
+    color: 'rgb(51,51,51)',
+    marginRight: pxToDp(20),
+  },
   outInfoWrap: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -209,16 +200,39 @@ const styles = StyleSheet.create({
     height: pxToDp(66),
     width: pxToDp(220),
   },
-  contentWrap: {
+  contentInfo: {
+    backgroundColor: '#fff',
     marginTop: pxToDp(20),
-    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
+    height: pxToDp(126),
+  },
+  content: {
+    marginTop: pxToDp(20),
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
+    height: pxToDp(126),
+    borderTopColor: '#dcdcdc',
+    borderTopWidth: pxToDp(1),
+    borderBottomColor: '#dcdcdc',
+    borderBottomWidth: pxToDp(1),
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    padding: pxToDp(26),
+  },
+  outIn: {
+    flexDirection: 'row',
+    marginTop: pxToDp(20),
   },
   outTabWrap: {
     backgroundColor: '#fff',
-    height: pxToDp(88),
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: pxToDp(120),
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
     flexDirection: 'row',
   },
   outTab: {

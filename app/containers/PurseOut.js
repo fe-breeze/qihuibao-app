@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   maskContent: {
-    height: pxToDp(400),
+    height: pxToDp(429),
     margin: pxToDp(26),
     justifyContent: 'space-between',
   },

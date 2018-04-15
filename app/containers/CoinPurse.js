@@ -27,6 +27,9 @@ class CapitalDetails extends Component {
   gotoPurseIn = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'PurseIn' }))
   }
+  gotoCashDetail = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'CashDetail' }))
+  }
 
   render() {
     return (
@@ -42,7 +45,9 @@ class CapitalDetails extends Component {
                 style={styles.imgStyle}
               />
               <Text style={styles.topHead}>企惠宝零钱包</Text>
-              <Text style={styles.detail}>明细</Text>
+              <Text style={styles.detail} onPress={this.gotoCashDetail}>
+                明细
+              </Text>
             </View>
             <View style={[styles.among, { marginTop: pxToDp(80) }]}>
               <Text style={styles.total}>总金额(元)</Text>

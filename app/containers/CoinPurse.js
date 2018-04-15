@@ -21,8 +21,11 @@ class CapitalDetails extends Component {
     tabBarLabel: '企惠宝零钱包',
   }
 
-  gotoHome = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'HomeNavigator' }))
+  gotoPurseOut = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'PurseOut' }))
+  }
+  gotoPurseIn = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'PurseIn' }))
   }
 
   render() {
@@ -84,13 +87,13 @@ class CapitalDetails extends Component {
             title="转出"
             color="#aaa"
             style={styles.outbtn}
-            onPress={this.gotoHome}
+            onPress={this.gotoPurseOut}
           />
           <Button
             title="转入"
             color="#aaa"
             style={styles.inbtn}
-            onPress={this.gotoHome}
+            onPress={this.gotoPurseIn}
           />
         </View>
       </View>

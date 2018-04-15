@@ -1,0 +1,196 @@
+import React, { Component } from 'react'
+import { StyleSheet, View, Text, Image, TextInput } from 'react-native'
+import { connect } from 'react-redux'
+
+// import { NavigationActions } from '../utils'
+import { Button } from '../components'
+
+import pxToDp from '../utils/pxToDp'
+
+@connect()
+class Detail extends Component {
+  static navigationOptions = {
+    title: '转出',
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      yen: '',
+    }
+  }
+
+  handleOut = () => {}
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.outTabWrap}>
+          <View style={[styles.outTab, styles.bank]}>
+            <View style={styles.tabItemWrap}>
+              <Text style={styles.bankText}>转出到银行卡</Text>
+              <View style={styles.lineWrap}>
+                <View style={styles.line} />
+              </View>
+            </View>
+          </View>
+          <View style={[styles.outTab, styles.balance]}>
+            <View style={styles.tabItemWrap}>
+              <Text style={styles.balanceText}>转出到余额</Text>
+              <View style={styles.lineWrap}>
+                <View style={styles.line} />
+              </View>
+            </View>
+          </View>
+        </View>
+        {false && (
+          <View style={styles.bankWrap}>
+            <Image
+              style={styles.bankImg}
+              source={require('../images/bank.png')}
+            />
+            <Text style={styles.cardInfo}>尾号8181的储蓄卡</Text>
+          </View>
+        )}
+        {false ? (
+          <View style={styles.contentWrap}>
+            <View style={styles.content}>
+              <Text style={styles.outBankTitle}>转出金额(元)</Text>
+              <View style={styles.outInfoWrap}>
+                <Text style={styles.yen}>&yen;</Text>
+                <TextInput
+                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                  value={this.state.yen}
+                  onChangeText={yen => this.setState({ yen })}
+                  placeholder="本次最多可转出666.66元"
+                />
+              </View>
+            </View>
+            <Button text="确认转出" onPress={this.handleOut} />
+          </View>
+        ) : (
+          <View style={styles.contentWrap}>
+            <View style={styles.content}>
+              <Text style={styles.outBankTitle}>转出金额(元)</Text>
+              <View style={[styles.outInfoWrap, styles.outBalance]}>
+                <Text style={styles.yen}>&yen;</Text>
+                <TextInput
+                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                  value={this.state.yen}
+                  onChangeText={yen => this.setState({ yen })}
+                  placeholder="本次最多可转出666.66元"
+                />
+                <Text style={styles.all}>全部</Text>
+              </View>
+            </View>
+            <Button text="确认转出" onPress={this.handleOut} />
+          </View>
+        )}
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  outBalance: {
+    justifyContent: 'center',
+  },
+  inputItem: {
+    width: pxToDp(400),
+  },
+  outInfoWrap: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    marginTop: pxToDp(80),
+  },
+  all: {
+    fontSize: pxToDp(32),
+    marginLeft: pxToDp(20),
+    color: 'rgb(54,177,255)',
+  },
+  yen: {
+    fontSize: pxToDp(68),
+    marginRight: pxToDp(100),
+    color: 'rgb(51,51,51)',
+  },
+  bankWrap: {
+    height: pxToDp(120),
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: pxToDp(26),
+    paddingLeft: pxToDp(26),
+    paddingRight: pxToDp(26),
+  },
+  outBankTitle: {
+    fontSize: pxToDp(32),
+    color: 'rgb(153,153,153)',
+  },
+  cardInfo: {
+    color: 'rgb(51,51,51)',
+    fontSize: pxToDp(32),
+  },
+  bankImg: {
+    height: pxToDp(66),
+    width: pxToDp(220),
+  },
+  contentWrap: {
+    marginTop: pxToDp(20),
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    padding: pxToDp(26),
+  },
+  outTabWrap: {
+    backgroundColor: '#fff',
+    height: pxToDp(88),
+    flexDirection: 'row',
+  },
+  outTab: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  tabItemWrap: {
+    justifyContent: 'center',
+    height: '100%',
+    position: 'relative',
+  },
+  bank: {
+    paddingRight: pxToDp(50),
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  balance: {
+    paddingLeft: pxToDp(50),
+  },
+  bankText: {
+    textAlign: 'right',
+    fontSize: pxToDp(36),
+    color: 'rgb(54,117,255)',
+    width: '100%',
+  },
+  balanceText: {
+    fontSize: pxToDp(32),
+    color: 'rgb(170,170,170)',
+  },
+  lineWrap: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  line: {
+    backgroundColor: 'rgb(54,117,255)',
+    width: pxToDp(60),
+    height: pxToDp(6),
+    borderRadius: pxToDp(6),
+  },
+})
+
+export default Detail

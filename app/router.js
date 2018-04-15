@@ -33,6 +33,8 @@ import ModifyPwdStatus from './containers/ModifyPwdStatus'
 import ReLogin from './containers/ReLogin'
 import CashResult from './containers/CashResult'
 import CoinPurse from './containers/CoinPurse'
+import PurseOut from './containers/PurseOut'
+import PurseIn from './containers/PurseIn'
 
 const HomeNavigator = TabNavigator(
   {
@@ -59,7 +61,6 @@ const MainNavigator = StackNavigator(
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
     CashResult: { screen: CashResult },
-    CoinPurse: { screen: CoinPurse },
   },
   {
     headerMode: 'float',
@@ -79,6 +80,9 @@ const ContentNavigator = StackNavigator(
     // ModifyPwd: { screen: ModifyPwd },
     About: { screen: About },
     Setting: { screen: Setting },
+    CoinPurse: { screen: CoinPurse },
+    PurseOut: { screen: PurseOut },
+    PurseIn: { screen: PurseIn },
     // MyInvest: { screen: MyInvest },
     // CapitalDetails: { screen: CapitalDetails },
     // Withdrawal: { screen: Withdrawal },

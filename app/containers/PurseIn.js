@@ -19,7 +19,7 @@ class Detail extends Component {
     }
   }
 
-  handleOut = () => { }
+  handleOut = () => {}
 
   render() {
     return (
@@ -42,23 +42,23 @@ class Detail extends Component {
             <Button text="确认转入" onPress={this.handleOut} />
           </View>
         ) : (
-            <View style={styles.contentWrap}>
-              <View style={styles.content}>
-                <Text style={styles.outBankTitle}>转入金额(元)</Text>
-                <View style={[styles.outInfoWrap, styles.outBalance]}>
-                  <Text style={styles.yen}>&yen;</Text>
-                  <TextInput
-                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
-                    value={this.state.yen}
-                    onChangeText={yen => this.setState({ yen })}
-                    placeholder="本次最多可转入666.66元"
-                  />
-                  <Text style={styles.all}>全部</Text>
-                </View>
+          <View style={styles.contentWrap}>
+            <View style={styles.content}>
+              <Text style={styles.outBankTitle}>转入金额(元)</Text>
+              <View style={[styles.outInfoWrap, styles.outBalance]}>
+                <Text style={styles.yen}>&yen;</Text>
+                <TextInput
+                  style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                  value={this.state.yen}
+                  onChangeText={yen => this.setState({ yen })}
+                  placeholder="本次最多可转入666.66元"
+                />
+                <Text style={styles.all}>全部</Text>
               </View>
-              <Button text="确认转入" onPress={this.handleOut} />
             </View>
-          )}
+            <Button text="确认转入" onPress={this.handleOut} />
+          </View>
+        )}
         <View style={styles.mask}>
           <View style={styles.maskCard}>
             <View style={styles.maskHeader}>

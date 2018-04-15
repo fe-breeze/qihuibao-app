@@ -35,6 +35,8 @@ import CashResult from './containers/CashResult'
 import CoinPurse from './containers/CoinPurse'
 import PurseOut from './containers/PurseOut'
 import PurseIn from './containers/PurseIn'
+import PurseOutStatus from './containers/PurseOutStatus'
+import PurseInStatus from './containers/PurseInStatus'
 import CashDetail from './containers/CashDetail'
 
 const HomeNavigator = TabNavigator(
@@ -84,6 +86,8 @@ const ContentNavigator = StackNavigator(
     CoinPurse: { screen: CoinPurse },
     PurseOut: { screen: PurseOut },
     PurseIn: { screen: PurseIn },
+    PurseInStatus: { screen: PurseInStatus },
+    PurseOutStatus: { screen: PurseOutStatus },
     CashDetail: { screen: CashDetail },
     // MyInvest: { screen: MyInvest },
     // CapitalDetails: { screen: CapitalDetails },

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
-// import { NavigationActions } from '../utils'
+import { NavigationActions } from '../utils'
 import { Button } from '../components'
 
 import pxToDp from '../utils/pxToDp'
@@ -19,7 +19,11 @@ class Detail extends Component {
     }
   }
 
-  handleOut = () => {}
+  handleOut = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'PurseOutStatus' })
+    )
+  }
 
   render() {
     return (

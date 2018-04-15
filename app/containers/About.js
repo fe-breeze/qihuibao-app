@@ -2,23 +2,12 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, Text, Linking } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationActions } from '../utils'
-
 import pxToDp from '../utils/pxToDp'
 
 @connect()
 class Detail extends Component {
   static navigationOptions = {
     title: '关于',
-    headerStyle: {
-      backgroundColor: '#36b1ff',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
-  }
-
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }
 
   callMe = () => {

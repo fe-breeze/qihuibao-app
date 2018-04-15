@@ -17,11 +17,6 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '设置',
-    headerStyle: {
-      backgroundColor: '#36b1ff',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
   }
 
   gotoAccount = () => {

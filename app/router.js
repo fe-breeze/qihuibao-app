@@ -38,6 +38,7 @@ import PurseIn from './containers/PurseIn'
 import PurseOutStatus from './containers/PurseOutStatus'
 import PurseInStatus from './containers/PurseInStatus'
 import CashDetail from './containers/CashDetail'
+import CityList from './containers/CityList'
 
 const HomeNavigator = TabNavigator(
   {
@@ -57,6 +58,7 @@ const HomeNavigator = TabNavigator(
 const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
+    CityList: { screen: CityList },
     Detail: { screen: Detail },
     ModifyPwd: { screen: ModifyPwd },
     MyInvest: { screen: MyInvest },

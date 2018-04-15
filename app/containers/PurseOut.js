@@ -42,7 +42,7 @@ class Detail extends Component {
             </View>
           </View>
         </View>
-        {false && (
+        {true && (
           <View style={styles.bankWrap}>
             <Image
               style={styles.bankImg}
@@ -51,7 +51,7 @@ class Detail extends Component {
             <Text style={styles.cardInfo}>尾号8181的储蓄卡</Text>
           </View>
         )}
-        {false ? (
+        {true ? (
           <View style={styles.contentWrap}>
             <View style={styles.content}>
               <Text style={styles.outBankTitle}>转出金额(元)</Text>
@@ -64,6 +64,7 @@ class Detail extends Component {
                   placeholder="本次最多可转出666.66元"
                 />
               </View>
+              <Text style={styles.wan}>超出可转金额上限</Text>
             </View>
             <Button text="确认转出" onPress={this.handleOut} />
           </View>
@@ -85,6 +86,42 @@ class Detail extends Component {
             <Button text="确认转出" onPress={this.handleOut} />
           </View>
         )}
+        <View style={styles.mask}>
+          <View style={styles.maskCard}>
+            <View style={styles.maskHeader}>
+              <Text style={styles.maskTitle}>选择类型</Text>
+              <Image
+                style={[styles.close]}
+                source={require('../images/close.png')}
+              />
+            </View>
+            <View style={styles.maskContent}>
+              <View>
+                <View style={styles.outItem}>
+                  <Text>转出金额:</Text>
+                  <TextInput
+                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                    value={this.state.yen}
+                    onChangeText={yen => this.setState({ yen })}
+                    placeholder="本次最多可转出666.66元"
+                  />
+                </View>
+                <View style={styles.outItem}>
+                  <Text>验证码:</Text>
+                  <TextInput
+                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                    value={this.state.yen}
+                    onChangeText={yen => this.setState({ yen })}
+                    placeholder="本次最多可转出666.66元"
+                  />
+                  <Text>获取验证码</Text>
+                </View>
+                <Text style={styles.valErr}>验证码输入错误，请重新输入</Text>
+              </View>
+              <Button text="确认" onPress={this.handleOut} />
+            </View>
+          </View>
+        </View>
       </View>
     )
   }
@@ -94,16 +131,69 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+    position: 'relative',
+  },
+  valErr: {
+    color: 'rgb(255,106,110)',
+    textAlign: 'right',
+    fontSize: pxToDp(24),
+  },
+  outItem: {
+    flexDirection: 'row',
+  },
+  maskContent: {
+    height: pxToDp(400),
+    margin: pxToDp(26),
+    justifyContent: 'space-between',
+  },
+  maskTitle: {
+    fontSize: pxToDp(36),
+    color: 'rgb(51,51,51)',
+  },
+  maskHeader: {
+    position: 'relative',
+    height: pxToDp(88),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: pxToDp(1),
+    borderBottomColor: '#dcdcdc',
+  },
+  close: {
+    position: 'absolute',
+    top: pxToDp(30),
+    margin: 'auto',
+    left: pxToDp(28),
+    height: pxToDp(28),
+    width: pxToDp(28),
+  },
+  mask: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,.3)',
+  },
+  maskCard: {
+    backgroundColor: '#fff',
   },
   outBalance: {
     justifyContent: 'center',
   },
   inputItem: {
-    width: pxToDp(400),
+    width: pxToDp(380),
+  },
+  wan: {
+    marginTop: pxToDp(50),
+    paddingLeft: pxToDp(34),
+    color: 'rgb(255,106,110)',
   },
   outInfoWrap: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    paddingLeft: pxToDp(34),
     marginTop: pxToDp(80),
   },
   all: {

@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Dimensions } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 
@@ -113,11 +120,13 @@ class Home extends Component {
               />
             </View>
           </View>
-          <View style={styles.content}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.content}
+            onPress={this.gotoCoinPurse}
+          >
             <View style={styles.financialWrap}>
-              <Text style={styles.financial} onPress={this.gotoCoinPurse}>
-                企惠宝零钱包
-              </Text>
+              <Text style={styles.financial}>企惠宝零钱包</Text>
               <Text style={styles.income}>资金灵活</Text>
             </View>
             <View style={styles.percent}>
@@ -137,7 +146,7 @@ class Home extends Component {
                 source={require('../images/qihuibao-package.png')}
               />
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     )

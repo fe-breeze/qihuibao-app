@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import pxToDp from '../utils/pxToDp'
@@ -10,6 +17,12 @@ import { Button } from '../components'
 class Detail extends Component {
   static navigationOptions = {
     title: '稳健盈 NO-00002',
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      yen: '',
+    }
   }
   gotoProjectIntro = () => {
     this.props.dispatch(
@@ -86,6 +99,42 @@ class Detail extends Component {
           </View>
           <View style={styles.buy}>
             <Button title="立即购买" color="#fff" />
+          </View>
+        </View>
+        <View style={styles.mask}>
+          <View style={styles.maskCard}>
+            <View style={styles.maskHeader}>
+              <Text style={styles.maskTitle}>选择类型</Text>
+              <Image
+                style={[styles.close]}
+                source={require('../images/close.png')}
+              />
+            </View>
+            <View style={styles.maskContent}>
+              <View>
+                <View style={styles.outItem}>
+                  <Text>转入金额:</Text>
+                  <TextInput
+                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                    value={this.state.yen}
+                    onChangeText={yen => this.setState({ yen })}
+                    placeholder="本次最多可转入666.66元"
+                  />
+                </View>
+                <View style={styles.outItem}>
+                  <Text>验证码:</Text>
+                  <TextInput
+                    style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                    value={this.state.yen}
+                    onChangeText={yen => this.setState({ yen })}
+                    placeholder="本次最多可转入666.66元"
+                  />
+                  <Text>获取验证码</Text>
+                </View>
+                <Text style={styles.valErr}>验证码输入错误，请重新输入</Text>
+              </View>
+              <Button text="确认" onPress={this.handleOut} />
+            </View>
           </View>
         </View>
       </View>
@@ -177,6 +226,36 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopColor: '#dcdcdc',
     borderBottomColor: '#dcdcdc',
+  },
+  maskContent: {
+    height: pxToDp(429),
+    margin: pxToDp(26),
+    justifyContent: 'space-between',
+  },
+  maskTitle: {
+    fontSize: pxToDp(36),
+    color: 'rgb(51,51,51)',
+  },
+  maskHeader: {
+    position: 'relative',
+    height: pxToDp(88),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: pxToDp(1),
+    borderBottomColor: '#dcdcdc',
+  },
+  mask: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,.3)',
+  },
+  maskCard: {
+    backgroundColor: '#fff',
   },
 })
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button } from '../components'
 
-import { createAction, NavigationActions } from '../utils'
+import { NavigationActions } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -21,12 +21,10 @@ class Account extends Component {
     ),
   }
 
-  gotoLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
-  }
-
-  logout = () => {
-    this.props.dispatch(createAction('app/logout')())
+  gotoInvestDetail = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'InvestDetail' })
+    )
   }
 
   render() {
@@ -49,7 +47,11 @@ class Account extends Component {
                   <Text style={styles.textTitle}>6</Text>
                   <Text style={styles.textInfo}>个月</Text>
                 </View>
-                <TouchableOpacity activeOpacity={1} style={styles.btn}>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  style={styles.btn}
+                  onPress={this.gotoInvestDetail}
+                >
                   <Text style={styles.btnText}>投资</Text>
                 </TouchableOpacity>
               </View>

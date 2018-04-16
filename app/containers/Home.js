@@ -32,6 +32,10 @@ class Home extends Component {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'CoinPurse' }))
   }
 
+  gotoInvest = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Invest' }))
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -95,7 +99,11 @@ class Home extends Component {
           <Text style={styles.rate}>企惠宝零钱包7日年化率提高20%!</Text>
         </View>
         <View style={styles.cardWrap}>
-          <View style={styles.content}>
+          <TouchableOpacity
+            style={styles.content}
+            activeOpacity={1}
+            onPress={this.gotoInvest}
+          >
             <View style={styles.financialWrap}>
               <Text style={styles.financial}>定期理财</Text>
               <Text style={styles.income}>收益稳健</Text>
@@ -119,7 +127,7 @@ class Home extends Component {
                 source={require('../images/financing.png')}
               />
             </View>
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={1}
             style={styles.content}

@@ -62,9 +62,7 @@ const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     CityList: { screen: CityList },
-    Detail: { screen: Detail },
     ModifyPwd: { screen: ModifyPwd },
-    MyInvest: { screen: MyInvest },
     CapitalDetails: { screen: CapitalDetails },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
@@ -83,6 +81,8 @@ const MainNavigator = StackNavigator(
 )
 const ContentNavigator = StackNavigator(
   {
+    Detail: { screen: Detail },
+    MyInvest: { screen: MyInvest },
     buyStatus: { screen: buyStatus },
     ProjectIntro: { screen: ProjectIntro },
     InvestDetail: { screen: InvestDetail },

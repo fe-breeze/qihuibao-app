@@ -40,6 +40,7 @@ import PurseInStatus from './containers/PurseInStatus'
 import CashDetail from './containers/CashDetail'
 import CityList from './containers/CityList'
 import InvestDetail from './containers/InvestDetail'
+import ProjectIntro from './containers/ProjectIntro'
 
 const HomeNavigator = TabNavigator(
   {
@@ -82,7 +83,7 @@ const MainNavigator = StackNavigator(
 const ContentNavigator = StackNavigator(
   {
     // HomeNavigator: { screen: HomeNavigator },
-    // Detail: { screen: Detail },
+    ProjectIntro: { screen: ProjectIntro },
     InvestDetail: { screen: InvestDetail },
     About: { screen: About },
     Setting: { screen: Setting },

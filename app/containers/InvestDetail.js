@@ -3,12 +3,18 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import pxToDp from '../utils/pxToDp'
+import { NavigationActions } from '../utils'
 import { Button } from '../components'
 
 @connect()
 class Detail extends Component {
   static navigationOptions = {
     title: '稳健盈 NO-00002',
+  }
+  gotoProjectIntro = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'ProjectIntro' })
+    )
   }
   render() {
     return (
@@ -69,7 +75,11 @@ class Detail extends Component {
               <Text>募集金额</Text>
               <Text>100000元</Text>
             </View>
-            <TouchableOpacity activeOpacity={1} style={styles.contentItem}>
+            <TouchableOpacity
+              activeOpacity={1}
+              style={styles.contentItem}
+              onPress={this.gotoProjectIntro}
+            >
               <Text>项目介绍</Text>
               <Text>100000元</Text>
             </TouchableOpacity>

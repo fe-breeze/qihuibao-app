@@ -39,8 +39,12 @@ const styles = StyleSheet.create({
   header: {
     paddingTop: pxToDp(50),
     paddingBottom: pxToDp(50),
+    marginRight: pxToDp(26),
+    marginLeft: pxToDp(26),
     justifyContent: 'center',
     backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#dcdcdc',
   },
   title: {
     color: 'rgb(51,51,51)',

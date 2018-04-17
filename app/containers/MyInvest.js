@@ -47,103 +47,91 @@ class Detail extends Component {
               <View style={styles.itemWrap}>
                 <View>
                   <View style={styles.itemPack}>
-                    <Text style={styles.listName}>
-                      稳健盈
-                    </Text>
-                    <Text style={styles.listNum}>
-                      NO-00001
-                    </Text>
+                    <Text style={styles.listName}>稳健盈</Text>
+                    <Text style={styles.listNum}>NO-00001</Text>
                   </View>
-                  <Text style={styles.listMoney} >
-                    1200.00元
-                  </Text>
+                  <Text style={styles.listMoney}>1200.00元</Text>
                 </View>
                 <View style={styles.itemParcel}>
                   <Text style={styles.itemPercent}>15%</Text>
-                  <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
+                  <Image
+                    source={require('../images/enter.png')}
+                    style={{ marginLeft: pxToDp(80) }}
+                  />
                 </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-            style={styles.contentItem}
-            activeOpacity={1}
-            onPress={this.gotoDetail}
-          >
-            <View style={styles.itemWrap}>
-              <View>
-                <View style={styles.itemPack}>
-                  <Text style={styles.listName}>
-                    稳健盈
-                  </Text>
-                  <Text style={styles.listNum}>
-                    NO-00002
-                  </Text>
+              style={styles.contentItem}
+              activeOpacity={1}
+              onPress={this.gotoDetail}
+            >
+              <View style={styles.itemWrap}>
+                <View>
+                  <View style={styles.itemPack}>
+                    <Text style={styles.listName}>稳健盈</Text>
+                    <Text style={styles.listNum}>NO-00002</Text>
+                  </View>
+                  <Text style={styles.listMoney}>6666.66元</Text>
                 </View>
-                <Text style={styles.listMoney} >
-                  6666.66元
-                </Text>
+                <View style={styles.itemParcel}>
+                  <Text style={styles.itemPercent}>13%</Text>
+                  <Image
+                    source={require('../images/enter.png')}
+                    style={{ marginLeft: pxToDp(80) }}
+                  />
+                </View>
               </View>
-              <View style={styles.itemParcel}>
-                <Text style={styles.itemPercent}>13%</Text>
-                <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
-              </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
           </View>
         ) : (
-            <View style={styles.contentWrap}>
+          <View style={styles.contentWrap}>
             <TouchableOpacity
-            style={styles.contentItem}
-            activeOpacity={1}
-            onPress={this.gotoDetail}
-          >
-            <View style={styles.itemWrap}>
-              <View>
-                <View style={styles.itemPack}>
-                  <Text style={styles.listName}>
-                    稳健盈
-                  </Text>
-                  <Text style={styles.listNum}>
-                    NO-00001
-                  </Text>
+              style={styles.contentItem}
+              activeOpacity={1}
+              onPress={this.gotoDetail}
+            >
+              <View style={styles.itemWrap}>
+                <View>
+                  <View style={styles.itemPack}>
+                    <Text style={styles.listName}>稳健盈</Text>
+                    <Text style={styles.listNum}>NO-00001</Text>
+                  </View>
+                  <Text style={styles.listMoney}>1200.00元</Text>
                 </View>
-                <Text style={styles.listMoney} >
-                  1200.00元
-                </Text>
+                <View style={styles.itemParcel}>
+                  <Text style={styles.itemPercent}>15%</Text>
+                  <Image
+                    source={require('../images/enter.png')}
+                    style={{ marginLeft: pxToDp(80) }}
+                  />
+                </View>
               </View>
-              <View style={styles.itemParcel}>
-                <Text style={styles.itemPercent}>15%</Text>
-                <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.contentItem}
+              activeOpacity={1}
+              onPress={this.gotoDetail}
+            >
+              <View style={styles.itemWrap}>
+                <View>
+                  <View style={styles.itemPack}>
+                    <Text style={styles.listName}>稳健盈</Text>
+                    <Text style={styles.listNum}>NO-00002</Text>
+                  </View>
+                  <Text style={styles.listMoney}>6666.66元</Text>
+                </View>
+                <View style={styles.itemParcel}>
+                  <Text style={styles.itemPercent}>13%</Text>
+                  <Image
+                    source={require('../images/enter.png')}
+                    style={{ marginLeft: pxToDp(80) }}
+                  />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-          style={styles.contentItem}
-          activeOpacity={1}
-          onPress={this.gotoDetail}
-        >
-          <View style={styles.itemWrap}>
-            <View>
-              <View style={styles.itemPack}>
-                <Text style={styles.listName}>
-                  稳健盈
-                </Text>
-                <Text style={styles.listNum}>
-                  NO-00002
-                </Text>
-              </View>
-              <Text style={styles.listMoney} >
-                6666.66元
-              </Text>
-            </View>
-            <View style={styles.itemParcel}>
-              <Text style={styles.itemPercent}>13%</Text>
-              <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
-            </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-            </View>
-          )}
+        )}
       </View>
     )
   }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, Button } from 'react-native'
 import { connect } from 'react-redux'
-
-import { Button } from '../components'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -16,7 +14,7 @@ class Detail extends Component {
     this.state = {}
   }
 
-  handleOut = () => {}
+  handleOut = () => { }
 
   render() {
     return (
@@ -34,6 +32,7 @@ class Detail extends Component {
             source={require('../images/calendar.png')}
           />
         </View>
+
         <View style={styles.contentWrap}>
           <View style={styles.contentInfo}>
             <View>
@@ -68,19 +67,22 @@ class Detail extends Component {
             </View>
             <View style={styles.maskContent}>
               <View style={styles.btnList}>
-                <View>
-                  <Button text="全部" />
+                <View style={styles.listWrap}>
+                  <Button title="全部" style={styles.all} />
                 </View>
-                <View>
-                  <Button text="转入" />
-                  <Button text="转出" />
-                  <Button text="收益" />
+                <View style={styles.lastContent}>
+                  <Button title="转入" style={styles.btnContent} />
+                  <Button title="转出" style={styles.btnContent} />
+                  <Button title="收益" style={styles.btnContent} />
                 </View>
               </View>
+
             </View>
           </View>
+
         </View>
       </View>
+
     )
   }
 }
@@ -95,13 +97,23 @@ const styles = StyleSheet.create({
     marginTop: pxToDp(80),
     marginLeft: pxToDp(80),
   },
-  valErr: {
-    color: 'rgb(255,106,110)',
-    textAlign: 'right',
-    fontSize: pxToDp(24),
+  listWrap:{
+    flexDirection:'row',
+    flexWrap:'wrap',
   },
-  outItem: {
-    flexDirection: 'row',
+  all:{
+    width: pxToDp(132),
+     height: pxToDp(66),
+  },
+  lastContent:{
+    flexDirection: 'row', 
+    flexWrap: 'nowrap',
+     marginTop: pxToDp(66),
+  },
+  btnContent:{
+    width: pxToDp(132),
+     height: pxToDp(66),
+      marginRight:pxToDp(66)
   },
   maskContent: {
     height: pxToDp(429),
@@ -141,17 +153,6 @@ const styles = StyleSheet.create({
   maskCard: {
     backgroundColor: '#fff',
   },
-  outBalance: {
-    justifyContent: 'center',
-  },
-  inputItem: {
-    width: pxToDp(380),
-  },
-  wan: {
-    marginTop: pxToDp(50),
-    paddingLeft: pxToDp(34),
-    color: 'rgb(255,106,110)',
-  },
   outInTitle: {
     color: 'rgb(54,177,255)',
     fontSize: pxToDp(28),
@@ -167,37 +168,10 @@ const styles = StyleSheet.create({
     paddingLeft: pxToDp(34),
     marginTop: pxToDp(80),
   },
-  all: {
-    fontSize: pxToDp(32),
-    marginLeft: pxToDp(20),
-    color: 'rgb(54,177,255)',
-  },
   yen: {
     fontSize: pxToDp(68),
     marginRight: pxToDp(100),
     color: 'rgb(51,51,51)',
-  },
-  bankWrap: {
-    height: pxToDp(120),
-    backgroundColor: '#fff',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: pxToDp(26),
-    paddingLeft: pxToDp(26),
-    paddingRight: pxToDp(26),
-  },
-  outBankTitle: {
-    fontSize: pxToDp(32),
-    color: 'rgb(153,153,153)',
-  },
-  cardInfo: {
-    color: 'rgb(51,51,51)',
-    fontSize: pxToDp(32),
-  },
-  bankImg: {
-    height: pxToDp(66),
-    width: pxToDp(220),
   },
   contentInfo: {
     backgroundColor: '#fff',
@@ -238,43 +212,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
-  },
-  tabItemWrap: {
-    justifyContent: 'center',
-    height: '100%',
-    position: 'relative',
-  },
-  bank: {
-    paddingRight: pxToDp(50),
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  balance: {
-    paddingLeft: pxToDp(50),
-  },
-  bankText: {
-    textAlign: 'right',
-    fontSize: pxToDp(36),
-    color: 'rgb(54,117,255)',
-    width: '100%',
-  },
-  balanceText: {
-    fontSize: pxToDp(32),
-    color: 'rgb(170,170,170)',
-  },
-  lineWrap: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-  },
-  line: {
-    backgroundColor: 'rgb(54,117,255)',
-    width: pxToDp(60),
-    height: pxToDp(6),
-    borderRadius: pxToDp(6),
-  },
+  }
 })
 
 export default Detail

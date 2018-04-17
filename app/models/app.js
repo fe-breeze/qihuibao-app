@@ -1,3 +1,4 @@
+import Toast from 'react-native-root-toast'
 import { createAction, NavigationActions, Storage } from '../utils'
 import * as authService from '../services/auth'
 
@@ -25,9 +26,9 @@ export default {
         if (checkPass.succeed) {
           const vefirycode = yield call(authService.vCode, payload.mobile)
           if (vefirycode.succeed) {
-            console.log(vefirycode)
+            Toast.show('验证码发送成功！')
           } else {
-            // 验证码发送失败
+            Toast.show('验证码发送失败!')
           }
         } else {
           // 用户不存在
@@ -85,6 +86,7 @@ export default {
       const login = yield call(authService.login, payload)
       console.log(login)
       if (login.succeed) {
+        Toast.show('登录成功！')
         yield put(
           NavigationActions.reset({
             index: 0,

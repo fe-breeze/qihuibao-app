@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native'
 import { connect } from 'react-redux'
+import Toast from 'react-native-root-toast'
 
 import { Button } from '../components'
 import { createAction, NavigationActions } from '../utils'
@@ -27,6 +28,11 @@ class Login extends Component {
   }
 
   onLogin = () => {
+    const reg = /^1[0-9]{10}$/
+    if (!reg.test(this.state.tel)) {
+      Toast.show('请输入正确的手机号码！')
+      return
+    }
     this.props.dispatch(
       createAction('app/login')({
         username: this.state.tel,
@@ -73,6 +79,7 @@ class Login extends Component {
               <TextInput
                 style={[styles.inputItem, { color: '#333333' }]}
                 value={this.state.tel}
+                keyboardType="numeric"
                 onChangeText={tel => this.setState({ tel })}
                 placeholder="请输入手机号"
                 placeholderTextColor="rgb(220, 220, 220)"

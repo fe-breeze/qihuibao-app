@@ -89,7 +89,9 @@ class ModifyPwd extends Component {
               <Image source={require('../images/logo.png')} />
             </View>
             {status && this.state.tel ? (
-                <Text style={styles.savedUser}>{this.formatPhone(this.state.tel)}</Text>
+              <Text style={styles.savedUser}>
+                {this.formatPhone(this.state.tel)}
+              </Text>
             ) : (
               <View style={styles.inputRow}>
                 <View style={styles.labelWrap}>

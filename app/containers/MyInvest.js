@@ -44,62 +44,106 @@ class Detail extends Component {
               activeOpacity={1}
               onPress={this.gotoDetail}
             >
-              <View>
-                <Text style={styles.outInTitle}>2018年3月</Text>
-                <View style={styles.outIn}>
-                  <Text style={styles.outInDetail}>支出&yen;50.00</Text>
-                  <Text style={styles.outInDetail}>收入&yen;50.00</Text>
+              <View style={styles.itemWrap}>
+                <View>
+                  <View style={styles.itemPack}>
+                    <Text style={styles.listName}>
+                      稳健盈
+                    </Text>
+                    <Text style={styles.listNum}>
+                      NO-00001
+                    </Text>
+                  </View>
+                  <Text style={styles.listMoney} >
+                    1200.00元
+                  </Text>
+                </View>
+                <View style={styles.itemParcel}>
+                  <Text style={styles.itemPercent}>15%</Text>
+                  <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
                 </View>
               </View>
-              <Image
-                style={[styles.icon]}
-                source={require('../images/calendar.png')}
-              />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.contentItem}>
+            <TouchableOpacity
+            style={styles.contentItem}
+            activeOpacity={1}
+            onPress={this.gotoDetail}
+          >
+            <View style={styles.itemWrap}>
               <View>
-                <Text style={styles.outInTitle}>2018年3月</Text>
-                <View style={styles.outIn}>
-                  <Text style={styles.outInDetail}>支出&yen;50.00</Text>
-                  <Text style={styles.outInDetail}>收入&yen;50.00</Text>
+                <View style={styles.itemPack}>
+                  <Text style={styles.listName}>
+                    稳健盈
+                  </Text>
+                  <Text style={styles.listNum}>
+                    NO-00002
+                  </Text>
                 </View>
+                <Text style={styles.listMoney} >
+                  6666.66元
+                </Text>
               </View>
-              <Image
-                style={[styles.icon]}
-                source={require('../images/calendar.png')}
-              />
-            </TouchableOpacity>
+              <View style={styles.itemParcel}>
+                <Text style={styles.itemPercent}>13%</Text>
+                <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
+              </View>
+            </View>
+          </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.contentWrap}>
-            <TouchableOpacity style={styles.contentItem}>
+            <View style={styles.contentWrap}>
+            <TouchableOpacity
+            style={styles.contentItem}
+            activeOpacity={1}
+            onPress={this.gotoDetail}
+          >
+            <View style={styles.itemWrap}>
               <View>
-                <Text style={styles.outInTitle}>2018年3月</Text>
-                <View style={styles.outIn}>
-                  <Text style={styles.outInDetail}>支出&yen;50.00</Text>
-                  <Text style={styles.outInDetail}>收入&yen;50.00</Text>
+                <View style={styles.itemPack}>
+                  <Text style={styles.listName}>
+                    稳健盈
+                  </Text>
+                  <Text style={styles.listNum}>
+                    NO-00001
+                  </Text>
                 </View>
+                <Text style={styles.listMoney} >
+                  1200.00元
+                </Text>
               </View>
-              <Image
-                style={[styles.icon]}
-                source={require('../images/calendar.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.contentItem}>
-              <View>
-                <Text style={styles.outInTitle}>2018年3月</Text>
-                <View style={styles.outIn}>
-                  <Text style={styles.outInDetail}>支出&yen;50.00</Text>
-                  <Text style={styles.outInDetail}>收入&yen;50.00</Text>
-                </View>
+              <View style={styles.itemParcel}>
+                <Text style={styles.itemPercent}>15%</Text>
+                <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
               </View>
-              <Image
-                style={[styles.icon]}
-                source={require('../images/calendar.png')}
-              />
-            </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+          style={styles.contentItem}
+          activeOpacity={1}
+          onPress={this.gotoDetail}
+        >
+          <View style={styles.itemWrap}>
+            <View>
+              <View style={styles.itemPack}>
+                <Text style={styles.listName}>
+                  稳健盈
+                </Text>
+                <Text style={styles.listNum}>
+                  NO-00002
+                </Text>
+              </View>
+              <Text style={styles.listMoney} >
+                6666.66元
+              </Text>
+            </View>
+            <View style={styles.itemParcel}>
+              <Text style={styles.itemPercent}>13%</Text>
+              <Image source={require('../images/enter.png')} style={{ marginLeft:pxToDp(80) }} />
+            </View>
           </View>
-        )}
+        </TouchableOpacity>
+            </View>
+          )}
       </View>
     )
   }
@@ -111,70 +155,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     position: 'relative',
   },
-  valErr: {
-    color: 'rgb(255,106,110)',
-    textAlign: 'right',
-    fontSize: pxToDp(24),
-  },
-  outItem: {
-    flexDirection: 'row',
-  },
-  close: {
-    position: 'absolute',
-    top: pxToDp(30),
-    margin: 'auto',
-    left: pxToDp(28),
-    height: pxToDp(28),
-    width: pxToDp(28),
-  },
-  outBalance: {
-    justifyContent: 'center',
-  },
-  inputItem: {
-    width: pxToDp(380),
-  },
-  wan: {
-    marginTop: pxToDp(50),
-    paddingLeft: pxToDp(34),
-    color: 'rgb(255,106,110)',
-  },
-  outInfoWrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: pxToDp(34),
-    marginTop: pxToDp(80),
-  },
-  all: {
-    fontSize: pxToDp(32),
-    marginLeft: pxToDp(20),
-    color: 'rgb(54,177,255)',
-  },
   yen: {
     fontSize: pxToDp(68),
     marginRight: pxToDp(100),
     color: 'rgb(51,51,51)',
-  },
-  bankWrap: {
-    height: pxToDp(120),
-    backgroundColor: '#fff',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: pxToDp(26),
-    paddingLeft: pxToDp(26),
-    paddingRight: pxToDp(26),
-  },
-  outBankTitle: {
-    fontSize: pxToDp(32),
-    color: 'rgb(153,153,153)',
-  },
-  cardInfo: {
-    color: 'rgb(51,51,51)',
-    fontSize: pxToDp(32),
-  },
-  bankImg: {
-    height: pxToDp(66),
-    width: pxToDp(220),
   },
   contentWrap: {
     marginTop: pxToDp(20),
@@ -185,18 +169,55 @@ const styles = StyleSheet.create({
   contentItem: {
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    height: pxToDp(120),
+    height: pxToDp(128),
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#dcdcdc',
   },
+  itemWrap: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: pxToDp(128),
+    flex: 1,
+  },
+  itemPack: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  listName: {
+    fontSize: pxToDp(36),
+    color: 'rgb(102,102,102)',
+    marginRight: pxToDp(20),
+  },
+  listNum: {
+    fontSize: pxToDp(36),
+    color: 'rgb(102,102,102)',
+  },
+  listMoney: {
+    fontSize: pxToDp(28),
+    color: 'rgb(102,102,102)',
+    marginTop: pxToDp(20),
+  },
+  itemParcel: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  itemPercent: {
+    fontSize: pxToDp(40),
+    color: 'rgb( 255,106,110 )',
+  },
   outTabWrap: {
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    height: pxToDp(88),
+    height: pxToDp(128),
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#dcdcdc',
+  },
+  outIn: {
+    flexDirection: 'row',
+    marginTop: pxToDp(20),
   },
   outTab: {
     flex: 1,

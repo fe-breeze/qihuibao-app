@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
 
-// import { NavigationActions } from '../utils'
 import { Button } from '../components'
 
 import pxToDp from '../utils/pxToDp'

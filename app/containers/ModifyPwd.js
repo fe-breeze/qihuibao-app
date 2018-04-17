@@ -73,6 +73,7 @@ class ModifyPwd extends Component {
       this.gotoVLogin()
     }
   }
+  formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
     const { fetching, navigation } = this.props
@@ -88,7 +89,7 @@ class ModifyPwd extends Component {
               <Image source={require('../images/logo.png')} />
             </View>
             {status && this.state.tel ? (
-              <Text style={styles.savedUser}>{this.state.tel}</Text>
+                <Text style={styles.savedUser}>{this.formatPhone(this.state.tel)}</Text>
             ) : (
               <View style={styles.inputRow}>
                 <View style={styles.labelWrap}>

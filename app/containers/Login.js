@@ -21,7 +21,6 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // tel: '13379213579',
       tel: '',
       password: '',
     }
@@ -69,6 +68,7 @@ class Login extends Component {
   gotoVLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'VLogin' }))
   }
+  formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
     const { fetching } = this.props
@@ -86,7 +86,9 @@ class Login extends Component {
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>{this.state.tel}</Text>
+            <Text style={styles.savedUser}>
+              {this.formatPhone(this.state.tel)}
+            </Text>
             <View style={styles.inputRow}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/password.png')} />

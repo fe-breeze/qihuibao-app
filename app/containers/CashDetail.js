@@ -14,7 +14,7 @@ class Detail extends Component {
     this.state = {}
   }
 
-  handleOut = () => { }
+  handleOut = () => {}
 
   render() {
     return (
@@ -76,13 +76,10 @@ class Detail extends Component {
                   <Button title="收益" style={styles.btnContent} />
                 </View>
               </View>
-
             </View>
           </View>
-
         </View>
       </View>
-
     )
   }
 }
@@ -97,23 +94,23 @@ const styles = StyleSheet.create({
     marginTop: pxToDp(80),
     marginLeft: pxToDp(80),
   },
-  listWrap:{
-    flexDirection:'row',
-    flexWrap:'wrap',
+  listWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
-  all:{
+  all: {
     width: pxToDp(132),
-     height: pxToDp(66),
+    height: pxToDp(66),
   },
-  lastContent:{
-    flexDirection: 'row', 
+  lastContent: {
+    flexDirection: 'row',
     flexWrap: 'nowrap',
-     marginTop: pxToDp(66),
+    marginTop: pxToDp(66),
   },
-  btnContent:{
+  btnContent: {
     width: pxToDp(132),
-     height: pxToDp(66),
-      marginRight:pxToDp(66)
+    height: pxToDp(66),
+    marginRight: pxToDp(66),
   },
   maskContent: {
     height: pxToDp(429),
@@ -212,7 +209,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
-  }
+  },
 })
 
 export default Detail

@@ -17,7 +17,7 @@ import pxToDp from '../utils/pxToDp'
 @connect(({ app }) => ({ ...app }))
 class Login extends Component {
   static navigationOptions = {
-    title: 'Login',
+    header: null,
   }
   constructor(props) {
     super(props)
@@ -31,6 +31,10 @@ class Login extends Component {
     const reg = /^1[0-9]{10}$/
     if (!reg.test(this.state.tel)) {
       Toast.show('请输入正确的手机号码！')
+      return
+    }
+    if (this.state.password.length < 6) {
+      Toast.show('密码不少于6位！')
       return
     }
     this.props.dispatch(

@@ -16,7 +16,7 @@ import pxToDp from '../utils/pxToDp'
 @connect(({ app }) => ({ ...app }))
 class Login extends Component {
   static navigationOptions = {
-    title: 'Login',
+    header: null,
   }
   constructor(props) {
     super(props)
@@ -58,7 +58,9 @@ class Login extends Component {
   }
 
   gotoFindPwd = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'ModifyPwd' }))
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'ModifyPwdUser' })
+    )
   }
   gotoModifyAccount = () => {
     this.props.dispatch(

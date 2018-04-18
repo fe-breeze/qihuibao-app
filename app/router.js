@@ -62,7 +62,7 @@ const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     CityList: { screen: CityList },
-    ModifyPwd: { screen: ModifyPwd },
+    // ModifyPwd: { screen: ModifyPwd },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
   },
@@ -94,13 +94,7 @@ const ContentNavigator = StackNavigator(
     PurseInStatus: { screen: PurseInStatus },
     PurseOutStatus: { screen: PurseOutStatus },
     CashDetail: { screen: CashDetail },
-    // MyInvest: { screen: MyInvest },
-    // CapitalDetails: { screen: CapitalDetails },
-    // Withdrawal: { screen: Withdrawal },
-    // ModifyPwdStatus: { screen: ModifyPwdStatus },
     ReLogin: { screen: ReLogin },
-    // CashResult: { screen: CashResult },
-    // CoinPurse: { screen: CoinPurse },
   },
   {
     headerMode: 'float',
@@ -114,14 +108,45 @@ const ContentNavigator = StackNavigator(
     },
   }
 )
-
+const ModifyAccountNavigator = StackNavigator(
+  {
+    ModifyAccountMain: { screen: ModifyAccount },
+    ModifyPwd: { screen: ModifyPwd },
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomWidth: 0,
+      },
+    },
+  }
+)
+const LoginNavigator = StackNavigator(
+  {
+    LoginMain: { screen: Login },
+    ModifyPwdUser: { screen: ModifyPwd },
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomWidth: 0,
+      },
+    },
+  }
+)
 const AppNavigator = StackNavigator(
   {
     Main: { screen: MainNavigator },
-    Login: { screen: Login },
+    ModifyAccount: { screen: ModifyAccountNavigator },
+    Login: { screen: LoginNavigator },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },
-    ModifyAccount: { screen: ModifyAccount },
   },
   {
     headerMode: 'none',

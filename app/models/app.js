@@ -31,22 +31,22 @@ export default {
             Toast.show('验证码发送失败!')
           }
         } else {
-          // 用户不存在
+          Toast.show('请检查用户名后重试!')
         }
       } catch (err) {
-        console.error(err)
+        Toast.show('服务器错误！')
       }
     },
     *vefiryCode({ payload }, { call }) {
       try {
         const vefirycode = yield call(authService.vefiryCode, payload.mobile)
         if (vefirycode.succeed) {
-          console.log(vefirycode)
+          Toast.show('验证码发送成功！')
         } else {
-          // 验证码发送失败
+          Toast.show('验证码发送失败！')
         }
       } catch (err) {
-        console.error(err)
+        Toast.show('服务器错误！')
       }
     },
     *resetpwd({ payload }, { put, call }) {
@@ -78,37 +78,55 @@ export default {
           )
         }
       } catch (err) {
-        console.error(err)
+        Toast.show('服务器错误！')
       }
     },
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
-      const login = yield call(authService.login, payload)
-      console.log(login)
-      if (login.succeed) {
-        Toast.show('登录成功！')
+      try {
+        const login = yield call(authService.login, payload)
+        if (login.succeed) {
+          Toast.show('登录成功！')
+          yield put(
+            NavigationActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: 'Main' })],
+            })
+          )
+          yield call(Storage.set, 'username', payload.username)
+          yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
+          yield put(
+            createAction('updateState')({
+              login: login.succeed,
+              loading: false,
+            })
+          )
+        } else {
+          Toast.show('登录失败，请输入正确的用户名和密码！')
+        }
         yield put(
-          NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Main' })],
-          })
+          createAction('updateState')({ login: login.succeed, fetching: false })
         )
-        yield call(Storage.set, 'username', payload.username)
-        yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
-        yield put(
-          createAction('updateState')({ login: login.succeed, loading: false })
-        )
+        Storage.set('login', login.succeed)
+      } catch (err) {
+        Toast.show('服务器错误！')
       }
-      yield put(
-        createAction('updateState')({ login: login.succeed, fetching: false })
-      )
-      Storage.set('login', login.succeed)
     },
     *logout(action, { call, put }) {
-      yield put(NavigationActions.navigate({ routeName: 'Login' }))
-      yield call(Storage.set, 'login', false)
-      yield call(Storage.set, 'token', null) // eslint-disable-line
-      yield put(createAction('updateState')({ login: false }))
+      try {
+        const logout = yield call(authService.logout)
+        if (logout.succeed) {
+          Toast.show('退出成功！')
+          yield put(NavigationActions.navigate({ routeName: 'Login' }))
+          yield call(Storage.set, 'login', false)
+          yield call(Storage.set, 'token', null) // eslint-disable-line
+          yield put(createAction('updateState')({ login: false }))
+        } else {
+          Toast.show('退出失败！')
+        }
+      } catch (err) {
+        Toast.show('服务器错误！')
+      }
     },
   },
   subscriptions: {

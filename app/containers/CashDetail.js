@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
   all: {
     width: pxToDp(132),
     height: pxToDp(66),
+    backgroundColor: 'rgb(54,177,255)',
+    borderColor: 'rgb(54,177,255)',
+    borderWidth: pxToDp(10),
   },
   lastContent: {
     flexDirection: 'row',

@@ -1,8 +1,11 @@
+import querystring from 'querystring'
+import md5 from 'react-native-md5'
 import 'whatwg-fetch'
+import { Storage } from './utils'
+import store from '../index'
 // import { notification } from 'antd';
 // import { routerRedux } from 'dva/router';
-import querystring from 'querystring'
-import store from '../index'
+// import { Storage } from './index'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -37,6 +40,27 @@ function checkStatus(response) {
   throw error
 }
 
+function createSign(params, timestamp, token) {
+  const p = { ...params, token, timestamp }
+  let keys = Object.keys(p)
+  keys = keys.sort()
+  let first = true
+  let temp = ''
+  keys.forEach(key => {
+    if (first) {
+      first = false
+    } else {
+      temp += '&'
+    }
+    temp = `${temp + key}=`
+    const val = `${p[key]}`
+    // val = encodeURI(val).replaceAll("'", "%27");//替换 "'" 符号
+    temp += val
+  }, this)
+  const sign = md5.hex_md5(temp)
+  return sign.toUpperCase()
+}
+
 /**
  * Requests a URL, returning a promise.
  *
@@ -48,8 +72,21 @@ export default function request(url, options) {
   const defaultOptions = {
     credentials: 'include',
   }
+
   let requestUrl = url
-  const newOptions = { ...defaultOptions, ...options }
+
+  const timestamp = Math.ceil(new Date().getTime() / 1000)
+  const token = Storage.get('token')
+  const sign = createSign(options.body, timestamp, token)
+
+  const newOptions = {
+    ...defaultOptions,
+    ...options,
+    'header-token': token,
+    'header-timestamp': timestamp,
+    'header-sign': sign,
+  }
+
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (
       options['Content-Type'] &&
@@ -91,6 +128,7 @@ export default function request(url, options) {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text()
       }
+      console.log(response.json())
       return response.json()
     })
     .catch(e => {

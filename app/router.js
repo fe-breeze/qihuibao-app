@@ -117,8 +117,8 @@ const ContentNavigator = StackNavigator(
 
 const AppNavigator = StackNavigator(
   {
-    Login: { screen: Login },
     Main: { screen: MainNavigator },
+    Login: { screen: Login },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },
     ModifyAccount: { screen: ModifyAccount },

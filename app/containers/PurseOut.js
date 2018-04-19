@@ -93,7 +93,7 @@ class Detail extends Component {
         <View style={styles.mask}>
           <View style={styles.maskCard}>
             <View style={styles.maskHeader}>
-              <Text style={styles.maskTitle}>选择类型</Text>
+              <Text style={styles.maskTitle}>确认转出</Text>
               <Image
                 style={[styles.close]}
                 source={require('../images/close.png')}
@@ -107,7 +107,6 @@ class Detail extends Component {
                     style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                     value={this.state.yen}
                     onChangeText={yen => this.setState({ yen })}
-                    placeholder="本次最多可转出666.66元"
                   />
                 </View>
                 <View style={styles.outItem}>
@@ -116,7 +115,6 @@ class Detail extends Component {
                     style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
                     value={this.state.yen}
                     onChangeText={yen => this.setState({ yen })}
-                    placeholder="本次最多可转出666.66元"
                   />
                   <Text>获取验证码</Text>
                 </View>
@@ -141,6 +139,7 @@ const styles = StyleSheet.create({
     color: 'rgb(255,106,110)',
     textAlign: 'right',
     fontSize: pxToDp(24),
+    marginTop: pxToDp(20),
   },
   outItem: {
     flexDirection: 'row',

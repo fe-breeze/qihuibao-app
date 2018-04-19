@@ -145,6 +145,8 @@ const AppNavigator = StackNavigator(
     Main: { screen: MainNavigator },
     ModifyAccount: { screen: ModifyAccountNavigator },
     Login: { screen: LoginNavigator },
+    // Login: { screen: Login },
+    // Main: { screen: MainNavigator },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },
   },

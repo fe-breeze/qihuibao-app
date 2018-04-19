@@ -1,7 +1,6 @@
 import querystring from 'querystring'
 import md5 from 'react-native-md5'
 import 'whatwg-fetch'
-import { Storage } from './utils'
 import store from '../index'
 // import { notification } from 'antd';
 // import { routerRedux } from 'dva/router';
@@ -68,23 +67,29 @@ function createSign(params, timestamp, token) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
+export default function request(url, options, token = null) {
   const defaultOptions = {
     credentials: 'include',
   }
 
   let requestUrl = url
+  let newHeaders = {}
 
-  const timestamp = Math.ceil(new Date().getTime() / 1000)
-  const token = Storage.get('token')
-  const sign = createSign(options.body, timestamp, token)
+  if (token) {
+    const timestamp = Math.ceil(new Date().getTime() / 1000)
+    const sign = createSign(options.body, timestamp, token)
+    console.log({ timestamp, token, sign })
+    newHeaders = {
+      'header-token': token,
+      'header-timestamp': timestamp,
+      'header-sign': sign,
+    }
+  }
 
   const newOptions = {
     ...defaultOptions,
     ...options,
-    'header-token': token,
-    'header-timestamp': timestamp,
-    'header-sign': sign,
+    headers: { ...options.headers, ...newHeaders },
   }
 
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
@@ -122,16 +127,20 @@ export default function request(url, options) {
     newOptions.body = undefined
   }
 
+  console.log(`request url: ${requestUrl}`)
+
   return fetch(requestUrl, newOptions)
     .then(checkStatus)
     .then(response => {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text()
       }
-      console.log(response.json())
-      return response.json()
+      const json = response.json()
+      console.log(json)
+      return json
     })
     .catch(e => {
+      console.log(e)
       const { dispatch } = store().props.store
       const status = e.name
       if (status === 401) {

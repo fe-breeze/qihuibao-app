@@ -7,6 +7,7 @@ import Router, { routerMiddleware } from './router'
 
 import appModel from './models/app'
 import routerModel from './models/router'
+import accountModel from './models/account'
 
 console.ignoredYellowBox = [
   'Warning: componentWillMount is deprecated',
@@ -16,7 +17,7 @@ console.ignoredYellowBox = [
 
 const app = dva({
   initialState: {},
-  models: [appModel, routerModel],
+  models: [appModel, routerModel, accountModel],
   onAction: [routerMiddleware],
   onError(e) {
     console.log('onError', e)

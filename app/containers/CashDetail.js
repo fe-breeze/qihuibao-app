@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, Button } from 'react-native'
 import { connect } from 'react-redux'
 
+import { NavigationActions } from '../utils'
+
 import pxToDp from '../utils/pxToDp'
 
 @connect()
@@ -15,6 +17,13 @@ class Detail extends Component {
   }
 
   handleOut = () => {}
+
+  gotoPurseOut = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'PurseOut' }))
+  }
+  gotoPurseIn = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'PurseIn' }))
+  }
 
   render() {
     return (
@@ -68,12 +77,28 @@ class Detail extends Component {
             <View style={styles.maskContent}>
               <View style={styles.btnList}>
                 <View style={styles.listWrap}>
-                  <Button title="全部" style={styles.all} />
+                  <Button
+                    title="全部"
+                    onPress={this.gotoPurseOut}
+                    style={styles.all}
+                  />
                 </View>
                 <View style={styles.lastContent}>
-                  <Button title="转入" style={styles.btnContent} />
-                  <Button title="转出" style={styles.btnContent} />
-                  <Button title="收益" style={styles.btnContent} />
+                  <Button
+                    title="转入"
+                    onPress={this.gotoPurseIn}
+                    style={styles.btnContent}
+                  />
+                  <Button
+                    title="转出"
+                    onPress={this.gotoPurseOut}
+                    style={styles.btnContent}
+                  />
+                  <Button
+                    title="收益"
+                    onPress={this.gotoPurseIn}
+                    style={styles.btnContent}
+                  />
                 </View>
               </View>
             </View>

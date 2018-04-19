@@ -4209,7 +4209,7 @@ react-native-drawer-layout@1.3.2:
 
 react-native-md5@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.npmjs.org/react-native-md5/-/react-native-md5-1.0.0.tgz#2320be24d674938ae5ef4f492698edbbfa0e0205"
+  resolved "http://registry.yarnpkg.com/react-native-md5/-/react-native-md5-1.0.0.tgz#2320be24d674938ae5ef4f492698edbbfa0e0205"
 
 react-native-responsive-dimensions@^1.0.2:
   version "1.0.2"

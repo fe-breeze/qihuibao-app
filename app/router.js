@@ -62,7 +62,6 @@ const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     CityList: { screen: CityList },
-    // ModifyPwd: { screen: ModifyPwd },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
   },
@@ -124,29 +123,28 @@ const ModifyAccountNavigator = StackNavigator(
     },
   }
 )
-const LoginNavigator = StackNavigator(
-  {
-    LoginMain: { screen: Login },
-    ModifyPwdUser: { screen: ModifyPwd },
-  },
-  {
-    headerMode: 'float',
-    navigationOptions: {
-      headerBackTitle: null,
-      headerStyle: {
-        backgroundColor: '#fff',
-        borderBottomWidth: 0,
-      },
-    },
-  }
-)
+// const LoginNavigator = StackNavigator(
+//   {
+//     LoginMain: { screen: Login },
+//     ModifyPwdUser: { screen: ModifyPwd },
+//   },
+//   {
+//     headerMode: 'float',
+//     navigationOptions: {
+//       headerBackTitle: null,
+//       headerStyle: {
+//         backgroundColor: '#fff',
+//         borderBottomWidth: 0,
+//       },
+//     },
+//   }
+// )
 const AppNavigator = StackNavigator(
   {
     Main: { screen: MainNavigator },
     ModifyAccount: { screen: ModifyAccountNavigator },
-    Login: { screen: LoginNavigator },
-    // Login: { screen: Login },
-    // Main: { screen: MainNavigator },
+    // Login: { screen: LoginNavigator },
+    Login: { screen: Login },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },
   },

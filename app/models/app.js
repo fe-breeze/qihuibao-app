@@ -17,7 +17,7 @@ export default {
   },
   effects: {
     *loadStorage(action, { call, put }) {
-      const login = yield call(Storage.get, 'login', false)
+      const login = yield call(Storage.get, 'login')
       yield put(createAction('updateState')({ login, loading: false }))
     },
     *vcode({ payload }, { call }) {
@@ -31,7 +31,7 @@ export default {
             Toast.show('验证码发送失败!')
           }
         } else {
-          Toast.show('请检查用户名后重试!')
+          Toast.show('用户不存在!')
         }
       } catch (err) {
         Toast.show('服务器错误！')
@@ -43,7 +43,7 @@ export default {
         if (vefirycode.succeed) {
           Toast.show('验证码发送成功！')
         } else {
-          Toast.show('验证码发送失败！')
+          Toast.show('验证码发送失败!')
         }
       } catch (err) {
         Toast.show('服务器错误！')
@@ -95,6 +95,7 @@ export default {
           )
           yield call(Storage.set, 'username', payload.username)
           yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
+          yield call(Storage.set, 'login', login.succeed)
           yield put(
             createAction('updateState')({
               login: login.succeed,
@@ -102,12 +103,15 @@ export default {
             })
           )
         } else {
+          yield put(
+            createAction('updateState')({
+              login: login.succeed,
+              fetching: false,
+            })
+          )
+          yield call(Storage.set, 'login', login.succeed)
           Toast.show('登录失败，请输入正确的用户名和密码！')
         }
-        yield put(
-          createAction('updateState')({ login: login.succeed, fetching: false })
-        )
-        Storage.set('login', login.succeed)
       } catch (err) {
         Toast.show('服务器错误！')
       }

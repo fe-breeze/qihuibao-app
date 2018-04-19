@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -26,7 +26,9 @@ class Account extends Component {
       />
     ),
   }
-
+  componentWillMount() {
+    this.props.dispatch(createAction('account/accountBalance')())
+  }
   gotoMyInvest = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'MyInvest' }))
   }
@@ -61,26 +63,26 @@ class Account extends Component {
               <Image
                 style={styles.imgTop}
                 source={require('../images/head.png')}
-              />
-              <Text style={styles.textTop}>138****6789</Text>
-            </View>
+              />{' '}
+              <Text style={styles.textTop}> 138 ** ** 6789 </Text>{' '}
+            </View>{' '}
             <View style={styles.contentWrap}>
               <View style={styles.betPacket}>
-                <Text style={styles.betText}>金额账户(元)</Text>
+                <Text style={styles.betText}> 金额账户(元) </Text>{' '}
                 <Image
                   style={styles.betImg}
                   source={require('../images/visual.png')}
-                />
-              </View>
-            </View>
+                />{' '}
+              </View>{' '}
+            </View>{' '}
             <View style={styles.contentWrap}>
-              <Text style={styles.lastText}>6666.66</Text>
+              <Text style={styles.lastText}> 6666.66 </Text>{' '}
               <View style={styles.lastWrap}>
-                <Text style={styles.endText}>在途资金(元):12000.88</Text>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
+                <Text style={styles.endText}> 在途资金(元): 12000.88 </Text>{' '}
+              </View>{' '}
+            </View>{' '}
+          </ImageBackground>{' '}
+        </View>{' '}
         <View style={styles.content}>
           <TouchableOpacity
             activeOpacity={1}
@@ -91,14 +93,14 @@ class Account extends Component {
               <Image
                 source={require('../images/my-invest.png')}
                 style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}>我的投资</Text>
-            </View>
+              />{' '}
+              <Text style={styles.sunstance}> 我的投资 </Text>{' '}
+            </View>{' '}
             <Image
               source={require('../images/enter.png')}
               style={styles.enter}
-            />
-          </TouchableOpacity>
+            />{' '}
+          </TouchableOpacity>{' '}
           <TouchableOpacity
             activeOpacity={1}
             style={styles.wrapper}
@@ -108,14 +110,14 @@ class Account extends Component {
               <Image
                 source={require('../images/invest-detail.png')}
                 style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}>资金明细</Text>
-            </View>
+              />{' '}
+              <Text style={styles.sunstance}> 资金明细 </Text>{' '}
+            </View>{' '}
             <Image
               source={require('../images/enter.png')}
               style={styles.enter}
-            />
-          </TouchableOpacity>
+            />{' '}
+          </TouchableOpacity>{' '}
           <TouchableOpacity
             activeOpacity={1}
             style={styles.wrapper}
@@ -125,14 +127,14 @@ class Account extends Component {
               <Image
                 source={require('../images/cash.png')}
                 style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}>提现</Text>
-            </View>
+              />{' '}
+              <Text style={styles.sunstance}> 提现 </Text>{' '}
+            </View>{' '}
             <Image
               source={require('../images/enter.png')}
               style={styles.enter}
-            />
-          </TouchableOpacity>
+            />{' '}
+          </TouchableOpacity>{' '}
           <TouchableOpacity
             activeOpacity={1}
             style={styles.wrapper}
@@ -142,14 +144,14 @@ class Account extends Component {
               <Image
                 source={require('../images/setting.png')}
                 style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}>设置</Text>
-            </View>
+              />{' '}
+              <Text style={styles.sunstance}> 设置 </Text>{' '}
+            </View>{' '}
             <Image
               source={require('../images/enter.png')}
               style={styles.enter}
-            />
-          </TouchableOpacity>
+            />{' '}
+          </TouchableOpacity>{' '}
           <TouchableOpacity
             activeOpacity={1}
             style={[styles.wrapper, styles.lastChild]}
@@ -159,15 +161,15 @@ class Account extends Component {
               <Image
                 source={require('../images/about.png')}
                 style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}>关于</Text>
-            </View>
+              />{' '}
+              <Text style={styles.sunstance}> 关于 </Text>{' '}
+            </View>{' '}
             <Image
               source={require('../images/enter.png')}
               style={styles.enter}
-            />
-          </TouchableOpacity>
-        </View>
+            />{' '}
+          </TouchableOpacity>{' '}
+        </View>{' '}
       </View>
     )
   }

@@ -27,6 +27,10 @@ class Account extends Component {
     )
   }
 
+  gotoLogin = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+  }
+
   render() {
     // const { login } = this.props
     return (
@@ -99,7 +103,7 @@ class Account extends Component {
             </View>
           </View>
         </View>
-        <Button text="临时注销" onPress={this.logout} />
+        <Button text="临时注销" onPress={this.gotoLogin} />
       </View>
     )
   }

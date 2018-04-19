@@ -119,14 +119,6 @@ const styles = StyleSheet.create({
   outItem: {
     flexDirection: 'row',
   },
-  close: {
-    position: 'absolute',
-    top: pxToDp(30),
-    margin: 'auto',
-    left: pxToDp(28),
-    height: pxToDp(28),
-    width: pxToDp(28),
-  },
   outBalance: {
     justifyContent: 'center',
   },

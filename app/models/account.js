@@ -3,7 +3,7 @@ import { createAction, NavigationActions, Storage } from '../utils'
 import * as authService from '../services/account'
 
 export default {
-  namespace: 'app',
+  namespace: 'account',
   state: {
     login: false,
     loading: true,

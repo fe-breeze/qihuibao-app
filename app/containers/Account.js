@@ -13,7 +13,7 @@ import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
-@connect(({ app }) => ({ ...app }))
+@connect(({ account }) => ({ ...account }))
 class Account extends Component {
   static navigationOptions = {
     header: null,
@@ -27,6 +27,7 @@ class Account extends Component {
     ),
   }
   componentWillMount() {
+    console.log('account willmount')
     this.props.dispatch(createAction('account/accountBalance')())
   }
   gotoMyInvest = () => {

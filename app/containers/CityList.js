@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
-// import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
+
 // import { Button } from '../components'
 
 import pxToDp from '../utils/pxToDp'
@@ -15,11 +16,28 @@ class Detail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      city: '',
+      city: '阿尔法',
     }
   }
 
-  handleOut = () => {}
+  componentWillUnmount() {
+    Storage.get('city').then(data => {
+      this.setState({
+        city: data,
+      })
+    })
+    this.props.dispatch(createAction('account/coList')()).then(() => {
+      this.setState({
+        city: '阿尔法',
+      })
+    })
+  }
+
+  gotohome = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'HomeNavigator' })
+    )
+  }
 
   render() {
     return (

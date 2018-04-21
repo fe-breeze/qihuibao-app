@@ -70,7 +70,6 @@ class Account extends Component {
   formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
-    console.warn(0)
     return (
       <View style={styles.container}>
         <View>

@@ -8,8 +8,8 @@ import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
-@connect()
-class Detail extends Component {
+@connect(({ account }) => ({ ...account }))
+class CityList extends Component {
   static navigationOptions = {
     title: '选择城市',
     headerStyle: {
@@ -25,17 +25,12 @@ class Detail extends Component {
     }
   }
 
-  componentWillUnmount() {
-    Storage.get('city').then(data => {
-      this.setState({
-        city: data,
+  componentWillMount() {
+    this.props.dispatch(
+      createAction('account/coList')({
+        companyName: '阿尔法',
       })
-    })
-    this.props.dispatch(createAction('account/coList')()).then(() => {
-      this.setState({
-        city: '阿尔法',
-      })
-    })
+    )
   }
 
   gotohome = () => {
@@ -136,4 +131,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Detail
+export default CityList

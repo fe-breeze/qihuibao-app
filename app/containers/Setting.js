@@ -19,7 +19,7 @@ class Detail extends Component {
     title: '设置',
   }
 
-  gotoLogin = () => {
+  gotoLogout = () => {
     this.props.dispatch(createAction('app/logout')())
   }
 
@@ -44,7 +44,7 @@ class Detail extends Component {
           </TouchableOpacity>
           <View style={styles.btnWrap}>
             <View style={styles.loginoutBtn}>
-              <Button title="退出" color="#fff" onPress={this.gotoLogin} />
+              <Button title="退出" color="#fff" onPress={this.gotoLogout} />
             </View>
           </View>
         </View>

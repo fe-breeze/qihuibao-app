@@ -2,8 +2,6 @@ import request from '../utils/request'
 import { Storage } from '../utils'
 // import { delay } from '../utils'
 
-// const BASE = 'https://easy-mock.com/mock/5ab7a51a89962b05a31a31cb/api/'
-// const BASE = 'http://localhost:9080/api/'
 const BASE = 'http://localhost:9080/api/'
 
 export const accountBalance = async payload => {
@@ -24,13 +22,13 @@ export const accountBalance = async payload => {
 export const coList = async payload => {
   console.log(`send coList${payload}`)
   const token = await Storage.get('token')
-  console.log(token)
-  const data = await request(`${BASE}loginCompany/list`, {
-    body: {
-      companyName: payload,
+  const data = await request(
+    `${BASE}loginCompany/list`,
+    {
+      body: payload,
     },
-    token,
-  })
+    token
+  )
   console.log(`data:${JSON.stringify(data)}`)
   return data
 }

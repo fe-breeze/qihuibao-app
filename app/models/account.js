@@ -1,11 +1,12 @@
 import Toast from 'react-native-root-toast'
-import { createAction, NavigationActions, Storage } from '../utils'
+import { createAction, NavigationActions } from '../utils'
 import * as authService from '../services/account'
 
 export default {
   namespace: 'account',
   state: {
     accountMsg: {},
+    companyList: [],
   },
   reducers: {
     updateState(state, { payload }) {
@@ -15,8 +16,7 @@ export default {
   effects: {
     *accountBalance({ payload }, { call, put }) {
       try {
-        const token = yield call(Storage.get, 'token')
-        const account = yield call(authService.accountBalance, payload, token)
+        const account = yield call(authService.accountBalance, payload)
         if (account.succeed) {
           yield put(createAction('updateState')({ accountMsg: account.data }))
         } else {
@@ -27,19 +27,18 @@ export default {
         console.log(err)
       }
     },
-  },
-  *coList({ payload }, { call, put }) {
-    try {
-      const token = yield call(Storage.get, 'token')
-      const company = yield call(authService.coList, payload, token)
-      if (this.coList.succeed) {
-        yield put(createAction('updateState')({ accountMsg: company.data }))
-      } else {
-        Toast.show('查询列表失败')
+    *coList({ payload }, { call, put }) {
+      try {
+        const company = yield call(authService.coList, payload)
+        if (this.coList.succeed) {
+          yield put(createAction('updateState')({ companyList: company.data }))
+        } else {
+          Toast.show('查询列表失败')
+        }
+      } catch (err) {
+        console.log(err)
       }
-    } catch (err) {
-      console.log(err)
-    }
+    },
   },
   subscriptions: {
     setup({ dispatch }) {

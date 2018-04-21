@@ -204,7 +204,6 @@ class Router extends PureComponent {
       return true
     }
     if (currentScreen !== 'Home') {
-      console.warn(currentScreen)
       this.props.dispatch(NavigationActions.back())
       return true
     }

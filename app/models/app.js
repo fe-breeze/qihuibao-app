@@ -8,7 +8,6 @@ export default {
     login: false,
     loading: true,
     fetching: false,
-    username: '',
   },
   reducers: {
     updateState(state, { payload }) {
@@ -89,23 +88,24 @@ export default {
           Toast.show('登录成功！')
           const username = yield call(Storage.get, 'username')
           if (typeof username !== 'string') {
+            yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
             yield put(NavigationActions.navigate({ routeName: 'CityList' }))
+          } else {
+            yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
+            yield put(
+              NavigationActions.reset({
+                index: 0,
+                key: null,
+                actions: [NavigationActions.navigate({ routeName: 'Main' })],
+              })
+            )
           }
-          yield put(
-            NavigationActions.reset({
-              index: 0,
-              key: null,
-              actions: [NavigationActions.navigate({ routeName: 'Main' })],
-            })
-          )
           yield call(Storage.set, 'username', payload.username)
-          yield call(Storage.set, 'token', login.data._token) // eslint-disable-line
           yield call(Storage.set, 'login', login.succeed)
           yield put(
             createAction('updateState')({
               login: login.succeed,
               loading: false,
-              username: payload.username,
             })
           )
         } else {
@@ -126,11 +126,14 @@ export default {
       try {
         const logout = yield call(authService.logout)
         if (logout.succeed) {
-          Toast.show(logout.flag)
           yield put(NavigationActions.navigate({ routeName: 'Login' }))
           yield call(Storage.set, 'login', false)
+          yield call(Storage.set, 'username', null)
           yield call(Storage.set, 'token', null)
-          yield put(createAction('updateState')({ login: false }))
+          yield put(
+            createAction('updateState')({ login: false, fetching: false })
+          )
+          Toast.show(logout.flag)
         } else {
           Toast.show(logout.flag)
         }

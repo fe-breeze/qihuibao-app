@@ -87,6 +87,17 @@ export default {
         const login = yield call(authService.login, payload)
         if (login.succeed) {
           Toast.show('登录成功！')
+          const username = yield call(Storage.get, 'username')
+          if (typeof username !== 'string') {
+            yield put(
+              NavigationActions.reset({
+                index: 0,
+                actions: [
+                  NavigationActions.navigate({ routeName: 'CityList' }),
+                ],
+              })
+            )
+          }
           yield put(
             NavigationActions.reset({
               index: 0,
@@ -123,7 +134,7 @@ export default {
           Toast.show('退出成功！')
           yield put(NavigationActions.navigate({ routeName: 'Login' }))
           yield call(Storage.set, 'login', false)
-          yield call(Storage.set, 'token', null) // eslint-disable-line
+          yield call(Storage.set, 'token', null)
           yield put(createAction('updateState')({ login: false }))
         } else {
           Toast.show('退出失败！')

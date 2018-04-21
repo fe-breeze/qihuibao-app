@@ -141,9 +141,9 @@ const ModifyAccountNavigator = StackNavigator(
 // )
 const AppNavigator = StackNavigator(
   {
-    Login: { screen: Login },
     // Login: { screen: LoginNavigator },
     Main: { screen: MainNavigator },
+    Login: { screen: Login },
     ModifyAccount: { screen: ModifyAccountNavigator },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },

@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -19,8 +19,8 @@ class Detail extends Component {
     title: '设置',
   }
 
-  gotoAccount = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Account' }))
+  gotoLogin = () => {
+    this.props.dispatch(createAction('app/logout')())
   }
 
   gotoReLogin = () => {
@@ -44,7 +44,7 @@ class Detail extends Component {
           </TouchableOpacity>
           <View style={styles.btnWrap}>
             <View style={styles.loginoutBtn}>
-              <Button title="退出" color="#fff" onPress={this.gotoAccount} />
+              <Button title="退出" color="#fff" onPress={this.gotoLogin} />
             </View>
           </View>
         </View>

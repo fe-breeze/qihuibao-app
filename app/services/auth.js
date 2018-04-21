@@ -14,6 +14,15 @@ export const login = async payload => {
   })
   return data
 }
+export const logout = async payload => {
+  console.log(payload)
+  const data = await request(`${BASE}logout`, {
+    method: 'POST',
+    body: payload,
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+  })
+  return data
+}
 export const vCode = async payload => {
   console.log(`send vcode${payload}`)
   const data = await request(`${BASE}vefirycode/vefiry`, {

@@ -22,7 +22,7 @@ export default {
         } else {
           Toast.show('获取失败')
         }
-        yield put(NavigationActions.navigate({ routeName: 'Login' })) // 用于成功后的跳转,待修改
+        yield put(NavigationActions.navigate({ routeName: 'Account' })) // 用于成功后的跳转,待修改
       } catch (err) {
         console.log(err)
       }

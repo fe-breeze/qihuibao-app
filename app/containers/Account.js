@@ -83,8 +83,7 @@ class Account extends Component {
                 source={require('../images/head.png')}
               />
               <Text style={styles.textTop}>
-                {' '}
-                {this.formatPhone(this.state.username)}{' '}
+                {this.formatPhone(this.state.username)}
               </Text>
             </View>
             <View style={styles.contentWrap}>
@@ -98,18 +97,15 @@ class Account extends Component {
             </View>
             <View style={styles.contentWrap}>
               <Text style={styles.lastText}>
-                {' '}
-                {Number.parseFloat(this.state.accountMsg.balance).toFixed(
-                  2
-                )}{' '}
+                {Number.parseFloat(this.state.accountMsg.balance).toFixed(2) ||
+                  0}
               </Text>
               <View style={styles.lastWrap}>
                 <Text style={styles.endText}>
-                  {' '}
-                  在途资金(元):{' '}
+                  在途资金(元):
                   {Number.parseFloat(
-                    this.state.accountMsg.unpayInterest
-                  ).toFixed(2)}{' '}
+                    this.state.accountMsg.unpayInterest || 0
+                  ).toFixed(2)}
                 </Text>
               </View>
             </View>

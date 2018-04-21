@@ -41,6 +41,7 @@ import CashDetail from './containers/CashDetail'
 import CityList from './containers/CityList'
 import InvestDetail from './containers/InvestDetail'
 import ProjectIntro from './containers/ProjectIntro'
+import ModifyPwdUser from './containers/ModifyPwdUser'
 import buyStatus from './containers/buyStatus'
 
 const HomeNavigator = TabNavigator(
@@ -123,27 +124,26 @@ const ModifyAccountNavigator = StackNavigator(
     },
   }
 )
-// const LoginNavigator = StackNavigator(
-//   {
-//     LoginMain: { screen: Login },
-//     ModifyPwdUser: { screen: ModifyPwd },
-//   },
-//   {
-//     headerMode: 'float',
-//     navigationOptions: {
-//       headerBackTitle: null,
-//       headerStyle: {
-//         backgroundColor: '#fff',
-//         borderBottomWidth: 0,
-//       },
-//     },
-//   }
-// )
+const LoginNavigator = StackNavigator(
+  {
+    LoginMain: { screen: Login },
+    ModifyPwdUser: { screen: ModifyPwdUser },
+  },
+  {
+    headerMode: 'float',
+    navigationOptions: {
+      headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomWidth: 0,
+      },
+    },
+  }
+)
 const AppNavigator = StackNavigator(
   {
-    // Login: { screen: LoginNavigator },
     Main: { screen: MainNavigator },
-    Login: { screen: Login },
+    Login: { screen: LoginNavigator },
     ModifyAccount: { screen: ModifyAccountNavigator },
     Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },

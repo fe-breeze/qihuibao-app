@@ -89,18 +89,12 @@ export default {
           Toast.show('登录成功！')
           const username = yield call(Storage.get, 'username')
           if (typeof username !== 'string') {
-            yield put(
-              NavigationActions.reset({
-                index: 0,
-                actions: [
-                  NavigationActions.navigate({ routeName: 'CityList' }),
-                ],
-              })
-            )
+            yield put(NavigationActions.navigate({ routeName: 'CityList' }))
           }
           yield put(
             NavigationActions.reset({
               index: 0,
+              key: null,
               actions: [NavigationActions.navigate({ routeName: 'Main' })],
             })
           )
@@ -131,13 +125,13 @@ export default {
       try {
         const logout = yield call(authService.logout)
         if (logout.succeed) {
-          Toast.show('退出成功！')
+          Toast.show(logout.flag)
           yield put(NavigationActions.navigate({ routeName: 'Login' }))
           yield call(Storage.set, 'login', false)
           yield call(Storage.set, 'token', null)
           yield put(createAction('updateState')({ login: false }))
         } else {
-          Toast.show('退出失败！')
+          Toast.show(logout.flag)
         }
       } catch (err) {
         Toast.show('服务器错误！')

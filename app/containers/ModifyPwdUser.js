@@ -10,18 +10,20 @@ import {
 import { connect } from 'react-redux'
 
 import { Button } from '../components'
-import { createAction, NavigationActions, Storage, delay } from '../utils'
+
+import { createAction, delay, Storage } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
-class Login extends Component {
+class ModifyPwd extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: '找回密码',
   }
   constructor(props) {
     super(props)
     this.state = {
       tel: '',
+      password: '',
       vCode: '',
       count: 0,
     }
@@ -33,85 +35,83 @@ class Login extends Component {
       })
     })
   }
-  onLogin = () => {
-    this.props.dispatch(
-      createAction('app/login')({
-        username: this.state.tel,
-        vCode: this.state.vCode,
-        loginModel: 'userNameAndVerifyCode',
-      })
-    )
-  }
-
   getVcode = () => {
     this.decrease(90)
     this.setState({
       count: 90,
     })
     this.props.dispatch(
-      createAction('app/vcode')({
+      createAction('app/vefiryCode')({
         mobile: this.state.tel,
-        count: this.props.count,
+      })
+    )
+  }
+  gotoModifyStatus = () => {
+    this.props.dispatch(
+      createAction('app/resetpwd')({
+        username: this.state.tel,
+        password: this.state.password,
+        repassword: this.state.password,
+        verifyCode: this.state.vCode,
       })
     )
   }
   decrease = payload => {
     if (payload > 0) {
       delay(1000).then(() => {
+        // this.state.count -= 1
         this.setState({
           count: payload - 1,
         })
         this.decrease(payload - 1)
       })
     } else {
-      // this.gotoVLogin()
+      this.gotoVLogin()
     }
-  }
-  gotoModifyAccount = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'ModifyAccount' })
-    )
-  }
-
-  gotoFindPwd = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'ModifyPwdUser' })
-    )
-  }
-
-  gotoLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
   }
   formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
-    const { fetching } = this.props
+    const { fetching, navigation } = this.props
+    const { params } = navigation.state
+    const status = params ? params.status : true
     return (
       <View style={styles.container}>
         {fetching ? (
           <ActivityIndicator />
         ) : (
           <View style={styles.content}>
-            <View style={styles.changeAcct}>
-              <Text style={styles.changeFont} onPress={this.gotoModifyAccount}>
-                切换账户
-              </Text>
-            </View>
             <View style={styles.logo}>
               <Image source={require('../images/logo.png')} />
             </View>
-            <Text style={styles.savedUser}>
-              {this.formatPhone(this.state.tel)}
-            </Text>
-            <View style={styles.inputRow}>
+            {status && this.state.tel ? (
+              <Text style={styles.savedUser}>
+                {this.formatPhone(this.state.tel)}
+              </Text>
+            ) : (
+              <View style={styles.inputRow}>
+                <View style={styles.labelWrap}>
+                  <Image source={require('../images/phone.png')} />
+                </View>
+                <TextInput
+                  style={[styles.inputItem]}
+                  value={this.state.tel}
+                  onChangeText={tel => this.setState({ tel })}
+                  placeholder="请输入手机号"
+                  placeholderTextColor="rgb(220, 220, 220)"
+                />
+              </View>
+            )}
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
               <View style={styles.labelWrap}>
                 <Image source={require('../images/captcha.png')} />
               </View>
               <TextInput
-                style={[styles.inputItem, { color: 'rgb(220, 220, 220)' }]}
+                style={[styles.inputItem]}
                 value={this.state.vCode}
                 onChangeText={vCode => this.setState({ vCode })}
                 placeholder="请输入短信验证码"
+                maxLength={6}
               />
               {this.state.count ? (
                 <Text style={styles.getVcode}>
@@ -123,14 +123,27 @@ class Login extends Component {
                 </Text>
               )}
             </View>
-            <View style={styles.loginBtn}>
-              <Button text="登录" onPress={this.onLogin} />
+            <View style={[styles.inputRow, { marginTop: pxToDp(26) }]}>
+              <View style={styles.labelWrap}>
+                <Image source={require('../images/password.png')} />
+              </View>
+              <TextInput
+                style={[styles.inputItem]}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
+                secureTextEntry
+                maxLength={32}
+                placeholder="请设置新密码"
+                placeholderTextColor="rgb(220, 220, 220)"
+              />
             </View>
-            <Text onPress={this.gotoFindPwd} style={styles.forgetPsw}>
-              忘记密码?
-            </Text>
-            <Text onPress={this.gotoLogin} style={styles.valid}>
-              密码登录
+            <Button
+              text="提交"
+              onPress={this.gotoModifyStatus}
+              style={styles.loginBtn}
+            />
+            <Text style={{ color: '#a2a2a2', marginTop: pxToDp(20) }}>
+              密码至少包含6位数字和字母
             </Text>
           </View>
         )}
@@ -158,6 +171,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  savedUser: {
+    fontSize: pxToDp(60),
+    textAlign: 'center',
+    color: 'rgb(51,51,51)',
+    marginBottom: pxToDp(100),
+  },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -175,20 +194,9 @@ const styles = StyleSheet.create({
     height: pxToDp(88),
     flex: 1,
   },
-  savedUser: {
-    fontSize: pxToDp(60),
-    textAlign: 'center',
-    color: 'rgb(51,51,51)',
-    marginBottom: pxToDp(100),
-  },
   loginBtn: {
     marginTop: pxToDp(50),
     marginBottom: pxToDp(20),
-  },
-  forgetPsw: {
-    textAlign: 'right',
-    fontSize: pxToDp(24),
-    color: 'rgb(54,177,255)',
   },
   getVcode: {
     textAlign: 'right',
@@ -198,9 +206,8 @@ const styles = StyleSheet.create({
     paddingRight: pxToDp(26),
   },
   valid: {
-    position: 'absolute',
-    bottom: pxToDp(50),
-    width: '100%',
+    marginBottom: pxToDp(50),
+    marginTop: pxToDp(50),
     textAlign: 'center',
     fontSize: pxToDp(28),
     color: 'rgb(170,170,170)',
@@ -216,4 +223,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Login
+export default ModifyPwd

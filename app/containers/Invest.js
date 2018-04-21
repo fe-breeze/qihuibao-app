@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Button } from '../components'
+// import { Button } from '../components'
 
 import { NavigationActions } from '../utils'
 
@@ -103,7 +103,6 @@ class Account extends Component {
             </View>
           </View>
         </View>
-        <Button text="临时注销" onPress={this.gotoLogin} />
       </View>
     )
   }

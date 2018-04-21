@@ -97,8 +97,9 @@ class Account extends Component {
             </View>
             <View style={styles.contentWrap}>
               <Text style={styles.lastText}>
-                {Number.parseFloat(this.state.accountMsg.balance).toFixed(2) ||
-                  0}
+                {Number.parseFloat(this.state.accountMsg.balance || 0).toFixed(
+                  2
+                )}
               </Text>
               <View style={styles.lastWrap}>
                 <Text style={styles.endText}>

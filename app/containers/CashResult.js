@@ -10,12 +10,6 @@ import pxToDp from '../utils/pxToDp'
 class CashResult extends Component {
   static navigationOptions = {
     title: '结果详情',
-    headerBackTitle: null,
-    headerStyle: {
-      backgroundColor: '#36b1ff',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
   }
 
   gotoWithdrawal = () => {

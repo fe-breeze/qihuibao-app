@@ -12,6 +12,11 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '选择城市',
+    headerStyle: {
+      backgroundColor: '#fff',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#000',
   }
   constructor(props) {
     super(props)

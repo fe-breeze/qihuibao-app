@@ -42,7 +42,7 @@ import CityList from './containers/CityList'
 import InvestDetail from './containers/InvestDetail'
 import ProjectIntro from './containers/ProjectIntro'
 import ModifyPwdUser from './containers/ModifyPwdUser'
-import buyStatus from './containers/buyStatus'
+import BuyStatus from './containers/BuyStatus'
 
 const HomeNavigator = TabNavigator(
   {
@@ -62,14 +62,12 @@ const HomeNavigator = TabNavigator(
 const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
-    CityList: { screen: CityList },
     Withdrawal: { screen: Withdrawal },
-    ModifyPwdStatus: { screen: ModifyPwdStatus },
     CapitalDetails: { screen: CapitalDetails },
     CashResult: { screen: CashResult },
     Detail: { screen: Detail },
     MyInvest: { screen: MyInvest },
-    buyStatus: { screen: buyStatus },
+    BuyStatus: { screen: BuyStatus },
     ProjectIntro: { screen: ProjectIntro },
     InvestDetail: { screen: InvestDetail },
     About: { screen: About },
@@ -87,9 +85,10 @@ const MainNavigator = StackNavigator(
     navigationOptions: {
       headerBackTitle: null,
       headerStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: '#36b1ff',
         borderBottomWidth: 0,
       },
+      headerTintColor: '#fff',
     },
   }
 )
@@ -113,7 +112,9 @@ const ModifyAccountNavigator = StackNavigator(
 const LoginNavigator = StackNavigator(
   {
     LoginMain: { screen: Login },
+    CityList: { screen: CityList },
     ModifyPwdUser: { screen: ModifyPwdUser },
+    ModifyPwdStatus: { screen: ModifyPwdStatus },
   },
   {
     headerMode: 'float',

@@ -17,12 +17,6 @@ import { Button } from '../components'
 class Detail extends Component {
   static navigationOptions = {
     title: '稳健盈 NO-00002',
-    headerBackTitle: null,
-    headerStyle: {
-      backgroundColor: '#36b1ff',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
   }
   constructor(props) {
     super(props)

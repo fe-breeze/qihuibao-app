@@ -11,12 +11,6 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '稳健盈 NO-000034',
-    headerBackTitle: null,
-    headerStyle: {
-      backgroundColor: '#36b1ff',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
   }
   constructor(props) {
     super(props)

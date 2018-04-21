@@ -8,6 +8,12 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '投资详情',
+    headerBackTitle: null,
+    headerStyle: {
+      backgroundColor: '#36b1ff',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#fff',
   }
 
   render() {

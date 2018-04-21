@@ -19,6 +19,12 @@ class CapitalDetails extends Component {
     header: null,
     title: '企惠宝零钱包',
     tabBarLabel: '企惠宝零钱包',
+    headerBackTitle: null,
+    headerStyle: {
+      backgroundColor: '#36b1ff',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#fff',
   }
 
   gotoPurseOut = () => {

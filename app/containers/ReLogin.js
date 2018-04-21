@@ -10,6 +10,12 @@ import pxToDp from '../utils/pxToDp'
 class Detail extends Component {
   static navigationOptions = {
     title: '重置登录密码',
+    headerBackTitle: null,
+    headerStyle: {
+      backgroundColor: '#36b1ff',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#fff',
   }
 
   constructor(props) {

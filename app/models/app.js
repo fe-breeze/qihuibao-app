@@ -105,6 +105,7 @@ export default {
             createAction('updateState')({
               login: login.succeed,
               loading: false,
+              username: payload.username,
             })
           )
         } else {

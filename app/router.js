@@ -65,20 +65,6 @@ const MainNavigator = StackNavigator(
     CityList: { screen: CityList },
     Withdrawal: { screen: Withdrawal },
     ModifyPwdStatus: { screen: ModifyPwdStatus },
-  },
-  {
-    headerMode: 'float',
-    navigationOptions: {
-      headerBackTitle: null,
-      headerStyle: {
-        backgroundColor: '#fff',
-        borderBottomWidth: 0,
-      },
-    },
-  }
-)
-const ContentNavigator = StackNavigator(
-  {
     CapitalDetails: { screen: CapitalDetails },
     CashResult: { screen: CashResult },
     Detail: { screen: Detail },
@@ -101,13 +87,13 @@ const ContentNavigator = StackNavigator(
     navigationOptions: {
       headerBackTitle: null,
       headerStyle: {
-        backgroundColor: '#36b1ff',
+        backgroundColor: '#fff',
         borderBottomWidth: 0,
       },
-      headerTintColor: '#fff',
     },
   }
 )
+
 const ModifyAccountNavigator = StackNavigator(
   {
     ModifyAccountMain: { screen: ModifyAccount },
@@ -145,7 +131,6 @@ const AppNavigator = StackNavigator(
     Main: { screen: MainNavigator },
     Login: { screen: LoginNavigator },
     ModifyAccount: { screen: ModifyAccountNavigator },
-    Content: { screen: ContentNavigator },
     VLogin: { screen: VLogin },
   },
   {
@@ -218,6 +203,7 @@ class Router extends PureComponent {
       return true
     }
     if (currentScreen !== 'Home') {
+      console.warn(currentScreen)
       this.props.dispatch(NavigationActions.back())
       return true
     }

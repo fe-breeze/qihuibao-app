@@ -12,7 +12,7 @@ export default {
     turnOutAmount: {},
     logoUrl: '',
     regularRate: '',
-    currentRate: ''
+    currentRate: '',
   },
   reducers: {
     updateState(state, { payload }) {
@@ -55,7 +55,10 @@ export default {
         ])
         if (regularRate.succeed && currentRate.succeed) {
           yield put(
-            createAction('updateState')({ regularRate: regularRate.data, currentRate: currentRate.data })
+            createAction('updateState')({
+              regularRate: regularRate.data,
+              currentRate: currentRate.data,
+            })
           )
         } else {
           Toast.show('查询列表失败')

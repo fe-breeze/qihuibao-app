@@ -7,7 +7,7 @@ import { NavigationActions } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect()
-class Detail extends Component {
+class MyInvest extends Component {
   static navigationOptions = {
     title: '我的投资',
   }
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     marginTop: pxToDp(20),
     flex: 1,
     backgroundColor: '#fff',
-    padding: pxToDp(26),
+    paddingLeft: pxToDp(26),
   },
   contentItem: {
     justifyContent: 'space-between',
@@ -185,11 +185,12 @@ const styles = StyleSheet.create({
   listMoney: {
     fontSize: pxToDp(28),
     color: 'rgb(102,102,102)',
-    marginTop: pxToDp(20),
+    marginTop: pxToDp(18),
   },
   itemParcel: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    paddingRight: pxToDp(26)
   },
   itemPercent: {
     fontSize: pxToDp(40),
@@ -198,14 +199,10 @@ const styles = StyleSheet.create({
   outTabWrap: {
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    height: pxToDp(128),
+    height: pxToDp(88),
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#dcdcdc',
-  },
-  outIn: {
-    flexDirection: 'row',
-    marginTop: pxToDp(20),
   },
   outTab: {
     flex: 1,
@@ -250,4 +247,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Detail
+export default MyInvest

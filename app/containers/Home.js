@@ -31,14 +31,14 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      regularRate: '',
+      rate: '',
     }
   }
   componentWillMount() {
-    this.props.dispatch(createAction('account/regularRate')()).then(() => {
-      // const { regularRate } = this.props
+    this.props.dispatch(createAction('account/homeRate')()).then(() => {
+      // const { rate } = this.props
       // this.setState({
-      //   regularRate
+      //   rate
       // })
     })
   }
@@ -115,7 +115,7 @@ class Home extends Component {
                 source={require('../images/volume.png')}
               />
               <Text style={styles.rate}>
-                {this.state.regularRate}企惠宝零钱包7日年化率提高20%!
+                {this.state.rate}企惠宝零钱包7日年化率提高20%!
               </Text>
             </View>
             <View style={styles.cardWrap}>

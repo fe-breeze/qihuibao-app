@@ -12,6 +12,7 @@ export default {
     turnOutAmount: {},
     logoUrl: '',
     regularRate: '',
+    currentRate: ''
   },
   reducers: {
     updateState(state, { payload }) {
@@ -45,13 +46,16 @@ export default {
       }
       yield put(createAction('updateState')({ fetching: false }))
     },
-    *regularRate({ payload }, { call, put }) {
+    *homeRate({ payload }, { call, all, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       try {
-        const regularRate = yield call(authService.regularRate, payload)
-        if (regularRate.succeed) {
+        const [regularRate, currentRate] = yield all([
+          call(authService.regularRate, payload),
+          call(authService.currentRate, payload),
+        ])
+        if (regularRate.succeed && currentRate.succeed) {
           yield put(
-            createAction('updateState')({ regularRate: regularRate.data })
+            createAction('updateState')({ regularRate: regularRate.data, currentRate: currentRate.data })
           )
         } else {
           Toast.show('查询列表失败')

@@ -13,6 +13,8 @@ export default {
     logoUrl: '',
     regularRate: '',
     currentRate: '',
+    arrival: '',
+    unArrival: '',
   },
   reducers: {
     updateState(state, { payload }) {
@@ -58,6 +60,28 @@ export default {
             createAction('updateState')({
               regularRate: regularRate.data,
               currentRate: currentRate.data,
+            })
+          )
+        } else {
+          Toast.show('查询列表失败')
+        }
+      } catch (err) {
+        console.log(err)
+      }
+      yield put(createAction('updateState')({ fetching: false }))
+    },
+    *myInvest({ payload }, { call, all, put }) {
+      yield put(createAction('updateState')({ fetching: true }))
+      try {
+        const [arrival, unArrival] = yield all([
+          call(authService.arrival, payload),
+          call(authService.unArrival, payload),
+        ])
+        if (arrival.succeed && unArrival.succeed) {
+          yield put(
+            createAction('updateState')({
+              arrival: arrival.data,
+              unArrival: unArrival.data,
             })
           )
         } else {

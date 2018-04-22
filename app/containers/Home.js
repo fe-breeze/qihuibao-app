@@ -31,15 +31,17 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rate: '',
+      regularRate: '',
+      currentRate: '',
     }
   }
   componentWillMount() {
     this.props.dispatch(createAction('account/homeRate')()).then(() => {
-      // const { rate } = this.props
-      // this.setState({
-      //   rate
-      // })
+      const { regularRate, currentRate } = this.props
+      this.setState({
+        regularRate,
+        currentRate,
+      })
     })
   }
   gotoCoinPurse = () => {
@@ -131,9 +133,15 @@ class Home extends Component {
                 <View style={styles.percent}>
                   <View>
                     <Text style={styles.info}>
-                      <Text style={{ fontSize: pxToDp(60) }}>8</Text>
+                      <Text style={{ fontSize: pxToDp(60) }}>
+                        {Number.parseFloat(this.state.regularRate)}
+                      </Text>
                       <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-                      <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
+                      <Text style={{ fontSize: pxToDp(60) }}>
+                        -{Number.parseFloat(
+                          this.state.regularRate.split('-')[1]
+                        )}
+                      </Text>
                       <Text style={{ fontSize: pxToDp(40) }}>%</Text>
                     </Text>
                     <Text
@@ -163,7 +171,9 @@ class Home extends Component {
                 <View style={styles.percent}>
                   <View>
                     <Text style={styles.info}>
-                      <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
+                      <Text style={{ fontSize: pxToDp(60) }}>
+                        {Number.parseFloat(this.state.currentRate)}
+                      </Text>
                       <Text style={{ fontSize: pxToDp(40) }}>%</Text>
                     </Text>
                     <Text

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -11,7 +11,14 @@ class MyInvest extends Component {
   static navigationOptions = {
     title: '我的投资',
   }
-
+  componentWillMount() {
+    this.props.dispatch(createAction('account/myInvest')()).then(() => {
+      // const { rate } = this.props
+      // this.setState({
+      //   rate
+      // })
+    })
+  }
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }

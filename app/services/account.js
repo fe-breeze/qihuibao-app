@@ -34,7 +34,7 @@ export const accountUser = async payload => {
 export const arrival = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/arrival`,
+    `${BASE}app/product/arrival`,
     {
       body: payload,
     },
@@ -46,7 +46,7 @@ export const arrival = async payload => {
 export const currentRate = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/currentRate`,
+    `${BASE}app/product/currentRate`,
     {
       body: payload,
     },
@@ -58,7 +58,7 @@ export const currentRate = async payload => {
 export const regularRate = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/regularRate`,
+    `${BASE}app/product/regularRate`,
     {
       body: payload,
     },
@@ -70,7 +70,7 @@ export const regularRate = async payload => {
 export const turnOutAmount = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/turnOutAmount`,
+    `${BASE}app/product/turnOutAmount`,
     {
       body: payload,
     },
@@ -82,7 +82,7 @@ export const turnOutAmount = async payload => {
 export const unArrival = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/unArrival`,
+    `${BASE}app/product/unArrival`,
     {
       body: payload,
     },
@@ -94,7 +94,7 @@ export const unArrival = async payload => {
 export const detail = async payload => {
   const token = await Storage.get('token')
   const data = await request(
-    `${BASE}product/detail`,
+    `${BASE}app/product/detail`,
     {
       method: 'POST',
       body: payload,

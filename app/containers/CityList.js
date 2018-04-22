@@ -8,10 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { connect } from 'react-redux'
+import debounce from 'lodash.debounce'
 
 import { NavigationActions, createAction } from '../utils'
-
-// import { Button } from '../components'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -19,6 +18,7 @@ import pxToDp from '../utils/pxToDp'
 class CityList extends Component {
   static navigationOptions = {
     title: '选择城市',
+    headerLeft: null,
     headerStyle: {
       backgroundColor: '#fff',
       borderBottomWidth: 0,
@@ -34,7 +34,8 @@ class CityList extends Component {
   }
 
   componentWillMount() {
-    this.handleList()
+    this.handleList = debounce(this.searchCompany, 1000)
+    this.searchCompany()
   }
 
   gotoHome = payload => {
@@ -49,7 +50,12 @@ class CityList extends Component {
         this.props.dispatch(NavigationActions.navigate({ routeName: 'Main' }))
       })
   }
-  handleList = payload => {
+
+  changeName = payload => {
+    this.handleList(payload)
+  }
+
+  searchCompany = payload => {
     this.props
       .dispatch(
         createAction('account/coList')({
@@ -63,10 +69,6 @@ class CityList extends Component {
           companyName: payload || '',
         })
       })
-  }
-
-  changeName = payload => {
-    this.handleList(payload)
   }
 
   render() {
@@ -100,7 +102,7 @@ class CityList extends Component {
                   })
                 }
               >
-                <Text>{item.bank}</Text>
+                <Text>{item.name}</Text>
                 <Image
                   style={[styles.select]}
                   source={require('../images/checked.png')}

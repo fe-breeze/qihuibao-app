@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   itemParcel: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: pxToDp(26)
+    paddingRight: pxToDp(26),
   },
   itemPercent: {
     fontSize: pxToDp(40),

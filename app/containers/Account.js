@@ -74,7 +74,7 @@ class Account extends Component {
   formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
-    const { fetching } = this.props
+    const { fetching, logoUrl } = this.props
     return (
       <View style={styles.container}>
         {fetching ? (
@@ -87,10 +87,17 @@ class Account extends Component {
                 source={require('../images/account-bg.png')}
               >
                 <View style={styles.topWrap}>
-                  <Image
-                    style={styles.imgTop}
-                    source={require('../images/head.png')}
-                  />
+                  {logoUrl ? (
+                    <Image
+                      style={styles.imgTop}
+                      source={{ uri: `https://${logoUrl}` }}
+                    />
+                  ) : (
+                    <Image
+                      style={styles.imgTop}
+                      source={require('../images/head.png')}
+                    />
+                  )}
                   <Text style={styles.textTop}>
                     {this.formatPhone(this.state.username)}
                   </Text>

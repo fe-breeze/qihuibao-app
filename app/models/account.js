@@ -85,6 +85,7 @@ export default {
         const company = yield call(authService.coSave, {
           companyId: payload.companyId,
         })
+        yield put(createAction('updateState')({ logoUrl: payload.logoUrl })) // 调试用
         if (company.succeed) {
           yield put(createAction('updateState')({ logoUrl: payload.logoUrl }))
           Toast.show('选择城市成功')

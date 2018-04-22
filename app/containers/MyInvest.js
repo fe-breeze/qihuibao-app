@@ -6,46 +6,106 @@ import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
-@connect()
+@connect(({ account }) => ({ ...account }))
 class MyInvest extends Component {
   static navigationOptions = {
     title: '我的投资',
   }
+  constructor(props) {
+    super(props)
+    this.state = {
+      arrival: [],
+      unArrival: [],
+      arrivalShow: true,
+    }
+  }
   componentWillMount() {
     this.props.dispatch(createAction('account/myInvest')()).then(() => {
-      // const { rate } = this.props
-      // this.setState({
-      //   rate
-      // })
+      const { arrival, unArrival } = this.props
+      this.setState({
+        arrival,
+        unArrival,
+      })
     })
   }
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
+  }
+  changeTab = status => {
+    this.setState({
+      arrivalShow: status,
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.outTabWrap}>
-          <View style={[styles.outTab, styles.bank]}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => this.changeTab(true)}
+            style={[styles.outTab, styles.bank]}
+          >
             <View style={styles.tabItemWrap}>
-              <Text style={styles.bankText}>投资中</Text>
+              <Text
+                style={[
+                  styles.bankText,
+                  this.state.arrivalShow && styles.active,
+                ]}
+              >
+                投资中
+              </Text>
               <View style={styles.lineWrap}>
-                <View style={styles.line} />
+                {this.state.arrivalShow && <View style={styles.line} />}
               </View>
             </View>
-          </View>
-          <View style={[styles.outTab, styles.balance]}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => this.changeTab(false)}
+            style={[styles.outTab, styles.balance]}
+          >
             <View style={styles.tabItemWrap}>
-              <Text style={styles.balanceText}>已结算</Text>
+              <Text
+                style={[
+                  styles.balanceText,
+                  !this.state.arrivalShow && styles.active,
+                ]}
+              >
+                已结算
+              </Text>
               <View style={styles.lineWrap}>
-                <View style={styles.line} />
+                {!this.state.arrivalShow && <View style={styles.line} />}
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
-        {true ? (
+        {this.state.arrivalShow ? (
           <View style={styles.contentWrap}>
+            {this.state.arrival.length && (
+              <TouchableOpacity
+                style={styles.contentItem}
+                activeOpacity={1}
+                onPress={this.gotoDetail}
+              >
+                <View style={styles.itemWrap}>
+                  <View>
+                    <View style={styles.itemPack}>
+                      <Text style={styles.listName}>稳健盈</Text>
+                      <Text style={styles.listNum}>NO-00001</Text>
+                    </View>
+                    <Text style={styles.listMoney}>1200.00元</Text>
+                  </View>
+                  <View style={styles.itemParcel}>
+                    <Text style={styles.itemPercent}>15%</Text>
+                    <Image
+                      source={require('../images/enter.png')}
+                      style={{ marginLeft: pxToDp(80) }}
+                    />
+                  </View>
+                </View>
+              </TouchableOpacity>
+            )}
             <TouchableOpacity
               style={styles.contentItem}
               activeOpacity={1}
@@ -93,6 +153,30 @@ class MyInvest extends Component {
           </View>
         ) : (
           <View style={styles.contentWrap}>
+            {this.state.unArrival.length && (
+              <TouchableOpacity
+                style={styles.contentItem}
+                activeOpacity={1}
+                onPress={this.gotoDetail}
+              >
+                <View style={styles.itemWrap}>
+                  <View>
+                    <View style={styles.itemPack}>
+                      <Text style={styles.listName}>稳健盈</Text>
+                      <Text style={styles.listNum}>NO-00001</Text>
+                    </View>
+                    <Text style={styles.listMoney}>1200.00元</Text>
+                  </View>
+                  <View style={styles.itemParcel}>
+                    <Text style={styles.itemPercent}>15%</Text>
+                    <Image
+                      source={require('../images/enter.png')}
+                      style={{ marginLeft: pxToDp(80) }}
+                    />
+                  </View>
+                </View>
+              </TouchableOpacity>
+            )}
             <TouchableOpacity
               style={styles.contentItem}
               activeOpacity={1}
@@ -229,10 +313,13 @@ const styles = StyleSheet.create({
   balance: {
     paddingLeft: pxToDp(50),
   },
+  active: {
+    color: 'rgb(54,117,255)',
+  },
   bankText: {
     textAlign: 'right',
     fontSize: pxToDp(36),
-    color: 'rgb(54,117,255)',
+    color: 'rgb(170,170,170)',
     width: '100%',
   },
   balanceText: {

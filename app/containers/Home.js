@@ -134,12 +134,12 @@ class Home extends Component {
                   <View>
                     <Text style={styles.info}>
                       <Text style={{ fontSize: pxToDp(60) }}>
-                        {Number.parseFloat(this.state.regularRate)}
+                        {Number.parseFloat(this.state.regularRate || 0)}
                       </Text>
                       <Text style={{ fontSize: pxToDp(40) }}>%</Text>
                       <Text style={{ fontSize: pxToDp(60) }}>
                         -{Number.parseFloat(
-                          this.state.regularRate.split('-')[1]
+                          this.state.regularRate.split('-')[1] || 0
                         )}
                       </Text>
                       <Text style={{ fontSize: pxToDp(40) }}>%</Text>

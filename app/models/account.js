@@ -13,8 +13,8 @@ export default {
     logoUrl: '',
     regularRate: '',
     currentRate: '',
-    arrival: '',
-    unArrival: '',
+    arrival: [],
+    unArrival: [],
   },
   reducers: {
     updateState(state, { payload }) {

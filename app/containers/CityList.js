@@ -28,18 +28,13 @@ class CityList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      city: '阿尔法',
+      companyName: '',
       companyList: [],
     }
   }
 
   componentWillMount() {
-    this.props.dispatch(createAction('account/coList')()).then(() => {
-      const { companyList } = this.props
-      this.setState({
-        companyList,
-      })
-    })
+    this.handleList()
   }
 
   gotoHome = payload => {
@@ -54,6 +49,25 @@ class CityList extends Component {
         this.props.dispatch(NavigationActions.navigate({ routeName: 'Main' }))
       })
   }
+  handleList = payload => {
+    this.props
+      .dispatch(
+        createAction('account/coList')({
+          companyName: payload || '',
+        })
+      )
+      .then(() => {
+        const { companyList } = this.props
+        this.setState({
+          companyList,
+          companyName: payload || '',
+        })
+      })
+  }
+
+  changeName = payload => {
+    this.handleList(payload)
+  }
 
   render() {
     return (
@@ -65,8 +79,8 @@ class CityList extends Component {
           />
           <TextInput
             style={styles.input}
-            value={this.state.city}
-            onChangeText={city => this.setState({ city })}
+            value={this.state.companyName}
+            onChangeText={companyName => this.changeName(companyName)}
             maxLength={32}
             placeholder="选择所在公司"
             placeholderTextColor="rgb(220, 220, 220)"
@@ -79,8 +93,12 @@ class CityList extends Component {
                 style={styles.cityListItem}
                 key={item.id}
                 activeOpacity={1}
-                // onPress="this.gotoHome({ id: item.id, logoUrl: item.logoUrl })"
-                onPress={e => this.gotoHome({ id: e.id, logoUrl: e.logoUrl })}
+                onPress={() =>
+                  this.gotoHome({
+                    id: Number.parseInt(item.id),
+                    logoUrl: item.logoUrl,
+                  })
+                }
               >
                 <Text>{item.bank}</Text>
                 <Image

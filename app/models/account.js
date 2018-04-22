@@ -18,12 +18,15 @@ export default {
     },
   },
   effects: {
-    *accountBalance({ payload }, { call, put }) {
+    *accountBalance({ payload }, { all, call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       try {
-        // const turnOutAmount = yield call(authService.turnOutAmount, payload)
-        const user = yield call(authService.accountUser, payload)
-        const account = yield call(authService.accountBalance, payload)
+        // const [user, account, turnOutAmount] = yield all([
+        const [user, account] = yield all([
+          call(authService.accountUser, payload),
+          call(authService.accountBalance, payload),
+          // call(authService.accountBalance, payload)
+        ])
         // if (account.succeed && user.succeed && turnOutAmount.succeed) {
         if (account.succeed && user.succeed) {
           yield put(

@@ -11,6 +11,7 @@ export default {
     user: {},
     turnOutAmount: {},
     logoUrl: '',
+    regularRate: '',
   },
   reducers: {
     updateState(state, { payload }) {
@@ -41,6 +42,22 @@ export default {
         }
       } catch (err) {
         Toast.show('服务器错误')
+      }
+      yield put(createAction('updateState')({ fetching: false }))
+    },
+    *regularRate({ payload }, { call, put }) {
+      yield put(createAction('updateState')({ fetching: true }))
+      try {
+        const regularRate = yield call(authService.regularRate, payload)
+        if (regularRate.succeed) {
+          yield put(
+            createAction('updateState')({ regularRate: regularRate.data })
+          )
+        } else {
+          Toast.show('查询列表失败')
+        }
+      } catch (err) {
+        console.log(err)
       }
       yield put(createAction('updateState')({ fetching: false }))
     },

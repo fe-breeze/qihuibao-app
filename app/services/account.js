@@ -43,6 +43,18 @@ export const arrival = async payload => {
   console.log(`data:${JSON.stringify(data)}`)
   return data
 }
+export const regularRate = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/regularRate`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
 export const turnOutAmount = async payload => {
   const token = await Storage.get('token')
   const data = await request(

@@ -6,15 +6,16 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 
 import pxToDp from '../utils/pxToDp'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
-@connect()
+@connect(({ account }) => ({ ...account }))
 class Home extends Component {
   static navigationOptions = {
     header: null,
@@ -27,7 +28,20 @@ class Home extends Component {
       />
     ),
   }
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      regularRate: '',
+    }
+  }
+  componentWillMount() {
+    this.props.dispatch(createAction('account/regularRate')()).then(() => {
+      // const { regularRate } = this.props
+      // this.setState({
+      //   regularRate
+      // })
+    })
+  }
   gotoCoinPurse = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'CoinPurse' }))
   }
@@ -37,125 +51,139 @@ class Home extends Component {
   }
 
   render() {
+    const { fetching } = this.props
     return (
       <View style={styles.container}>
-        <Swiper
-          style={styles.wrapper}
-          height={pxToDp(460)}
-          autoplay
-          dot={
-            <View
-              style={{
-                backgroundColor: 'rgba(255,255,255,.4)',
-                width: pxToDp(18),
-                height: pxToDp(6),
-                borderRadius: pxToDp(4),
-                marginLeft: pxToDp(7),
-                marginRight: pxToDp(7),
+        {fetching ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.wrapper}>
+            <Swiper
+              height={pxToDp(460)}
+              autoplay
+              dot={
+                <View
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,.4)',
+                    width: pxToDp(18),
+                    height: pxToDp(6),
+                    borderRadius: pxToDp(4),
+                    marginLeft: pxToDp(7),
+                    marginRight: pxToDp(7),
+                  }}
+                />
+              }
+              activeDot={
+                <View
+                  style={{
+                    backgroundColor: '#fff',
+                    width: pxToDp(18),
+                    height: pxToDp(6),
+                    borderRadius: pxToDp(4),
+                    marginLeft: pxToDp(7),
+                    marginRight: pxToDp(7),
+                  }}
+                />
+              }
+              paginationStyle={{
+                bottom: pxToDp(23),
               }}
-            />
-          }
-          activeDot={
-            <View
-              style={{
-                backgroundColor: '#fff',
-                width: pxToDp(18),
-                height: pxToDp(6),
-                borderRadius: pxToDp(4),
-                marginLeft: pxToDp(7),
-                marginRight: pxToDp(7),
-              }}
-            />
-          }
-          paginationStyle={{
-            bottom: pxToDp(23),
-          }}
-          loop
-        >
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require('../images/banner.png')}
-            />
-          </View>
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require('../images/banner.png')}
-            />
-          </View>
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require('../images/banner.png')}
-            />
-          </View>
-        </Swiper>
-        <View style={styles.notice}>
-          <Image
-            style={styles.vicon}
-            source={require('../images/volume.png')}
-          />
-          <Text style={styles.rate}>企惠宝零钱包7日年化率提高20%!</Text>
-        </View>
-        <View style={styles.cardWrap}>
-          <TouchableOpacity
-            style={styles.content}
-            activeOpacity={1}
-            onPress={this.gotoInvest}
-          >
-            <View style={styles.financialWrap}>
-              <Text style={styles.financial}>定期理财</Text>
-              <Text style={styles.income}>收益稳健</Text>
-            </View>
-            <View style={styles.percent}>
-              <View>
-                <Text style={styles.info}>
-                  <Text style={{ fontSize: pxToDp(60) }}>8</Text>
-                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-                  <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
-                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-                </Text>
-                <Text
-                  style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}
-                >
-                  平均年化率高达
-                </Text>
+              loop
+            >
+              <View style={styles.slide}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/banner.png')}
+                />
               </View>
-              <Image
-                style={styles.ficon}
-                source={require('../images/financing.png')}
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.content}
-            onPress={this.gotoCoinPurse}
-          >
-            <View style={styles.financialWrap}>
-              <Text style={styles.financial}>企惠宝零钱包</Text>
-              <Text style={styles.income}>资金灵活</Text>
-            </View>
-            <View style={styles.percent}>
-              <View>
-                <Text style={styles.info}>
-                  <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
-                  <Text style={{ fontSize: pxToDp(40) }}>%</Text>
-                </Text>
-                <Text
-                  style={{ fontSize: pxToDp(28), color: 'rgb(170,170,170)' }}
-                >
-                  7日年化率高达
-                </Text>
+              <View style={styles.slide}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/banner.png')}
+                />
               </View>
+              <View style={styles.slide}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/banner.png')}
+                />
+              </View>
+            </Swiper>
+            <View style={styles.notice}>
               <Image
-                style={styles.ficon}
-                source={require('../images/qihuibao-package.png')}
+                style={styles.vicon}
+                source={require('../images/volume.png')}
               />
+              <Text style={styles.rate}>
+                {this.state.regularRate}企惠宝零钱包7日年化率提高20%!
+              </Text>
             </View>
-          </TouchableOpacity>
-        </View>
+            <View style={styles.cardWrap}>
+              <TouchableOpacity
+                style={styles.content}
+                activeOpacity={1}
+                onPress={this.gotoInvest}
+              >
+                <View style={styles.financialWrap}>
+                  <Text style={styles.financial}>定期理财</Text>
+                  <Text style={styles.income}>收益稳健</Text>
+                </View>
+                <View style={styles.percent}>
+                  <View>
+                    <Text style={styles.info}>
+                      <Text style={{ fontSize: pxToDp(60) }}>8</Text>
+                      <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                      <Text style={{ fontSize: pxToDp(60) }}>-15</Text>
+                      <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: pxToDp(28),
+                        color: 'rgb(170,170,170)',
+                      }}
+                    >
+                      平均年化率高达
+                    </Text>
+                  </View>
+                  <Image
+                    style={styles.ficon}
+                    source={require('../images/financing.png')}
+                  />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.content}
+                onPress={this.gotoCoinPurse}
+              >
+                <View style={styles.financialWrap}>
+                  <Text style={styles.financial}>企惠宝零钱包</Text>
+                  <Text style={styles.income}>资金灵活</Text>
+                </View>
+                <View style={styles.percent}>
+                  <View>
+                    <Text style={styles.info}>
+                      <Text style={{ fontSize: pxToDp(60) }}>4.5</Text>
+                      <Text style={{ fontSize: pxToDp(40) }}>%</Text>
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: pxToDp(28),
+                        color: 'rgb(170,170,170)',
+                      }}
+                    >
+                      7日年化率高达
+                    </Text>
+                  </View>
+                  <Image
+                    style={styles.ficon}
+                    source={require('../images/qihuibao-package.png')}
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
       </View>
     )
   }
@@ -165,13 +193,17 @@ const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#f4f3f3',
   },
   icon: {
     width: pxToDp(48),
     height: pxToDp(48),
   },
-  wrapper: {},
+  wrapper: {
+    flex: 1,
+  },
   slide: {
     flex: 1,
     justifyContent: 'center',

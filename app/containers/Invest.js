@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 // import { Button } from '../components'
 
-import { NavigationActions } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
-@connect(({ app }) => ({ ...app }))
-class Account extends Component {
+@connect(({ account }) => ({ ...account }))
+class Invest extends Component {
   static navigationOptions = {
     title: '定期理财',
     tabBarLabel: '投资',
@@ -20,7 +28,20 @@ class Account extends Component {
       />
     ),
   }
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      buyList: [],
+    }
+  }
+  componentWillMount() {
+    this.props.dispatch(createAction('account/buy')()).then(() => {
+      const { buyList } = this.props
+      this.setState({
+        buyList,
+      })
+    })
+  }
   gotoInvestDetail = () => {
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'InvestDetail' })
@@ -32,77 +53,62 @@ class Account extends Component {
   }
 
   render() {
-    // const { login } = this.props
+    const { fetching } = this.props
     return (
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <View style={styles.item}>
-            <View style={styles.itemContent}>
-              <View style={styles.itemTitleWrap}>
-                <View style={styles.circle} />
-                <Text style={styles.itemTitle}>稳健盈 NO-00001</Text>
-              </View>
-              <View style={styles.itemCount}>
-                <View style={styles.itemText}>
-                  <Text style={styles.textTitle}>15</Text>
-                  <Text style={styles.textInfo}>%</Text>
-                </View>
-                <View style={styles.itemText}>
-                  <Text style={styles.textTitle}>6</Text>
-                  <Text style={styles.textInfo}>个月</Text>
-                </View>
-                <TouchableOpacity
-                  activeOpacity={1}
-                  style={styles.btn}
-                  onPress={this.gotoInvestDetail}
-                >
-                  <Text style={styles.btnText}>投资</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.itemInfo}>
-                <Text style={styles.info}>年化率</Text>
-                <Text style={styles.info}>投资期限</Text>
-                <TouchableOpacity
-                  activeOpacity={1}
-                  style={[styles.btn, styles.hidden]}
-                >
-                  <Text>投资</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+      <View style={[styles.container, fetching && styles.center]}>
+        {fetching ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.content}>
+            {this.state.buyList.length && (
+              <FlatList
+                data={this.state.buyList}
+                renderItem={({ item }) => (
+                  <View style={styles.item}>
+                    <View style={styles.itemContent}>
+                      <View style={styles.itemTitleWrap}>
+                        <View style={styles.circle} />
+                        <Text style={styles.itemTitle}>
+                          {item.name} NO-00001
+                        </Text>
+                      </View>
+                      <View style={styles.itemCount}>
+                        <View style={styles.itemText}>
+                          <Text style={styles.textTitle}>
+                            {item.annualRate * 100}
+                          </Text>
+                          <Text style={styles.textInfo}>%</Text>
+                        </View>
+                        <View style={styles.itemText}>
+                          <Text style={styles.textTitle}>{item.term}</Text>
+                          <Text style={styles.textInfo}>个月</Text>
+                        </View>
+                        <TouchableOpacity
+                          activeOpacity={1}
+                          style={styles.btn}
+                          onPress={this.gotoInvestDetail}
+                        >
+                          <Text style={styles.btnText}>投资</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={styles.itemInfo}>
+                        <Text style={styles.info}>年化率</Text>
+                        <Text style={styles.info}>投资期限</Text>
+                        <TouchableOpacity
+                          activeOpacity={1}
+                          style={[styles.btn, styles.hidden]}
+                        >
+                          <Text>投资</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </View>
+                )}
+                keyExtractor={item => item.id}
+              />
+            )}
           </View>
-          <View style={styles.item}>
-            <View style={styles.itemContent}>
-              <View style={styles.itemTitleWrap}>
-                <View style={styles.circle} />
-                <Text style={styles.itemTitle}>稳健盈 NO-00001</Text>
-              </View>
-              <View style={styles.itemCount}>
-                <View style={styles.itemText}>
-                  <Text style={styles.textTitle}>15</Text>
-                  <Text style={styles.textInfo}>%</Text>
-                </View>
-                <View style={styles.itemText}>
-                  <Text style={styles.textTitle}>6</Text>
-                  <Text style={styles.textInfo}>个月</Text>
-                </View>
-                <TouchableOpacity activeOpacity={1} style={styles.btn}>
-                  <Text style={styles.btnText}>投资</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.itemInfo}>
-                <Text style={styles.info}>年化率</Text>
-                <Text style={styles.info}>投资期限</Text>
-                <TouchableOpacity
-                  activeOpacity={1}
-                  style={[styles.btn, styles.hidden]}
-                >
-                  <Text>投资</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </View>
+        )}
       </View>
     )
   }
@@ -113,13 +119,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   content: {
     paddingTop: pxToDp(26),
     paddingLeft: pxToDp(26),
     paddingRight: pxToDp(26),
-  },
-  item: {
-    // paddingBottom: pxToDp(50)
   },
   itemContent: {
     backgroundColor: '#fff',
@@ -190,4 +197,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Account
+export default Invest

@@ -132,3 +132,16 @@ export const coSave = async payload => {
   console.log(`data:${JSON.stringify(data)}`)
   return data
 }
+export const buy = async payload => {
+  console.log(`send coSave${payload}`)
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/buy`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}

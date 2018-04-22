@@ -15,6 +15,7 @@ export default {
     currentRate: '',
     arrival: [],
     unArrival: [],
+    buyList: [],
   },
   reducers: {
     updateState(state, { payload }) {
@@ -120,6 +121,21 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    *buy({ payload }, { call, put }) {
+      yield put(createAction('updateState')({ fetching: true }))
+      try {
+        const buy = yield call(authService.buy, payload)
+        if (buy.succeed) {
+          yield put(createAction('updateState')({ buyList: buy.data }))
+          Toast.show('获取产品列表成功')
+        } else {
+          Toast.show('获取产品列表失败')
+        }
+      } catch (err) {
+        console.log(err)
+      }
+      yield put(createAction('updateState')({ fetching: false }))
     },
   },
   subscriptions: {

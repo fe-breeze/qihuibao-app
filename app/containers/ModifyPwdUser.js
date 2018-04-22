@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native'
 import { connect } from 'react-redux'
+import Toast from 'react-native-root-toast'
 
 import { Button } from '../components'
 
@@ -47,6 +48,14 @@ class ModifyPwdUser extends Component {
     )
   }
   gotoModifyStatus = () => {
+    if (this.state.vCode.length < 6) {
+      Toast.show('请输入6位短信验证码！')
+      return
+    }
+    if (this.state.password.length < 6) {
+      Toast.show('密码不少于6位！')
+      return
+    }
     this.props.dispatch(
       createAction('app/resetpwd')({
         username: this.state.tel,

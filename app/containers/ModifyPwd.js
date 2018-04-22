@@ -8,10 +8,11 @@ import {
   Image,
 } from 'react-native'
 import { connect } from 'react-redux'
+import Toast from 'react-native-root-toast'
 
 import { Button } from '../components'
 
-import { createAction, delay, Storage } from '../utils'
+import { createAction, delay } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
@@ -28,17 +29,6 @@ class ModifyPwd extends Component {
       count: 0,
     }
   }
-  componentWillMount() {
-    Storage.get('username').then(data => {
-      const { params } = this.props.navigation.state
-      const status = params ? params.status : true
-      if (status) {
-        this.setState({
-          tel: data,
-        })
-      }
-    })
-  }
   getVcode = () => {
     this.decrease(90)
     this.setState({
@@ -51,6 +41,19 @@ class ModifyPwd extends Component {
     )
   }
   gotoModifyStatus = () => {
+    const reg = /^1[0-9]{10}$/
+    if (!reg.test(this.state.tel)) {
+      Toast.show('请输入正确的手机号码！')
+      return
+    }
+    if (this.state.vCode.length < 6) {
+      Toast.show('请输入6位短信验证码！')
+      return
+    }
+    if (this.state.password.length < 6) {
+      Toast.show('密码不少于6位！')
+      return
+    }
     this.props.dispatch(
       createAction('app/resetpwd')({
         username: this.state.tel,

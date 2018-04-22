@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native'
 import { connect } from 'react-redux'
+import Toast from 'react-native-root-toast'
 
 import { Button } from '../components'
 import { createAction, NavigationActions, Storage, delay } from '../utils'
@@ -34,6 +35,10 @@ class Login extends Component {
     })
   }
   onLogin = () => {
+    if (this.state.vCode.length < 6) {
+      Toast.show('请输入6位短信验证码！')
+      return
+    }
     this.props.dispatch(
       createAction('app/login')({
         username: this.state.tel,

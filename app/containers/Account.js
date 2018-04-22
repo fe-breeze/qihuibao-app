@@ -6,10 +6,11 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationActions, createAction, Storage } from '../utils'
+import { NavigationActions, createAction } from '../utils'
 
 import pxToDp from '../utils/pxToDp'
 
@@ -34,15 +35,11 @@ class Account extends Component {
     }
   }
   componentWillMount() {
-    Storage.get('username').then(data => {
-      this.setState({
-        username: data,
-      })
-    })
     this.props.dispatch(createAction('account/accountBalance')()).then(() => {
-      const { accountMsg } = this.props
+      const { accountMsg, user } = this.props
       this.setState({
         accountMsg,
+        username: user.mobile,
       })
     })
   }
@@ -70,135 +67,142 @@ class Account extends Component {
   formatPhone = phone => phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
 
   render() {
+    const { fetching } = this.props
     return (
       <View style={styles.container}>
-        <View>
-          <ImageBackground
-            style={styles.background}
-            source={require('../images/account-bg.png')}
-          >
-            <View style={styles.topWrap}>
-              <Image
-                style={styles.imgTop}
-                source={require('../images/head.png')}
-              />
-              <Text style={styles.textTop}>
-                {this.formatPhone(this.state.username)}
-              </Text>
+        {fetching ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.height}>
+            <View>
+              <ImageBackground
+                style={styles.background}
+                source={require('../images/account-bg.png')}
+              >
+                <View style={styles.topWrap}>
+                  <Image
+                    style={styles.imgTop}
+                    source={require('../images/head.png')}
+                  />
+                  <Text style={styles.textTop}>
+                    {this.formatPhone(this.state.username)}
+                  </Text>
+                </View>
+                <View style={styles.contentWrap}>
+                  <View style={styles.betPacket}>
+                    <Text style={styles.betText}> 金额账户(元) </Text>
+                    <Image
+                      style={styles.betImg}
+                      source={require('../images/visual.png')}
+                    />
+                  </View>
+                </View>
+                <View style={styles.contentWrap}>
+                  <Text style={styles.lastText}>
+                    {Number.parseFloat(
+                      this.state.accountMsg.balance || 0
+                    ).toFixed(2)}
+                  </Text>
+                  <View style={styles.lastWrap}>
+                    <Text style={styles.endText}>
+                      在途资金(元):
+                      {Number.parseFloat(
+                        this.state.accountMsg.unpayInterest || 0
+                      ).toFixed(2)}
+                    </Text>
+                  </View>
+                </View>
+              </ImageBackground>
             </View>
-            <View style={styles.contentWrap}>
-              <View style={styles.betPacket}>
-                <Text style={styles.betText}> 金额账户(元) </Text>
+            <View style={styles.content}>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.wrapper}
+                onPress={this.gotoMyInvest}
+              >
+                <View style={styles.wrapDeatil}>
+                  <Image
+                    source={require('../images/my-invest.png')}
+                    style={styles.imgStyle}
+                  />
+                  <Text style={styles.sunstance}> 我的投资 </Text>
+                </View>
                 <Image
-                  style={styles.betImg}
-                  source={require('../images/visual.png')}
+                  source={require('../images/enter.png')}
+                  style={styles.enter}
                 />
-              </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.wrapper}
+                onPress={this.gotoCapitalDetails}
+              >
+                <View style={styles.wrapDeatil}>
+                  <Image
+                    source={require('../images/invest-detail.png')}
+                    style={styles.imgStyle}
+                  />
+                  <Text style={styles.sunstance}> 资金明细 </Text>
+                </View>
+                <Image
+                  source={require('../images/enter.png')}
+                  style={styles.enter}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.wrapper}
+                onPress={this.gotoWithdrawal}
+              >
+                <View style={styles.wrapDeatil}>
+                  <Image
+                    source={require('../images/cash.png')}
+                    style={styles.imgStyle}
+                  />
+                  <Text style={styles.sunstance}> 提现 </Text>
+                </View>
+                <Image
+                  source={require('../images/enter.png')}
+                  style={styles.enter}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.wrapper}
+                onPress={this.gotoSetting}
+              >
+                <View style={styles.wrapDeatil}>
+                  <Image
+                    source={require('../images/setting.png')}
+                    style={styles.imgStyle}
+                  />
+                  <Text style={styles.sunstance}> 设置 </Text>
+                </View>
+                <Image
+                  source={require('../images/enter.png')}
+                  style={styles.enter}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={[styles.wrapper, styles.lastChild]}
+                onPress={this.gotoAbout}
+              >
+                <View style={styles.wrapDeatil}>
+                  <Image
+                    source={require('../images/about.png')}
+                    style={styles.imgStyle}
+                  />
+                  <Text style={styles.sunstance}> 关于 </Text>
+                </View>
+                <Image
+                  source={require('../images/enter.png')}
+                  style={styles.enter}
+                />
+              </TouchableOpacity>
             </View>
-            <View style={styles.contentWrap}>
-              <Text style={styles.lastText}>
-                {Number.parseFloat(this.state.accountMsg.balance || 0).toFixed(
-                  2
-                )}
-              </Text>
-              <View style={styles.lastWrap}>
-                <Text style={styles.endText}>
-                  在途资金(元):
-                  {Number.parseFloat(
-                    this.state.accountMsg.unpayInterest || 0
-                  ).toFixed(2)}
-                </Text>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
-        <View style={styles.content}>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.wrapper}
-            onPress={this.gotoMyInvest}
-          >
-            <View style={styles.wrapDeatil}>
-              <Image
-                source={require('../images/my-invest.png')}
-                style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}> 我的投资 </Text>
-            </View>
-            <Image
-              source={require('../images/enter.png')}
-              style={styles.enter}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.wrapper}
-            onPress={this.gotoCapitalDetails}
-          >
-            <View style={styles.wrapDeatil}>
-              <Image
-                source={require('../images/invest-detail.png')}
-                style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}> 资金明细 </Text>
-            </View>
-            <Image
-              source={require('../images/enter.png')}
-              style={styles.enter}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.wrapper}
-            onPress={this.gotoWithdrawal}
-          >
-            <View style={styles.wrapDeatil}>
-              <Image
-                source={require('../images/cash.png')}
-                style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}> 提现 </Text>
-            </View>
-            <Image
-              source={require('../images/enter.png')}
-              style={styles.enter}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.wrapper}
-            onPress={this.gotoSetting}
-          >
-            <View style={styles.wrapDeatil}>
-              <Image
-                source={require('../images/setting.png')}
-                style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}> 设置 </Text>
-            </View>
-            <Image
-              source={require('../images/enter.png')}
-              style={styles.enter}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={[styles.wrapper, styles.lastChild]}
-            onPress={this.gotoAbout}
-          >
-            <View style={styles.wrapDeatil}>
-              <Image
-                source={require('../images/about.png')}
-                style={styles.imgStyle}
-              />
-              <Text style={styles.sunstance}> 关于 </Text>
-            </View>
-            <Image
-              source={require('../images/enter.png')}
-              style={styles.enter}
-            />
-          </TouchableOpacity>
-        </View>
+          </View>
+        )}
       </View>
     )
   }
@@ -207,7 +211,12 @@ class Account extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fff',
+  },
+  height: {
+    flex: 1,
   },
   background: {
     height: pxToDp(600),

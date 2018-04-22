@@ -18,6 +18,18 @@ export const accountBalance = async payload => {
   console.log(`data:${JSON.stringify(data)}`)
   return data
 }
+export const accountUser = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}user/show`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
 
 export const coList = async payload => {
   console.log(`send coList${payload}`)

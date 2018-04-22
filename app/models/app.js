@@ -129,7 +129,7 @@ export default {
           yield put(NavigationActions.navigate({ routeName: 'Login' }))
           yield call(Storage.set, 'login', false)
           yield call(Storage.set, 'username', null)
-          yield call(Storage.set, 'token', null)
+          yield call(Storage.set, 'token', null) // 开启进入citylist
           yield put(
             createAction('updateState')({ login: false, fetching: false })
           )

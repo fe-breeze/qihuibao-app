@@ -1,12 +1,14 @@
 import Toast from 'react-native-root-toast'
-import { createAction, NavigationActions } from '../utils'
+import { createAction } from '../utils'
 import * as authService from '../services/account'
 
 export default {
   namespace: 'account',
   state: {
+    fetching: false,
     accountMsg: {},
-    companyList: [],
+    companyList: {},
+    user: {},
   },
   reducers: {
     updateState(state, { payload }) {
@@ -15,17 +17,24 @@ export default {
   },
   effects: {
     *accountBalance({ payload }, { call, put }) {
+      yield put(createAction('updateState')({ fetching: true }))
       try {
+        const user = yield call(authService.accountUser, payload)
         const account = yield call(authService.accountBalance, payload)
-        if (account.succeed) {
-          yield put(createAction('updateState')({ accountMsg: account.data }))
+        if (account.succeed && user.succeed) {
+          yield put(
+            createAction('updateState')({
+              accountMsg: account.data,
+              user: user.data,
+            })
+          )
         } else {
           Toast.show('获取失败')
         }
-        yield put(NavigationActions.navigate({ routeName: 'Account' })) // 用于成功后的跳转,待修改
       } catch (err) {
         console.log(err)
       }
+      yield put(createAction('updateState')({ fetching: false }))
     },
     *coList({ payload }, { call, put }) {
       try {

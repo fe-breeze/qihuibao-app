@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import { NavigationActions, createAction } from '../utils'
@@ -33,10 +40,8 @@ class CityList extends Component {
     )
   }
 
-  gotohome = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'HomeNavigator' })
-    )
+  gotoHome = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Main' }))
   }
 
   render() {
@@ -57,34 +62,50 @@ class CityList extends Component {
           />
         </View>
         <View style={styles.cityList}>
-          <View style={styles.cityListItem}>
+          <TouchableOpacity
+            style={styles.cityListItem}
+            activeOpacity={1}
+            onPress={this.gotoHome}
+          >
             <Text>阿尔法</Text>
             <Image
               style={[styles.select]}
               source={require('../images/checked.png')}
             />
-          </View>
-          <View style={styles.cityListItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cityListItem}
+            activeOpacity={1}
+            onPress={this.gotoHome}
+          >
             <Text>阿尔法</Text>
             <Image
               style={[styles.select]}
               source={require('../images/checked.png')}
             />
-          </View>
-          <View style={styles.cityListItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cityListItem}
+            activeOpacity={1}
+            onPress={this.gotoHome}
+          >
             <Text>阿尔法</Text>
             <Image
               style={[styles.select]}
               source={require('../images/checked.png')}
             />
-          </View>
-          <View style={styles.cityListItem}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cityListItem}
+            activeOpacity={1}
+            onPress={this.gotoHome}
+          >
             <Text>阿尔法</Text>
             <Image
               style={[styles.select]}
               source={require('../images/checked.png')}
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     )

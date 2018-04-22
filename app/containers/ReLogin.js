@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import { NavigationActions } from '../utils'
@@ -22,6 +29,11 @@ class Detail extends Component {
   }
   gotoAccount = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Account' }))
+  }
+  gotoModifyPwdUser = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'ModifyPwdUser' })
+    )
   }
 
   render() {
@@ -60,7 +72,12 @@ class Detail extends Component {
           </View>
           <View style={styles.last}>
             <Text style={styles.tips}>密码至少包含6位数字和字母</Text>
-            <Text style={styles.forgetPwd}>忘记密码?</Text>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={this.gotoModifyPwdUser}
+            >
+              <Text style={styles.forgetPwd}>忘记密码?</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

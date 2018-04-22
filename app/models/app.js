@@ -119,21 +119,27 @@ export default {
           Toast.show('登录失败，请输入正确的用户名和密码！')
         }
       } catch (err) {
-        Toast.show('服务器错误！')
+        Toast.show('登录失败，请输入正确的用户名和密码！')
       }
     },
     *logout(action, { call, put }) {
       try {
         const logout = yield call(authService.logout)
         if (logout.succeed) {
-          yield put(NavigationActions.navigate({ routeName: 'Login' }))
+          const username = yield call(Storage.get, 'username')
+          if (typeof username !== 'string') {
+            yield put(
+              NavigationActions.navigate({ routeName: 'ModifyAccount' })
+            )
+          } else {
+            yield put(NavigationActions.navigate({ routeName: 'Login' }))
+          }
           yield call(Storage.set, 'login', false)
-          yield call(Storage.set, 'username', null)
-          yield call(Storage.set, 'token', null) // 开启进入citylist
+          // yield call(Storage.set, 'username', null) // 开启进入citylist
+          yield call(Storage.set, 'token', null)
           yield put(
             createAction('updateState')({ login: false, fetching: false })
           )
-          Toast.show(logout.flag)
         } else {
           Toast.show(logout.flag)
         }

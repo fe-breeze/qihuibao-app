@@ -15,7 +15,7 @@ import { createAction, delay, Storage } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
-class ModifyPwd extends Component {
+class ModifyPwdUser extends Component {
   static navigationOptions = {
     title: '找回密码',
   }
@@ -223,4 +223,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ModifyPwd
+export default ModifyPwdUser

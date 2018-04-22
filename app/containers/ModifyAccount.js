@@ -15,7 +15,7 @@ import { createAction, NavigationActions } from '../utils'
 import pxToDp from '../utils/pxToDp'
 
 @connect(({ app }) => ({ ...app }))
-class Login extends Component {
+class ModifyAccount extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -121,8 +121,9 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: '100%',
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fff',
     paddingLeft: pxToDp(26),
     paddingRight: pxToDp(26),
@@ -189,4 +190,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Login
+export default ModifyAccount

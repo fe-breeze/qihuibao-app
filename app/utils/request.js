@@ -140,25 +140,30 @@ export default function request(url, options, token = null) {
       return json
     })
     .catch(e => {
-      console.log(e)
       const { dispatch } = store().props.store
       const status = e.name
       if (status === 401) {
         dispatch({
-          type: 'login/logout',
+          type: 'app/logout',
         })
         return
       }
       if (status === 403) {
-        // dispatch(routerRedux.push('/exception/403'));
+        dispatch({
+          type: 'app/logout',
+        })
         return
       }
       if (status <= 504 && status >= 500) {
-        // dispatch(routerRedux.push('/exception/500'));
+        dispatch({
+          type: 'app/logout',
+        })
         return
       }
       if (status >= 404 && status < 422) {
-        // dispatch(routerRedux.push('/exception/404'));
+        dispatch({
+          type: 'app/logout',
+        })
       }
     })
 }

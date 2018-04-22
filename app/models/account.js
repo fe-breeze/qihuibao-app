@@ -7,8 +7,10 @@ export default {
   state: {
     fetching: false,
     accountMsg: {},
-    companyList: {},
+    companyList: [],
     user: {},
+    turnOutAmount: {},
+    logoUrl: '',
   },
   reducers: {
     updateState(state, { payload }) {
@@ -19,30 +21,49 @@ export default {
     *accountBalance({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))
       try {
+        // const turnOutAmount = yield call(authService.turnOutAmount, payload)
         const user = yield call(authService.accountUser, payload)
         const account = yield call(authService.accountBalance, payload)
+        // if (account.succeed && user.succeed && turnOutAmount.succeed) {
         if (account.succeed && user.succeed) {
           yield put(
             createAction('updateState')({
               accountMsg: account.data,
               user: user.data,
+              // turnOutAmount: turnOutAmount.data
             })
           )
         } else {
           Toast.show('获取失败')
         }
       } catch (err) {
-        console.log(err)
+        Toast.show('服务器错误')
       }
       yield put(createAction('updateState')({ fetching: false }))
     },
     *coList({ payload }, { call, put }) {
       try {
         const company = yield call(authService.coList, payload)
-        if (this.coList.succeed) {
+        if (company.succeed) {
           yield put(createAction('updateState')({ companyList: company.data }))
         } else {
           Toast.show('查询列表失败')
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    *coSave({ payload }, { call, put }) {
+      try {
+        const company = yield call(authService.coSave, {
+          companyId: payload.companyId,
+        })
+        if (company.succeed) {
+          yield put(createAction('updateState')({ logoUrl: payload.logoUrl }))
+          Toast.show('选择城市成功')
+        } else {
+          Toast.show('选择城市失败')
+          // return  // 先注释掉
         }
       } catch (err) {
         console.log(err)

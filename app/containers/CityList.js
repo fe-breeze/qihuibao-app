@@ -29,19 +29,30 @@ class CityList extends Component {
     super(props)
     this.state = {
       city: '阿尔法',
+      companyList: [],
     }
   }
 
   componentWillMount() {
-    this.props.dispatch(
-      createAction('account/coList')({
-        companyName: '阿尔法',
+    this.props.dispatch(createAction('account/coList')()).then(() => {
+      const { companyList } = this.props
+      this.setState({
+        companyList,
       })
-    )
+    })
   }
 
-  gotoHome = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Main' }))
+  gotoHome = payload => {
+    this.props
+      .dispatch(
+        createAction('account/coSave')({
+          companyId: payload.id,
+          logoUrl: payload.logoUrl,
+        })
+      )
+      .then(() => {
+        this.props.dispatch(NavigationActions.navigate({ routeName: 'Main' }))
+      })
   }
 
   render() {
@@ -62,50 +73,22 @@ class CityList extends Component {
           />
         </View>
         <View style={styles.cityList}>
-          <TouchableOpacity
-            style={styles.cityListItem}
-            activeOpacity={1}
-            onPress={this.gotoHome}
-          >
-            <Text>阿尔法</Text>
-            <Image
-              style={[styles.select]}
-              source={require('../images/checked.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cityListItem}
-            activeOpacity={1}
-            onPress={this.gotoHome}
-          >
-            <Text>阿尔法</Text>
-            <Image
-              style={[styles.select]}
-              source={require('../images/checked.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cityListItem}
-            activeOpacity={1}
-            onPress={this.gotoHome}
-          >
-            <Text>阿尔法</Text>
-            <Image
-              style={[styles.select]}
-              source={require('../images/checked.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cityListItem}
-            activeOpacity={1}
-            onPress={this.gotoHome}
-          >
-            <Text>阿尔法</Text>
-            <Image
-              style={[styles.select]}
-              source={require('../images/checked.png')}
-            />
-          </TouchableOpacity>
+          {this.state.companyList.length &&
+            this.state.companyList.map(item => (
+              <TouchableOpacity
+                style={styles.cityListItem}
+                key={item.id}
+                activeOpacity={1}
+                // onPress="this.gotoHome({ id: item.id, logoUrl: item.logoUrl })"
+                onPress={e => this.gotoHome({ id: e.id, logoUrl: e.logoUrl })}
+              >
+                <Text>{item.bank}</Text>
+                <Image
+                  style={[styles.select]}
+                  source={require('../images/checked.png')}
+                />
+              </TouchableOpacity>
+            ))}
         </View>
       </View>
     )

@@ -32,10 +32,17 @@ class Account extends Component {
     this.state = {
       accountMsg: {},
       username: '',
+      // turnOutAmount: ''
     }
   }
   componentWillMount() {
     this.props.dispatch(createAction('account/accountBalance')()).then(() => {
+      // const { accountMsg, user, turnOutAmount } = this.props
+      // this.setState({
+      //   accountMsg,
+      //   username: user.mobile,
+      //   turnOutAmount: turnOutAmount
+      // })
       const { accountMsg, user } = this.props
       this.setState({
         accountMsg,

@@ -31,12 +31,76 @@ export const accountUser = async payload => {
   return data
 }
 
+export const arrival = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/arrival`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+export const turnOutAmount = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/turnOutAmount`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+export const unArrival = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/unArrival`,
+    {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+export const detail = async payload => {
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}product/detail`,
+    {
+      method: 'POST',
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+
 export const coList = async payload => {
   console.log(`send coList${payload}`)
   const token = await Storage.get('token')
   const data = await request(
     `${BASE}loginCompany/list`,
     {
+      body: payload,
+    },
+    token
+  )
+  console.log(`data:${JSON.stringify(data)}`)
+  return data
+}
+export const coSave = async payload => {
+  console.log(`send coSave${payload}`)
+  const token = await Storage.get('token')
+  const data = await request(
+    `${BASE}loginCompany/save`,
+    {
+      method: 'POST',
       body: payload,
     },
     token
